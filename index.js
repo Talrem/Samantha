@@ -15,30 +15,30 @@ function alea(){
 }
 //lecture des commandes du bot et log
 fs.readdir(cheminfile.commands,(err, files) => {
-
+  console.log("Début du chargement des commandes.\n")
 	if(err) console.log(err);
 
 	let jsfile = files.filter(f => f.split(".").pop() === "js")
 	if(jsfile.length <= 0){
-		console.log("La commande n'a pas été trouvée");
+		console.log("La commande n'a pas été trouvée\n");
 		return;
 	}
   let nbCommandes = 0;
 	jsfile.forEach((f, i) =>{
 		let props = require(`./commands/${f}`);
-		console.log("Chargement de la commande : " + props.help.name + " du type " + props.help.type  + " avec l'usage " + props.help.usage);
+		console.log("Chargement de : " + props.help.name + "\ntype : " + props.help.type  + "\nusage : " + props.help.usage + "\n");
     nbCommandes++;
 		bot.commands.set(props.help.name, props);
 	});
-  console.log("\n" + nbCommandes + " commandes ont été chargées.\n");
+  console.log(nbCommandes + " commandes ont été chargées.\n");
 });
 
 //le bot en lui meme
 bot.on('ready', async () => {
-	console.log(`${bot.user.username} est en ligne!`)
-  console.log(`${bot.user.username} est connectée sur ${bot.guilds.size} serveurs!`);
+	console.log(`${bot.user.username} est en ligne!\n`)
+  console.log(`${bot.user.username} est connectée sur ${bot.guilds.size} serveurs!\n`);
 	bot.user.setActivity("+>help", {type: "WATCHING"})
-	.then(() => console.log('Activité mise en place avec succès'))
+	.then(() => console.log('Activité mise en place avec succès\n'))
 	.catch(console.error)
 });
 
@@ -142,7 +142,7 @@ bot.on("message", async message =>{
 	let prefix = prefixes[message.guild.id].prefixes;
   //test des préfixes
 	if(!message.content.startsWith(prefix)) return;
-  console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a utilisé la commande "' + message + '"');
+  console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a utilisé la commande "' + message + '"\n');
 	if(cooldown.has(message.author.id)){
 		message.delete();
 		return message.reply("Veuillez attendre 5 secondes entre les commandes.")
