@@ -8,5 +8,5 @@ module.exports.help = {
   name: "ping",
   type: "social",
   usage: "ping",
-  desc: "Samantha répond à votre message."
+  desc: "je répond à votre message."
 }

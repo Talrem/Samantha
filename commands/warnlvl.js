@@ -19,5 +19,5 @@ module.exports.help = {
   name: "warnlvl",
   type: "social",
   usage: "warnlvl <utilisateur>",
-  desc: "Samantha donne le nombre d'avertissements de la cible."
+  desc: "je donne le nombre d'avertissements de la cible."
 }

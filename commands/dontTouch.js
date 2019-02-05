@@ -34,5 +34,5 @@ module.exports.help = {
   name: "dontTouch",
   type: "Private",
   usage: "dontTouch <utilisateur>",
-  desc: "Samantha n'a plus le droit d'appliquer les commandes de modération sur la cible."
+  desc: "je n'ai plus le droit d'appliquer les commandes de modération sur la cible."
 }

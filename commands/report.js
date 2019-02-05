@@ -39,5 +39,5 @@ module.exports.help = {
   name: "report",
   type: "social",
   usage: "report <utilisateur> <raison>",
-  desc: "Samantha informe les admins du comportement de la cible pour la raison donnée."
+  desc: "j'informe les admins du comportement de la cible pour la raison donnée."
 }

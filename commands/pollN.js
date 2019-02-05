@@ -38,6 +38,6 @@ module.exports.help = {
   name: "pollN",
   type: "social",
   usage: "pollN <nombre N> <choix 1> ... <choix N>",
-  desc: "Samantha permet aux utilisateurs de choisir entre vos N choix (maximum 6) avec des réactions."
+  desc: "je permet aux utilisateurs de choisir entre vos N choix (maximum 6) avec des réactions."
 }
 //:one::two::three::four::five::six::seven::eight::nine:

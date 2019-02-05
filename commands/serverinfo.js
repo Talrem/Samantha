@@ -16,5 +16,5 @@ module.exports.help = {
   name: "serverinfo",
   type: "social",
   usage: "serverinfo",
-  desc: "Samantha donne tout ce qu'il y a à savoir sur le serveur."
+  desc: "je donne tout ce qu'il y a à savoir sur le serveur où a été envoyé le message."
 }

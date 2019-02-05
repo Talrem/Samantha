@@ -12,5 +12,5 @@ module.exports.help = {
   name: "say",
   type: "admin",
   usage: "say <message>",
-  desc: "Samantha réplique votre message."
+  desc: "je réplique votre message."
 }

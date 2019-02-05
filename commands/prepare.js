@@ -24,5 +24,5 @@ module.exports.help = {
   name: "prepare",
   type: "fun",
   usage: "prepare <nombre>",
-  desc: "Samantha donne une image indiquant que votre corps est prêt (aléatoire si aucun nombre n'est précisé)."
+  desc: "je donne une image indiquant que votre corps est prêt (aléatoire si aucun nombre n'est précisé)."
 }

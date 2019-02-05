@@ -11,5 +11,5 @@ module.exports.help = {
   name: "ou",
   type: "social",
   usage: "ou",
-  desc: "Aaand it's gone !"
+  desc: "je donne une image du meme \"And it's gone\""
 }

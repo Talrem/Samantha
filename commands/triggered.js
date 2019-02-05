@@ -25,5 +25,5 @@ module.exports.help = {
   name: "triggered",
   type: "fun",
   usage: "triggered <nombre>",
-  desc: "Samantha donne une image triggered (aléatoire si aucun nombre n'est précisé)."
+  desc: "je donne une image triggered (aléatoire si aucun nombre n'est précisé)."
 }

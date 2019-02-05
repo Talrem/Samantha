@@ -80,5 +80,5 @@ module.exports.help = {
   name: "roll",
   type: "fun",
   usage: "roll <nombre1>...<nombreN> OU roll <nombreDeDés X>d<nombreDeFaces Y>",
-  desc: "Samantha lance des des de taille N précisées OU X dés de taille Y."
+  desc: "je lance des des de taille N précisées OU X dés de taille Y."
 }

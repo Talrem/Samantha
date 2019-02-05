@@ -10,5 +10,5 @@ module.exports.help = {
   name: "chooseBetween",
   type: "fun",
   usage: "chooseBetween <choix1> ... <choixN>",
-  desc: "Samantha choisira pour vous."
+  desc: "je choisirai pour vous."
 }

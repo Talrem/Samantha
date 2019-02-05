@@ -24,5 +24,5 @@ module.exports.help = {
   name: "MAJ",
   type: "social",
   usage: "MAJ",
-  desc: "Permet de connaître les dernières modifications de Samantha."
+  desc: "je vous donne les dernières modifications que j'ai reçues."
 }

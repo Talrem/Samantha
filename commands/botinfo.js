@@ -15,5 +15,5 @@ module.exports.help = {
   name: "botinfo",
   type: "social",
   usage: "botinfo",
-  desc: "Pour tout savoir sur moi."
+  desc: "je vous donne tout ce qu'il y a à savoir sur moi."
 }

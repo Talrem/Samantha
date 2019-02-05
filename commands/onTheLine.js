@@ -30,5 +30,5 @@ module.exports.help = {
   name: "onTheLine",
   type: "admin",
   usage: "onTheLine <utilisateur>",
-  desc: "Samantha met la cible sur la ligne rouge."
+  desc: "je met la cible sur la ligne rouge."
 }

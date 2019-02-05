@@ -35,5 +35,5 @@ module.exports.help = {
   name: "giveMoney",
   type: "Private",
   usage: "giveMoney <utilisateur>",
-  desc: "Fait apparaître de l'argent et le donne à la cible."
+  desc: "je fais apparaître de l'argent et le donne à la cible."
 }

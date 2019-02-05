@@ -32,5 +32,5 @@ module.exports.help = {
   name: "tax",
   type: "Private",
   usage: "tax <utilisateur> <nombre>",
-  desc: "Samantha prend le nombre de pièces à la cible et vous le donne."
+  desc: "je prend le nombre de pièces à la cible et le donne à Talrem."
 }

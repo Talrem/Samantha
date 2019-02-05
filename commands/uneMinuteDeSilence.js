@@ -40,5 +40,5 @@ module.exports.help = {
   name: "uneMinuteDeSilence",
   type: "admin",
   usage: "uneMinuteDeSilence <utilisateur>",
-  desc: "Samantha mute la cible pendant une minute."
+  desc: "je mute la cible pendant une minute."
 }

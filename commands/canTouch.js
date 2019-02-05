@@ -17,5 +17,5 @@ module.exports.help = {
   name: "canTouch",
   type: "Private",
   usage: "canTouch <utilisateur>",
-  desc: "Samantha peut à nouveau appliquer les commandes d'administration à la cible."
+  desc: "je peux à nouveau appliquer les commandes d'administration à la cible."
 }

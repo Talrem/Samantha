@@ -26,5 +26,5 @@ module.exports.help = {
   name: "coins",
   type: "social",
   usage: "coins <utilisateur>",
-  desc: "Samantha donne le nombre de pièces de la cible (vous si aucune cible n'est précisée)."
+  desc: "je donne le nombre de pièces de la cible (vous si aucune cible n'est précisée)."
 }

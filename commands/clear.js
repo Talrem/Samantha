@@ -7,6 +7,7 @@ module.exports.run = async (bot, message, args) => {
   }
   if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Vous n'avez pas la permission de supprimer des messages!");
   if(!args[0]) return message.channel.send("Précisez un nombre de messages à supprimer");
+  if(args[0] > 99) return message.channel.send("Veuillez donner un nombre moins grand que 99.")
   message.channel.bulkDelete(args[0])
   .then(() => {
     args[0] = args[0] - 1;
@@ -19,5 +20,5 @@ module.exports.help = {
   name: "clear",
   type: "admin",
   usage: "clear <nombre>",
-  desc: "Samantha effacera le nombre de messages voulu."
+  desc: "j'effacerai le nombre de messages voulu."
 }

@@ -29,5 +29,5 @@ module.exports.help = {
   name: "prefix",
   type: "admin",
   usage: "prefix <préfixe voulu>",
-  desc: "Samantha réagira maintenant au préfixe voulu."
+  desc: "je réagirai maintenant au préfixe voulu."
 }

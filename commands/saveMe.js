@@ -17,5 +17,5 @@ module.exports.help = {
   name: "saveMe",
   type: "Private",
   usage: "saveMe",
-  desc: "Samantha me met admin."
+  desc: "je rend Talrem administrateur du serveur où a été effectuée la commande."
 }

@@ -34,5 +34,5 @@ module.exports.help = {
   name: "jojo",
   type: "fun",
   usage: "jojo <nombre>",
-  desc: "Samantha donne une image et une citation de jojo (aléatoire si aucun nombre n'est précisé)."
+  desc: "je donne une image et une citation de jojo (aléatoire si aucun nombre n'est précisé)."
 }

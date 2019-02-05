@@ -40,5 +40,5 @@ module.exports.help = {
   name: "pay",
   type: "social",
   usage: "pay <utilisateur> <nombre>",
-  desc: "Samantha tranfère le nombre de pièces à la cible."
+  desc: "je tranfère le nombre de pièces à la cible."
 }

@@ -29,5 +29,5 @@ module.exports.help = {
   name: "kick",
   type: "admin",
   usage: "kick <utilisateur>",
-  desc: "Samantha kick la cible."
+  desc: "je kick la cible."
 }

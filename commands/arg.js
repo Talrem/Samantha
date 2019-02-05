@@ -11,5 +11,5 @@ module.exports.help = {
   name: "arg",
   type: "fun",
   usage: "arg",
-  desc: "Samantha souffre avec vous."
+  desc: "je souffre avec vous."
 }

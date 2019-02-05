@@ -42,5 +42,5 @@ module.exports.help = {
   name: "hmute",
   type: "Private",
   usage: "hmute <utilisateur>",
-  desc: "Samantha mute la cible sans en informer le channel rapports."
+  desc: "je mute la cible sans en informer le channel rapports."
 }

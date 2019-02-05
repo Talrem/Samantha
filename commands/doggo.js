@@ -19,5 +19,5 @@ module.exports.help = {
   name: "doggo",
   type: "fun",
   usage: "doggo",
-  desc: "Samantha montre un chien tout mignon."
+  desc: "je montre un chien tout mignon."
 }

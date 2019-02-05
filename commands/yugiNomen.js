@@ -22,5 +22,5 @@ module.exports.help = {
   name: "yugiNomen",
   type: "yugi",
   usage: "yugiNomen",
-  desc: "Samantha donne la façon de nomer les decks de Talrem pour la comprendre si on en reçoit."
+  desc: "je donne la façon de nomer les decks de Talrem pour la comprendre si on en reçoit."
 }

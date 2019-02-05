@@ -54,5 +54,5 @@ module.exports.help = {
   name: "yugiRules",
   type: "yugi",
   usage: "yugiRules <règle>",
-  desc: "Samantha donne la règle voulue ou toutes si aucune n'est précisée."
+  desc: "je donne la règle voulue ou toutes si aucune n'est précisée."
 }

@@ -64,5 +64,5 @@ module.exports.help = {
   name: "tempmute",
   type: "admin",
   usage: "tempmute <utilisateur> <temps> <raison>",
-  desc: "Samantha mute temporairement la cible pour la raison donnée pendant le temps voulu et en informe le staff."
+  desc: "je mute temporairement la cible pour la raison donnée pendant le temps voulu et en informe le staff."
 }

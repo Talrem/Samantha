@@ -19,5 +19,5 @@ module.exports.help = {
   name: "unmute",
   type: "admin",
   usage: "unmute <utilisateur>",
-  desc: "Samantha demute la cible."
+  desc: "je demute la cible."
 }

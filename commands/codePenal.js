@@ -19,5 +19,5 @@ module.exports.help = {
   name: "codePenal",
   type: "fun",
   usage: "codePenal",
-  desc: "Samantha donne les règles du serveur."
+  desc: "je donne les règles du serveur."
 }

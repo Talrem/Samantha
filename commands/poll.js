@@ -14,5 +14,5 @@ module.exports.help = {
   name: "poll",
   type: "social",
   usage: "poll <question>",
-  desc: "Permet aux utilisateurs de réagir à un sondage sur votre question."
+  desc: "je permet aux utilisateurs de réagir à un sondage sur votre question."
 }

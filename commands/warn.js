@@ -115,5 +115,5 @@ module.exports.help = {
   name: "warn",
   type: "admin",
   usage: "warn <utilisateur> <raison>",
-  desc: "Samantha donne un avertissement à la cible et applique les sanctions prévues en fonction du nombre d'avertissements."
+  desc: "je donne un avertissement à la cible et applique les sanctions prévues en fonction du nombre d'avertissements."
 }

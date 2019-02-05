@@ -56,5 +56,5 @@ module.exports.help = {
   name: "mute",
   type: "admin",
   usage: "mute <utilisateur>",
-  desc: "Samantha mute la cible."
+  desc: "je mute la cible."
 }

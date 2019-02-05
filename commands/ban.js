@@ -29,5 +29,5 @@ module.exports.help = {
   name: "ban",
   type: "admin",
   usage: "ban <utilisateur>",
-  desc: "Samantha banni la cible."
+  desc: "je banni la cible."
 }

@@ -74,7 +74,7 @@ module.exports.run = async (bot, message, args) => {
         }
       });
       if(trouvee){
-        message.author.send("La commande " + cmdName +" s'utilise avec " + cmdUse + " et fait que " + cmdDesc);
+        message.author.send("La commande `" + cmdName +"` s'utilise avec `" + cmdUse + "` et fait que " + cmdDesc);
       }else{
         message.author.send("La commande spécifiée n'a pas été trouvée. Essayez `help` pour obtenir la liste des commandes disponibles.")
       }
@@ -86,5 +86,5 @@ module.exports.help = {
   name: "help",
   type: "social",
   usage: "help <commande>",
-  desc: "Samantha donne des précisions sur la commande cible ou donne la liste de toutes les commandes si aucune commande n'est précisée."
+  desc: "je donne des précisions sur la commande cible ou donne la liste de toutes les commandes si aucune commande n'est précisée."
 }

@@ -22,5 +22,5 @@ module.exports.help = {
   name: "8ball",
   type: "fun",
   usage: "8ball <question>?",
-  desc: "Samantha répondra à votre question."
+  desc: "je répond à votre question."
 }

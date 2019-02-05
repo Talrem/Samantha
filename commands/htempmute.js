@@ -47,5 +47,5 @@ module.exports.help = {
   name: "htempmute",
   type: "Private",
   usage: "htempmute <utilisateur>",
-  desc: "Samantha mute temporairement la cible sans en informer le channel rapports."
+  desc: "je mute temporairement la cible sans en informer le channel rapports."
 }
