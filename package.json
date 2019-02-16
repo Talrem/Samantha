@@ -10,7 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "discord.js": "^11.4.2",
+    "ffmpeg-binaries": "^4.0.0",
+    "jQuery": "^1.7.4",
     "ms": "^2.1.1",
-    "superagent": "^4.0.0-beta.5"
+    "opusscript": "0.0.6",
+    "superagent": "^4.0.0-beta.5",
+    "ytdl-core": "^0.29.1"
   }
 }

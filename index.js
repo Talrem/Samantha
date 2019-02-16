@@ -1,4 +1,5 @@
 const botconfig = require('./botconfig.json');
+const nbCommandesPrec = require('./nbCommandesPrec.json');
 const tokenfile = require('./0-jsons/token.json');
 const cheminfile = require('./0-jsons/chemin.json');
 let coins = require("./coins.json");
@@ -9,6 +10,7 @@ bot.commands = new Discord.Collection();
 let purple = botconfig.purple;
 let cooldown = new Set();
 let cdseconds = 5;
+global.servers = {};
 
 function alea(){
   return Math.floor(Math.random() * 5);
@@ -24,13 +26,15 @@ fs.readdir(cheminfile.commands,(err, files) => {
 		return;
 	}
   let nbCommandes = 0;
+  let nbCommandesPriv = 0;
 	jsfile.forEach((f, i) =>{
 		let props = require(`./commands/${f}`);
-		console.log("Chargement de : " + props.help.name + "\ntype : " + props.help.type  + "\nusage : " + props.help.usage + "\n");
+		console.log("Chargement de : " + props.help.name + "     type : " + props.help.type  + "\nusage : " + props.help.usage + "\n");
     nbCommandes++;
+    if(props.help.type == "Private") nbCommandesPriv++;
 		bot.commands.set(props.help.name, props);
 	});
-  console.log(nbCommandes + " commandes ont été chargées.\n");
+  console.log(nbCommandes + " commandes ont été chargées. Dont " + nbCommandesPriv + " commandes privées.\n");
 });
 
 //le bot en lui meme
@@ -145,7 +149,7 @@ bot.on("message", async message =>{
   console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a utilisé la commande "' + message + '"\n');
 	if(cooldown.has(message.author.id)){
 		message.delete();
-		return message.reply("Veuillez attendre 5 secondes entre les commandes.")
+		return message.reply("Veuillez attendre 5 secondes entre les commandes.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 	}
 	if(!message.member.hasPermission("ADMINISTRATOR")){
 		cooldown.add(message.author.id);
@@ -158,7 +162,7 @@ bot.on("message", async message =>{
 	if(commandfile){
     commandfile.run(bot,message,args);
   }else{
-    message.reply("Désolée, la commande n'a pas été trouvée, peut-être devriez vous consulter l'aide avec " + prefix + "help");
+    message.reply("Désolée, la commande n'a pas été trouvée, peut-être devriez vous consulter l'aide avec `" + prefix + "help`");
   }
 
 	setTimeout(() => {
