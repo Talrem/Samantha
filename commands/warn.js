@@ -5,12 +5,12 @@ let warns = JSON.parse(fs.readFileSync("./warnings.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
   //!warn @daeshan <reason>
-  if(!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas donner d'avertissement.");
+  if(!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas donner d'avertissement.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
-  if(!wUser) return message.reply("L'utilisateur n'a pas été trouvé.");
+  if(!wUser) return message.reply("L'utilisateur n'a pas été trouvé.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   if(!args[1]) return message.channel.send("Précisez un motif");
   let toSave = message.guild.roles.find(`name`, "dontTouch");
-  if(wUser.hasPermission("MANAGE_MESSAGES")|| wUser.roles.has(toSave.id)) return message.reply("Vous ne pouvez pas avertir cet utilisateur.");
+  if(wUser.hasPermission("MANAGE_MESSAGES")|| wUser.roles.has(toSave.id)) return message.reply("Vous ne pouvez pas avertir cet utilisateur.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 
   let reason = args.join(" ").slice(22);
 

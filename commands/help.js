@@ -4,8 +4,9 @@ const idfile = require('../0-jsons/monID.json');
 const cheminfile = require('../0-jsons/chemin.json');
 
 module.exports.run = async (bot, message, args) => {
+  message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   if(!args[0]){ //Si aucune commande n'est précisée.
-    message.reply("La liste de mes commandes est en train de vous être envoyée par message privé. Pour plus d'informations utilisez `help <nomDeCommande>`");
+    message.reply("La liste de mes commandes est en train de vous être envoyée par message privé. Pour plus d'informations utilisez `help <nomDeCommande>`").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
     fs.readdir(cheminfile.commands,(err, files) => {
       if(err) console.log(err);
       let jsfile = files.filter(f => f.split(".").pop() === "js")
@@ -52,7 +53,7 @@ module.exports.run = async (bot, message, args) => {
       }
     });
   }else{
-    message.reply("Les informations sur la commande voulue sont en train de vous être envoyées par message privé. Pour obtenir la liste des commandes disponibles, utilisez `help`");
+    message.reply("Les informations sur la commande voulue sont en train de vous être envoyées par message privé. Pour obtenir la liste des commandes disponibles, utilisez `help`").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
     fs.readdir(cheminfile.commands,(err, files) => {
     	if(err) console.log(err);
     	let jsfile = files.filter(f => f.split(".").pop() === "js")

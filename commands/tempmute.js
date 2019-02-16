@@ -2,13 +2,13 @@ const Discord = require("discord.js")
 const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
+  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas le droit de faire ça.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   let toMute = message.guild.member(message.mentions.users.first() || message.guild.members.gets(args[0]));
-  if(!args[1]) return message.channel.send("Précisez un temps de mute");
-  if(!args[2]) return message.channel.send("Précisez un motif");
-  if(!toMute) return message.channel.send("L'utilisateur n'a pas été trouvé.");
+  if(!args[1]) return message.channel.send("Précisez un temps de mute").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(!args[2]) return message.channel.send("Précisez un motif").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(!toMute) return message.channel.send("L'utilisateur n'a pas été trouvé.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   let toSave = message.guild.roles.find(`name`, "dontTouch");
-  if(toMute.hasPermission("MANAGE_MESSAGES") || toMute.roles.has(toSave.id)) return message.channel.send("Cet utilisateur ne peut être rendu muet.");
+  if(toMute.hasPermission("MANAGE_MESSAGES") || toMute.roles.has(toSave.id)) return message.channel.send("Cet utilisateur ne peut être rendu muet.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 
   //création du role s'il n'existe pas
   let muteRole2 = message.guild.roles.find(`name`, "fullmute");
@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
   }
   //fin de la création du role
   let muteTime = args[1];
-  if(!muteTime) return message.reply("Précisez un temps de mute.");
+  if(!muteTime) return message.reply("Précisez un temps de mute.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   let mReason = args[2];
   await(toMute.addRole(muteRole.id));
   message.reply(`${toMute} a été rendu muet pour ${ms(ms(muteTime))}.`);
@@ -48,14 +48,14 @@ module.exports.run = async (bot, message, args) => {
   .addField("Pendant", ms(ms(muteTime)));
 
   let mutechannel = message.guild.channels.find(`name`, "rapports");
-  if(!mutechannel) return message.channel.send("le salon des rapports n'a pas été trouvé.");
+  if(!mutechannel) return message.channel.send("le salon des rapports n'a pas été trouvé.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 
   mutechannel.send(muteEmbed);
 
   setTimeout(function(){
-    if(toMute.roles.has(muteRole2.id))return message.channel.send("Étant donné que l'utilisateur est mute à un niveau supérieur, je ne peux pas le démute de son tempmute.");
+    if(toMute.roles.has(muteRole2.id))return message.channel.send("Étant donné que l'utilisateur est mute à un niveau supérieur, je ne peux pas le démute de son tempmute.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
     toMute.removeRole(muteRole.id);
-    message.channel.send(`${toMute} peut de nouveau parler.`)
+    message.channel.send(`${toMute} peut de nouveau parler.`).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   }, ms(muteTime));
 
 }

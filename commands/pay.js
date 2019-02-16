@@ -4,7 +4,7 @@ let coins = require("../coins.json");
 
 module.exports.run = async (bot, message, args) => {
   if(!coins[message.author.id]){
-    return message.reply("Vous n'avez pas d'argent")
+    return message.reply("Vous n'avez pas d'argent").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   }
 
   let pUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
   let pCoins = coins[pUser.id].coins;
   let sCoins = coins[message.author.id].coins;
 
-  if(sCoins < args[1]) return message.reply("Vous n'avez pas assez d'argent");
+  if(sCoins < args[1]) return message.reply("Vous n'avez pas assez d'argent").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 
   coins[message.author.id] = {
     coins: sCoins - parseInt(args[1])
@@ -27,7 +27,7 @@ module.exports.run = async (bot, message, args) => {
     coins: pCoins + parseInt(args[1])
   };
 
-  message.channel.send(`${message.author} a payé ${pUser} ${args[1]} pièces.`);
+  message.channel.send(`${message.author} a payé ${pUser} ${args[1]} pièces.`).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 
   fs.writeFile("./coins.json", JSON.stringify(coins), (err) =>{
     if(err) console.log(err);

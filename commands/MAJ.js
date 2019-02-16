@@ -10,12 +10,17 @@ module.exports.run = async (bot, message, args) => {
   .setDescription("Derniers ajouts au bot.")
   .setColor("#15f153")
   .setThumbnail(bicon)
-  .addField("modification", "Système de commande help de qualité enfin mis en place.")
-  .addField("ajout", "+>chooseBetween <choix> <choix> <choix> : Donne une réponse aléatoire parmis une liste de choix passée en paramètres.")
-  .addField("modification", "La commande +>roll est maintenant plus élaborée (possibilité de faire +>roll xdy avec x et y des nombres).")
-  .addField("modification", "Système de banlist plus efficace et plus facilement modifiable.")
-  .addField("ajout", "Samantha reconnait si une commande a été ratée et conseille de regarder l'aide.")
-  .addField("ajout", "plein de trucs dans les logs dont tout le monde s'en fiche sauf moi.");
+  .addField("ajout", "+>listSE : Donne la liste des effets sonores.")
+  .addField("ajout", "+>dontPlay : M'interdis de venir en vocal.")
+  .addField("ajout", "+>canPlay : M'autorise à venir en vocal.")
+  .addField("ajout", "+>addSE <nom> <url> : Ajoute un effet sonore à ma liste.")
+  .addField("ajout", "+>sE <nom> : Me fait jouer un effet sonore.")
+  .addField("ajout", "+>play <url> : Envoit votre avatar.")
+  .addField("ajout", "+>funMirror : Me fait jouer une vidéo youtube.")
+  .addField("ajout", "+>leave : Me fait partir du vocal.")
+  .addField("ajout", "+>join : Me faire venir en vocal.")
+  .addField("ajout", "+>salt : Envoit du sel.")
+  .addField("ajout", "+>resetThePurge : Rend la date de la prochaine purge indéfinie.");
   return message.channel.send(botEmbed);
   return;
 }

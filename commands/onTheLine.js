@@ -5,23 +5,23 @@ module.exports.run = async (bot, message, args) => {
   if(!args[0])return message.channel.send("Veuillez préciser un utilisateur.")
   let toSave = message.guild.member(message.mentions.users.first() || message.guild.members.gets(args[0]));
   if(!toSave) return message.channel.send("L'utilisateur n'a pas été trouvé.");
-  let dontTouchRole = message.guild.roles.find(`name`, "ligne rouge");
-  if(!dontTouchRole){
+  let ligneRougeRole = message.guild.roles.find(`name`, "ligne rouge");
+  if(!ligneRougeRole){
     try{
-      dontTouchRole = await message.guild.createRole({
+      ligneRougeRole = await message.guild.createRole({
         name: "onTheLine",
         color: "#ff0000",
         permissions:[]
       })
       message.guild.channels.forEach(async (channel, id) => {
-        await channel.overwritePermissions(dontTouchRole, {
+        await channel.overwritePermissions(ligneRougeRole, {
         });
       });
     }catch(e){
       console.log(e.stack);
     }
   }
-  await(toSave.addRole(dontTouchRole.id));
+  await(toSave.addRole(ligneRougeRole.id));
 
   return;
 }

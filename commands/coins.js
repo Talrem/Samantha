@@ -18,7 +18,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Membre", cUser)
   .setColor("#00ff00")
   .addField(":moneybag:", uCoins);
-  message.channel.send(coinEmbed).then(msg => {msg.delete(5000)});
+  message.channel.send(coinEmbed).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   return;
 }
 

@@ -8,9 +8,9 @@ module.exports.run = async (bot, message, args) => {
   let toMute = message.guild.member(message.mentions.users.first() || message.guild.members.gets(args[0]));
   if(!toMute) return message.channel.send("L'utilisateur n'a pas été trouvé.");
   let muteRole = message.guild.roles.find(`name`, "dontTouch");
-  if(!toMute.roles.has(muteRole.id) && !protect[toMute.id])return message.channel.send("Cet utilisateur n'est pas protégé.");
+  if(!toMute.roles.has(muteRole.id) && !protect[toMute.id])return message.channel.send("Cet utilisateur n'est pas protégé.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   toMute.removeRole(muteRole.id);
-  message.channel.send(`${toMute} n'est plus protégé.`)
+  message.channel.send(`${toMute} n'est plus protégé.`).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 }
 
 module.exports.help = {
