@@ -4,13 +4,26 @@ const tokenfile = require('./0-jsons/token.json');
 const cheminfile = require('./0-jsons/chemin.json');
 let coins = require("./coins.json");
 const Discord = require('discord.js');
+const can = require("./canPlay.json");
 const bot = new Discord.Client()
 const fs = require("fs");
 bot.commands = new Discord.Collection();
 let purple = botconfig.purple;
 let cooldown = new Set();
 let cdseconds = 5;
+const YTDL = require("ytdl-core");
 global.servers = {};
+
+function playing(connection, message){
+  var server = servers[message.guild.id]
+  server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
+  server.queue.shift();
+  server.dispatcher.on("end", function(){
+    if(server.queue[0]){
+      playing(connection, message);
+    }
+  });
+}
 
 function alea(){
   return Math.floor(Math.random() * 5);
@@ -83,6 +96,24 @@ bot.on("message", async message =>{
 
   if(mes.startsWith('DEJA VU') || mes.startsWith('DÉJÀ VU') || mes.startsWith('DEJÀ VU') || mes.startsWith('DÉJA VU')) {
     message.channel.send("I've just been to this place before")
+  };
+
+  if(mes.includes('THIS IS SO SAD') &&  mes.includes('PLAY DESPACITO')){
+    if(!can.can) return message.reply("Je n'ai pas actuellement le droit de venir en vocal...")
+    if(message.guild.voiceConnection) return;
+    if(message.member.voiceChannel){
+      if(!servers[message.guild.id]){
+        servers[message.guild.id] = {queue:[]}
+      }
+      message.member.voiceChannel.join()
+      .then(connection =>{
+        var server = servers[message.guild.id];
+        server.queue.push("https://youtu.be/nGl8IpFZ97Y")
+        playing(connection, message);
+      })
+    }else{
+      return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    }
   };
 
   //systeme d'économie
