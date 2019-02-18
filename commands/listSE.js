@@ -67,7 +67,15 @@ module.exports.run = async (bot, message, args) => {
     `vous`,
     `chips`,
     `twoWays`,
-    `AAH`
+    `damage`,
+    `ganon`,
+    `squalala`,
+    `jeanne`,
+    `TG`,
+    `con`,
+    `prophecy`,
+    `sax`,
+    `philippe`
   ]
   liste.sort();
   messageToSend = "";

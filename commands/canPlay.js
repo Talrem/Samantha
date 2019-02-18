@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Vous n'avez pas le droit de faire ça.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   }
   can.can = 1;
-  return message.channel.send("Je peux venir en vocal jusqu'à nouvel ordre.")
+  return message.channel.send("Je peux venir en vocal jusqu'à nouvel ordre. Utilisez `dontPlay` pour faire que je ne puisse plus venir en vocal.")
 }
 
 module.exports.help = {

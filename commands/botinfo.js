@@ -7,7 +7,8 @@ module.exports.run = async (bot, message, args) => {
   .setColor("#15f153")
   .setThumbnail(bicon)
   .addField("Nom", bot.user.username)
-  .addField("Créé le", bot.user.createdAt);
+  .addField("Créé le", bot.user.createdAt)
+  .addField("GitHub", "https://github.com/Talrem/Samantha");
   return message.channel.send(botEmbed).then(msg => msg.delete(60000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 }
 

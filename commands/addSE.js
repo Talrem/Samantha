@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-let sefile = require("../soundEffect.json");
+let sefile = JSON.parse(fs.readFileSync("./soundEffect.json", "utf8"));
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
@@ -14,7 +14,7 @@ module.exports.run = async (bot, message, args) => {
   fs.writeFile("./sefile.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
-  return message.channel.send("Effet sonore ajouté avec succès.");
+  return message.channel.send("Effet sonore ajouté avec succès. N'oubliez pas de l'ajouter à la `listSE`");
 }
 
 module.exports.help = {

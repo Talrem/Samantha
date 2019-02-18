@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
       message.member.voiceChannel.join()
       .then(connection =>{
         var server = servers[message.guild.id];
-        message.reply("Channel rejoint avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+        message.reply("Channel " + message.member.voiceChannel.name + " rejoint avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
         server.queue.push(args[0])
         playing(connection, message);
       })
