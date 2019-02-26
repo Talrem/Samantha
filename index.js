@@ -96,6 +96,18 @@ bot.on("message", async message =>{
 
   if(mes.startsWith('DEJA VU') || mes.startsWith('DÉJÀ VU') || mes.startsWith('DEJÀ VU') || mes.startsWith('DÉJA VU')) {
     message.channel.send("I've just been to this place before")
+    if(!can.can || message.guild.voiceConnection) return;
+    if(message.member.voiceChannel){
+      if(!servers[message.guild.id]){
+        servers[message.guild.id] = {queue:[]}
+      }
+      message.member.voiceChannel.join()
+      .then(connection =>{
+        var server = servers[message.guild.id];
+        server.queue.push("https://youtu.be/BY2J3I_l2P4")
+        playing(connection, message);
+      })
+    }
   };
 
   if(mes.includes('THIS IS SO SAD') &&  mes.includes('PLAY DESPACITO')){
@@ -168,6 +180,8 @@ bot.on("message", async message =>{
     return;
   }
 
+
+
   //popopo
   if (mes.startsWith('POPOPO')) {
     message.channel.send('', {
@@ -200,6 +214,29 @@ bot.on("message", async message =>{
 		cooldown.delete(message.author.id)
 	}, cdseconds * 1000)
 
+  //réaction aux insultes
+  let insulteList = [
+  "MOCHE",
+  "CON",
+  "SUCEUR",
+  "BACHI BOUZOUK",
+  "CONNARD",
+  "FDP",
+  "BATARD",
+  "BÂTARD",
+  "ENCULÉ",
+  "ENCULER"
+  ];
+  let trouverInsulte = false;
+  for (var i in insulteList){
+    if(mes.startsWith(insulteList[i]) || mes.includes("\n" + insulteList[i]) || mes.includes(" " + insulteList[i]) || mes.includes(insulteList[i] + " ")){
+      trouverInsulte = true;
+    }
+  }
+  if (trouverInsulte){
+    console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + " a dit " + message)
+    return message.reply("No U")
+  }
 });
 
 //lien du bot au code
