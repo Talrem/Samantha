@@ -225,7 +225,8 @@ bot.on("message", async message =>{
   "BATARD",
   "BÂTARD",
   "ENCULÉ",
-  "ENCULER"
+  "ENCULER",
+  "SALE"
   ];
   let trouverInsulte = false;
   for (var i in insulteList){
