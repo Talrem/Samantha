@@ -84,6 +84,7 @@ bot.on("message", async message =>{
 			prefixes: botconfig.prefix
 		};
 	}
+  let prefix = prefixes[message.guild.id].prefixes;
   //pour les messages qui commencent sans le préfixe
   //time to duel serveur duels
   if(message.content.startsWith('@everyone')) {
@@ -180,7 +181,30 @@ bot.on("message", async message =>{
     return;
   }
 
-
+  //réaction aux insultes
+  let insulteList = [
+  "MOCHE",
+  "CON",
+  "SUCEUR",
+  "BACHI BOUZOUK",
+  "CONNARD",
+  "FDP",
+  "BATARD",
+  "BÂTARD",
+  "ENCULÉ",
+  "ENCULER",
+  "SALE"
+  ];
+  let trouverInsulte = false;
+  for (var i in insulteList){
+    if(mes.startsWith(insulteList[i]) || mes.includes("\n" + insulteList[i]) || mes.includes(" " + insulteList[i]) || mes.includes(insulteList[i] + " ")){
+      trouverInsulte = true;
+    }
+  }
+  if (trouverInsulte && !mes.startsWith(prefix)){
+    console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + " a dit " + message)
+    return message.reply("No U")
+  }
 
   //popopo
   if (mes.startsWith('POPOPO')) {
@@ -188,7 +212,7 @@ bot.on("message", async message =>{
       file : './images/POPOPO.gif'
     });
   }
-	let prefix = prefixes[message.guild.id].prefixes;
+
   //test des préfixes
 	if(!message.content.startsWith(prefix)) return;
   console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a utilisé la commande "' + message + '"\n');
@@ -214,30 +238,6 @@ bot.on("message", async message =>{
 		cooldown.delete(message.author.id)
 	}, cdseconds * 1000)
 
-  //réaction aux insultes
-  let insulteList = [
-  "MOCHE",
-  "CON",
-  "SUCEUR",
-  "BACHI BOUZOUK",
-  "CONNARD",
-  "FDP",
-  "BATARD",
-  "BÂTARD",
-  "ENCULÉ",
-  "ENCULER",
-  "SALE"
-  ];
-  let trouverInsulte = false;
-  for (var i in insulteList){
-    if(mes.startsWith(insulteList[i]) || mes.includes("\n" + insulteList[i]) || mes.includes(" " + insulteList[i]) || mes.includes(insulteList[i] + " ")){
-      trouverInsulte = true;
-    }
-  }
-  if (trouverInsulte){
-    console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + " a dit " + message)
-    return message.reply("No U")
-  }
 });
 
 //lien du bot au code
