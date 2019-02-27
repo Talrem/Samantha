@@ -175,7 +175,7 @@ bot.on("message", async message =>{
   }
   if (trouver){
     message.delete();
-    console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + " a dit " + message)
+    console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + " a dit " + message + "\n")
     message.reply("On ne parle pas de ça ici ! è_é")
     .then(message => message.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
     return;
