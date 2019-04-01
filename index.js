@@ -64,7 +64,7 @@ bot.on('guildMemberAdd', function(member){
 	var role = member.guild.roles.find('name', 'Connecté');
   if(role) member.addRole(role)
 	member.createDM().then(function(channel){
-		return channel.send('Bienvenue sur le serveur ' + member.displayName + ".\nJe suis le bot créé par Talrem, un des administrateurs du serveur. n'hésites à poser des questions ^^\nPour avoir accès à la liste des commandes, envois +>help")
+		return channel.send('Bienvenue sur le serveur ' + member.displayName + ".\nJe suis le bot créé par Talrem, n'hésites à poser lui des questions ^^\nPour avoir accès à la liste des commandes, envois +>help")
 	}).catch(console.error)
 });
 
@@ -193,11 +193,12 @@ bot.on("message", async message =>{
   "BÂTARD",
   "ENCULÉ",
   "ENCULER",
-  "SALE"
+  "SALE",
+  "DE PUTE"
   ];
   let trouverInsulte = false;
   for (var i in insulteList){
-    if(mes.startsWith(insulteList[i]) || mes.includes("\n" + insulteList[i]) || mes.includes(" " + insulteList[i]) || mes.includes(insulteList[i] + " ")){
+    if(mes.startsWith(insulteList[i] + " ") || mes.includes("\n" + insulteList[i] + " ") || mes.includes(" " + insulteList[i]  + " ")){
       trouverInsulte = true;
     }
   }
