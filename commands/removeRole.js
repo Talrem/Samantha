@@ -5,7 +5,7 @@ module.exports.run = async (bot, message, args) => {
   if(message.author.id != idfile.id){
     return message.reply('Seul mon créateur a le droit à cette commande').then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   }
-  let member = let member = message.mentions.members.first();
+  let member = message.guild.member(message.mentions.users.first() || message.guild.members.gets(args[0]));
   if(!member) return message.channel.send("L'utilisateur n'a pas été trouvé.");
   if(message.member.id === idfile.id){
     var roleName = "";
