@@ -2,6 +2,7 @@ const Discord = require("discord.js")
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
+  message.delete();
   if(message.author.id != idfile.id){
     return message.reply('Seul mon créateur a le droit à cette commande').then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   }

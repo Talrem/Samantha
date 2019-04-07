@@ -85,7 +85,8 @@ module.exports.run = async (bot, message, args) => {
     `DGE`,
     `xFiles`,
     `AYAYAYA`,
-    `ayaya`
+    `ayaya`,
+    `AAA`
   ]
   liste.sort();
   messageToSend = "";
