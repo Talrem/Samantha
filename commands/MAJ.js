@@ -10,16 +10,8 @@ module.exports.run = async (bot, message, args) => {
   .setDescription("Derniers ajouts au bot.")
   .setColor("#15f153")
   .setThumbnail(bicon)
-  .addField("ajout", "+>shittyMusic : Me fait jouer de la shitty flute au pif dans ma liste.")
-  .addField("ajout", "+>listSE : Donne la liste des effets sonores.")
-  .addField("ajout", "+>dontPlay : M'interdis de venir en vocal.")
-  .addField("ajout", "+>canPlay : M'autorise à venir en vocal.")
-  .addField("ajout", "+>addSE <nom> <url> : Ajoute un effet sonore à ma liste.")
-  .addField("ajout", "+>sE <nom> : Me fait jouer un effet sonore.")
-  .addField("ajout", "+>play <url> : Envoit votre avatar.")
-  .addField("ajout", "+>funMirror : Me fait jouer une vidéo youtube.")
-  .addField("ajout", "+>leave : Me fait partir du vocal.")
-  .addField("ajout", "+>join : Me faire venir en vocal.");
+  .addField("ajout", "+>addons : me fait envoyer les liens des addons d'un type donné ou tout les addons si aucun type n'est précisé..")
+  .addField("ajout", "+>shittyMusic : Me fait jouer de la shitty flute au pif dans ma liste.");
   return message.channel.send(botEmbed);
   return;
 }
