@@ -3,7 +3,7 @@
   </head>
   <body>
     <h1>Samantha</h1>
-    <img src="Samantha.icon"
+    <img src="avatar.ico"
      alt="Samantha icon"
      style="float: left; margin-right: 10px;" />
     <h3>Mon bot discord.js</h3>
