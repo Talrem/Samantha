@@ -11,8 +11,7 @@ module.exports.run = async (bot, message, args) => {
     url: 0
   };
   sefile[args[0].toUpperCase()].url = args[1];
-  sefile[args[0].toUpperCase()].utilisations = 0;
-  fs.writeFile("./sefile.json", JSON.stringify(sefile), (err) =>{
+  fs.writeFile("./soundEffect.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
   return message.channel.send("Effet sonore ajouté avec succès. N'oubliez pas de l'ajouter à la `listSE`");

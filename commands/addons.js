@@ -4,7 +4,7 @@ let sefile = JSON.parse(fs.readFileSync("./addons.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
   let baselink = "https://steamcommunity.com/sharedfiles/filedetails/?id=";
-  let taille = 52;
+  let taille = sefile[-1].number;
   let message1ToSend = "";
   let message2ToSend = "";
   let message3ToSend = "";
