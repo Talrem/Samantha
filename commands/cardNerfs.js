@@ -6,18 +6,18 @@ module.exports.run = async (bot, message, args) => {
   let taille = sefile[-1].number;
   let compteur = 0;
   let messageToSend = "";
-  let type = ["howManyFrom","from","to","howManyTo"];
+  let type = ["howmanyfrom","from","to","howmanyto"];
   let requete;
   let nom;
   if(!args[0]){
     requete = "to";
-    nom = "ALL";
+    nom = "all";
   }else{
-    requete = args[0];
+    requete = args[0].toLowerCase();
     if(!args[1]){
       return message.reply("Veuillez préciser un nom.")
     }else{
-      nom = args[1];
+      nom = args[1].toLowerCase();
     }
   }
   let validRequest = 0;
@@ -38,17 +38,17 @@ module.exports.run = async (bot, message, args) => {
   for(i = 0; i < taille ; i++){
     /*Combien de l'utilisateur n'ont pas été traitées*/
     if(requete == type[0]){
-      if(sefile[i].plaintif == nom || nom == "all" || nom == "ALL")
+      if(sefile[i].plaintif == nom || nom == "all")
         if(!sefile[i].nerf) compteur++;
     }
     /*Combien pour l'utilisateur n'ont pas été traitées*/
     if(requete == type[3]){
-      if(sefile[i].joueur == nom || nom == "all" || nom == "ALL")
+      if(sefile[i].joueur == nom || nom == "all")
         if(!sefile[i].nerf) compteur++;
     }
     /*Quelles sont les requêtes de nerf demandées par l'utilisateur*/
     if(requete == type[1]){
-      if(sefile[i].plaintif == nom || nom == "all" || nom == "ALL"){
+      if(sefile[i].plaintif == nom || nom == "all"){
         if(!sefile[i].nerf){
           messageToSend += "id : " + i + " - " + sefile[i].carte
           messageToSend += " `de " + sefile[i].joueur + "`";
@@ -59,7 +59,7 @@ module.exports.run = async (bot, message, args) => {
     }
     /*Quelles sont les requêtes de nerf faites à l'utilisateur*/
     if(requete == type[2]){
-      if(sefile[i].joueur == nom || nom == "all" || nom == "ALL"){
+      if(sefile[i].joueur == nom || nom == "all"){
         if(!sefile[i].nerf){
           messageToSend += "id : " + i + " - " + sefile[i].carte
           if(nom == "all" || nom == "ALL")

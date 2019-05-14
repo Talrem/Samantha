@@ -5,19 +5,23 @@ const sefile = require("../ticketsReportsCartes.json");
 module.exports.run = async (bot, message, args) => {
   let nomCarte = "";
   if(args.length < 1) return message.reply("Veuillez préciser un joueur dont vous vous plaignez.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  let nomJoueur = args[0].toLowerCase();
   if(args.length < 2) return message.reply("Veuillez préciser une carte dont vous vous plaignez.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   nomCarte+= args[1];
+  let nomPlaintif = message.author.username
+  nomPlaintif = nomPlaintif.toLowerCase();
   for(i=2; i < args.length;i++){
     nomCarte+= " " + args[i];
   }
   console.log(nomCarte);
   let taille = sefile[-1].number;
+
   if(!sefile[taille])
     sefile[taille] = {
-      joueur:args[0],
+      joueur: nomJoueur,
       carte:nomCarte,
       nerf:0,
-      plaintif:message.author.username
+      plaintif:nomPlaintif
     };
     sefile[-1].number++;
   fs.writeFile("./ticketsReportsCartes.json", JSON.stringify(sefile), (err) =>{
