@@ -38,7 +38,6 @@ module.exports.run = async (bot, message, args) => {
     `Honte`,
     `Roar`,
     `Continued`,
-    `Boi`,
     `Shit`,
     `Wednesday`,
     `Gay`,
@@ -87,7 +86,8 @@ module.exports.run = async (bot, message, args) => {
     `AYAYAYA`,
     `Ayaya`,
     `AAA`,
-    `DrumRoll`
+    `DrumRoll`,
+    `IlSuffit`
   ]
   liste.sort();
   messageToSend = "";

@@ -1,0 +1,26 @@
+const Discord = require("discord.js");
+const fs = require("fs");
+const sefile = require("../ticketsReportsCartes.json");
+const idfile = require('../0-jsons/monID.json');
+
+module.exports.run = async (bot, message, args) => {
+  if(message.author.id != idfile.id){
+    return message.reply('Seul mon créateur a le droit à cette commande').then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  }
+  let taille = sefile[-1].number;
+  if(!args[0]) return message.reply("Veuillez préciser un id de requête.");
+  let id = args[0];
+  if(id > taille || id < 0) return message.reply("L'id que vous avez précisé est invalide.")
+  sefile[id].nerf = 1;
+  fs.writeFile("./ticketsReportsCartes.json", JSON.stringify(sefile), (err) =>{
+    if(err) console.log(err);
+  })
+  return message.channel.send("La modification a été faite avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+}
+
+module.exports.help = {
+  name: "hasNerfed",
+  type: "Private", //social fun Private ou admin
+  usage: "hasNerfed <id de la plainte>",
+  desc: "je prend en compte le nerf d'une carte."
+}
