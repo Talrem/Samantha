@@ -108,6 +108,12 @@ bot.on("message", async message =>{
         server.queue.push("https://youtu.be/BY2J3I_l2P4")
         playing(connection, message);
       })
+      if(message.guild.voiceConnection){
+        message.guild.voiceConnection.disconnect()
+        return;
+      }else{
+        return message.reply("Je ne suis pas en vocal...").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+      }
     }
   };
 
@@ -124,6 +130,12 @@ bot.on("message", async message =>{
         server.queue.push("https://youtu.be/nGl8IpFZ97Y")
         playing(connection, message);
       })
+      if(message.guild.voiceConnection){
+        message.guild.voiceConnection.disconnect()
+        return;
+      }else{
+        return message.reply("Je ne suis pas en vocal...").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+      }
     }else{
       return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
     }
