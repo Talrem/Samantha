@@ -15,17 +15,22 @@ module.exports.run = async (bot, message, args) => {
   let armeStoSend = "";
   let effetToSend = "";
   let modToSend = "";
-  let types = ["skin","arme","armeSpe","effet","mode"];
+  let textureToSend = "";
+  let types = ["skin","arme","armeSpe","effet","mode","texture"];
   let i;
   for(i = 0; i < taille ; i++){
     if(args[0]){
       if(sefile[i].type == args[0]){
-        if(message1ToSend.length < 1700){
-          message1ToSend += sefile[i].name + " : " + baselink + sefile[i].url + "\n";
-        }else if(message2ToSend.length < 1700){
-          message2ToSend += sefile[i].name + " : " + baselink + sefile[i].url + "\n";
-        }else if(message3ToSend.length < 1700){
-          message3ToSend += sefile[i].name + " : " + baselink + sefile[i].url + "\n";
+        if(args[0] != "texture"){
+          if(message1ToSend.length < 1700){
+            message1ToSend += sefile[i].name + " : " + baselink + sefile[i].url + "\n";
+          }else if(message2ToSend.length < 1700){
+            message2ToSend += sefile[i].name + " : " + baselink + sefile[i].url + "\n";
+          }else if(message3ToSend.length < 1700){
+            message3ToSend += sefile[i].name + " : " + baselink + sefile[i].url + "\n";
+          }
+        }else{
+          message1ToSend += sefile[i].name + " : " + sefile[i].url + "\n";
         }
       }
     }else{
@@ -43,8 +48,10 @@ module.exports.run = async (bot, message, args) => {
         armeStoSend += sefile[i].name + " : " + baselink + sefile[i].url + "\n";
       }else if(sefile[i].type == types[3]){
         effetToSend += sefile[i].name + " : " + baselink + sefile[i].url + "\n";
-      }else{
+      }else if(sefile[i].type == types[4]){
         modToSend += sefile[i].name + " : " + baselink + sefile[i].url + "\n";
+      }else if(sefile[i].type == types[5]){
+        textureToSend += sefile[i].name + " : " + sefile[i].url + "\n";
       }
     }
   }
@@ -69,7 +76,9 @@ module.exports.run = async (bot, message, args) => {
     if(effetToSend.length)
       message.channel.send("`Effet :`\n" + effetToSend);
     if(modToSend.length)
-      return message.channel.send("`Mode :`\n" + modToSend);
+      message.channel.send("`Mode :`\n" + modToSend);
+    if(textureToSend.length)
+      return message.channel.send("`Textures :`\n" + textureToSend);
   }
   if(!message1ToSend.length)
     return message.channel.send("Le type que vous avez précisé n'est pas valide. Veuillez préciser un type valide. (utilisez la commande `help addons` pour obtenir les types valides).")
@@ -79,5 +88,5 @@ module.exports.help = {
   name: "addons",
   type: "fun",
   usage: "addons <type>",
-  desc: "j'envois les liens des addons d'un type donné ou tout les addons si aucun type n'est précisé. Les types possibles sont : `skin`, `arme`, `armeSpe`, `effet`, `mode`."
+  desc: "j'envois les liens des addons d'un type donné ou tout les addons si aucun type n'est précisé. Les types possibles sont : `skin`, `arme`, `armeSpe`, `effet`, `mode` et `texture`."
 }

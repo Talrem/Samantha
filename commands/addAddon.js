@@ -8,8 +8,8 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Vous n'avez pas le droit d'ajouter de nouveaux addons.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   }
   /*invalid typing*/
-  if(args[1] != "skin" && args[1] != "mode" && args[1] != "arme" && args[1] != "armeSpe" && args[1] != "effet"){
-    return message.reply("Le type précisé est invalide. Veuillez utiliser un type parmis `skin`, `arme`, `armeSpe`, `effet` et `mode`");
+  if(args[1] != "skin" && args[1] != "mode" && args[1] != "arme" && args[1] != "armeSpe" && args[1] != "effet" && args[1] != "texture"){
+    return message.reply("Le type précisé est invalide. Veuillez utiliser un type parmis `skin`, `arme`, `armeSpe`, `effet`, `mode` et `texture`.");
   }
   let taille = sefile[-1].number;
   if(!sefile[taille])
