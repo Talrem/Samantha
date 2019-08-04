@@ -1,9 +1,14 @@
 const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
+  message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   if(args[0] < 1 || !args[0]) return message.reply("Vous devez avoir au minimum 1 option");
   if(args[0] > 6) return message.reply("Vous devez avoir au maximum 6 options");
-  message.channel.send("Répondez au sondage en réagissant sous ce message !")
+  let question = ""
+  for(i = 0; i < args.length;i++){
+    question += args[i] + " "
+  }
+  message.channel.send("Répondez au sondage :\n\n`" + question + "`\n\nde " + message.author + "\nen réagissant sous ce message !")
       .then(function (message) {
         message.react("🤷")
         if(args[0] >= 1){

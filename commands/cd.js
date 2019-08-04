@@ -4,7 +4,7 @@ function alea(nb){
   return Math.floor(Math.random() * nb) + 1;
 }
 module.exports.run = async (bot, message, args) => {
-  let nb = 18;
+  let nb = 19;
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   if(!args[0]){
     let res = alea(nb)

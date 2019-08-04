@@ -36,5 +36,5 @@ module.exports.help = {
   name: "wasNerfed",
   type: "social",
   usage: "wasNerfed",
-  desc: "j'envois la liste des cartes qui ont reçu un nerf nerfs."
+  desc: "j'envois la liste des cartes qui ont reçu un nerf."
 }
