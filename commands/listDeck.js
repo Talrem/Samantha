@@ -27,27 +27,27 @@ module.exports.run = async (bot, message, args) => {
     if(sefile[i].id == idJoueur){
       switch (sefile[i].t) {
         case "Ban":
-          decksB[jB] = "- `" + sefile[i].n + "`";
+          decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "`";
           jB++;
           break;
         case "VeryHigh":
-          decksVH[jVH] = "- `" + sefile[i].n + "`";
+          decksVH[jVH] = "ID : " + i + " - `" + sefile[i].n + "`";
           jVH++;
           break;
         case "High":
-          decksH[jH] = "- `" + sefile[i].n + "`";
+          decksH[jH] = "ID : " + i + " - `" + sefile[i].n + "`";
           jH++;
           break
         case "Mid":
-          decksM[jM] = "- `" + sefile[i].n + "`";
+          decksM[jM] = "ID : " + i + " - `" + sefile[i].n + "`";
           jM++;
           break
         case "Low":
-          decksL[jL] = "- `" + sefile[i].n + "`";
+          decksL[jL] = "ID : " + i + " - `" + sefile[i].n + "`";
           jL++;
           break
         case "VeryLow":
-          decksVL[jVL] = "- `" + sefile[i].n + "`";
+          decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "`";
           jVL++;
           break
         default: return message.reply("Une erreur est survenue... arrêt de la commande.");
