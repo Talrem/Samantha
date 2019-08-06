@@ -31,7 +31,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "hasNerfed",
-  type: "Private", //social fun Private ou admin
+  type: "YuGiOh", //social fun Private ou admin
   usage: "hasNerfed <id de la plainte> <type de nerf>",
   desc: "je prend en compte le nerf d'une carte. Les différents types de nerfs sont `notNerfed`, `nerf`, `suppr` et `changement`."
 }

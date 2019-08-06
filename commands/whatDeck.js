@@ -45,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "whatDeck",
-  type: "social", //social fun Private ou admin
+  type: "YuGiOh", //social fun Private ou admin
   usage: "whatDeck <Provenance> <Concept> <WinCon> <Tier>",
   desc: "je donne le nom d'un deck pris au hasard qui correspond aux arguments donnés. Si la valeur de l'argument n'est pas importante, mettez un `-`. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low` et `VeryLow`."
 }

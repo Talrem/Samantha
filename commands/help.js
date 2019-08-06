@@ -18,6 +18,7 @@ module.exports.run = async (bot, message, args) => {
       var nameSoclist = "";
       var nameAdmlist = "";
       var namePrivlist = "";
+      var nameYugilist = "";
       jsfile.forEach((f, i) => {
         let props = require(cheminfile.commands + `${f}`);
         if(props.help.type == "fun"){
@@ -32,6 +33,9 @@ module.exports.run = async (bot, message, args) => {
         if(message.author.id == idfile.id && props.help.type == "Private"){
           namePrivlist += "`" + props.help.name + "` ";
         }
+        if(props.help.type == "YuGiOh"){
+          nameYugilist += "`" + props.help.name + "` ";
+        }
       });
       if(message.author.id != idfile.id){
         let helpEmbed = new Discord.RichEmbed()
@@ -39,7 +43,8 @@ module.exports.run = async (bot, message, args) => {
         .setColor("#00ff00")
         .addField("Commandes Funs", nameFunlist)
         .addField("Commandes Sociales", nameSoclist)
-        .addField("Commandes d'Administration", nameAdmlist);
+        .addField("Commandes d'Administration", nameAdmlist)
+        .addField("Commandes liées à YuGiOh", nameYugilist);
         message.author.send(helpEmbed);
       }else{
         let helpEmbedMe = new Discord.RichEmbed()
@@ -48,7 +53,8 @@ module.exports.run = async (bot, message, args) => {
         .addField("Commandes Funs", nameFunlist)
         .addField("Commandes Sociales", nameSoclist)
         .addField("Commandes d'Administration", nameAdmlist)
-        .addField("Commandes de Talrem uniquement", namePrivlist);
+        .addField("Commandes de Talrem uniquement", namePrivlist)
+        .addField("Commandes liées à YuGiOh", nameYugilist);
         message.author.send(helpEmbedMe);
       }
     });

@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "deck",
-  type: "social", //social fun Private ou admin
+  type: "YuGiOh", //social fun Private ou admin
   usage: "deck <ID>",
   desc: "je donne les caractéristiques d'un deck dont l'ID est fourni."
 }

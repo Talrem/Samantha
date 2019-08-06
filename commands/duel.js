@@ -81,7 +81,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "duel",
-  type: "social", //social fun Private ou admin
+  type: "YuGiOh", //social fun Private ou admin
   usage: "duel <Utilisateur> <Tier>",
   desc: "j'envois à chaque Utilisateur un deck à utiliser en privé. Le premier dueliste est l'autheur du message. Le Tier n'est pas obbligatoire."
 }

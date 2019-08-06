@@ -81,7 +81,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "cardNerfs",
-  type: "social",
+  type: "YuGiOh",
   usage: "cardNerfs <requete> <nom>",
   desc: "j'envois les plaintes de cartes. Les requetes possibles sont : `howManyFrom`, `howManyTo`, `from` et `to`. Si ni l'utilisateur ni la requêtes ne sont remplis, la commande va renvoyer toutes les requêtes."
 }

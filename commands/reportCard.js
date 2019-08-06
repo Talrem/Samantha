@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "reportCard",
-  type: "social", //social fun Private ou admin
+  type: "YuGiOh", //social fun Private ou admin
   usage: "reportCard <nom du joueur dont on se plaint> <nom de la carte dont on se plaint>",
   desc: "j'ajoute une plainte aux plaintes ."
 }

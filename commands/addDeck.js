@@ -32,7 +32,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "addDeck",
-  type: "social", //social fun Private ou admin
+  type: "YuGiOh", //social fun Private ou admin
   usage: "addDeck <Nom> <Provenance> <Concept> <WinCon> <Tier>",
   desc: "j'ajoute le deck à la liste des decks. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low` et `VeryLow`."
 }

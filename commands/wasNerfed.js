@@ -34,7 +34,7 @@ module.exports.run = async (bot, message, args) => {
 
 module.exports.help = {
   name: "wasNerfed",
-  type: "social",
+  type: "YuGiOh",
   usage: "wasNerfed",
   desc: "j'envois la liste des cartes qui ont reçu un nerf."
 }
