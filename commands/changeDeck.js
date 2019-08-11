@@ -11,6 +11,7 @@ module.exports.run = async (bot, message, args) => {
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
   let nomDeck = args[1]
+  let username = message.author.username;
   let provenance = args[2].toLowerCase();
   let concept = args[3].toLowerCase();
   let winCon = args[4].toLowerCase();
@@ -19,6 +20,7 @@ module.exports.run = async (bot, message, args) => {
     if(sefile[args[0]].id != idJoueur) return message.reply("Le deck spécifié ne vous appartient pas.")
     sefile[args[0]] = {
       id:idJoueur,
+      u:username,
       n:nomDeck,
       p:provenance,
       c:concept,

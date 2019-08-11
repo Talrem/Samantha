@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
   for(j = 0; j < type.length;j++){
     if(type[j] == requete) validRequest = j;
   }
-  if(!validRequest) return message.reply("Votre requête est invalide, elle doit faire partie de `howManyFrom`, `howManyTo`, `from` et `to`.")
+  if(!validRequest) return message.reply("Votre requête est invalide, elle doit faire partie de `notNerfed`, `nerf`, `suppr` et `changement`.")
   sefile[id].nerf = validRequest;
   fs.writeFile("./ticketsReportsCartes.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);

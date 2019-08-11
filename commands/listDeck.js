@@ -4,9 +4,11 @@ const sefile = require("../decks.json");
 
 module.exports.run = async (bot, message, args) => {
   let taille = sefile[-1].number;
-  let idJoueur;
+  let idJoueur = 0;
   if(args.length){
-    idJoueur = message.mentions.users.first().id;
+    if(args[0].toLowerCase() != "all"){
+      idJoueur = message.mentions.users.first().id;
+    }
   }else{
     idJoueur = message.author.id;
   }
@@ -24,33 +26,63 @@ module.exports.run = async (bot, message, args) => {
   var jL = 0;
   var jVL = 0;
   for(i = 0; i < taille; i++){
-    if(sefile[i].id == idJoueur){
-      switch (sefile[i].t) {
+    if(args[0] && args[0].toLowerCase() == "all"){
+      switch(sefile[i].t){
         case "Ban":
-          decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "`";
+          decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
           jB++;
           break;
         case "VeryHigh":
-          decksVH[jVH] = "ID : " + i + " - `" + sefile[i].n + "`";
+          decksVH[jVH] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
           jVH++;
           break;
         case "High":
-          decksH[jH] = "ID : " + i + " - `" + sefile[i].n + "`";
+          decksH[jH] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
           jH++;
           break
         case "Mid":
-          decksM[jM] = "ID : " + i + " - `" + sefile[i].n + "`";
+          decksM[jM] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
           jM++;
           break
         case "Low":
-          decksL[jL] = "ID : " + i + " - `" + sefile[i].n + "`";
+          decksL[jL] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
           jL++;
           break
         case "VeryLow":
-          decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "`";
+          decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
           jVL++;
           break
         default: return message.reply("Une erreur est survenue... arrêt de la commande.");
+      }
+    }else{
+      if(sefile[i].id == idJoueur){
+        switch(sefile[i].t){
+          case "Ban":
+            decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "`";
+            jB++;
+            break;
+          case "VeryHigh":
+            decksVH[jVH] = "ID : " + i + " - `" + sefile[i].n + "`";
+            jVH++;
+            break;
+          case "High":
+            decksH[jH] = "ID : " + i + " - `" + sefile[i].n + "`";
+            jH++;
+            break
+          case "Mid":
+            decksM[jM] = "ID : " + i + " - `" + sefile[i].n + "`";
+            jM++;
+            break
+          case "Low":
+            decksL[jL] = "ID : " + i + " - `" + sefile[i].n + "`";
+            jL++;
+            break
+          case "VeryLow":
+            decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "`";
+            jVL++;
+            break
+          default: return message.reply("Une erreur est survenue... arrêt de la commande.");
+        }
       }
     }
   }

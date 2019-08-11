@@ -9,6 +9,7 @@ module.exports.run = async (bot, message, args) => {
     return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, et `VeryLow`.");
   }
   let nomDeck = args[0]
+  let username = message.author.username;
   let provenance = args[1].toLowerCase();
   let concept = args[2].toLowerCase();
   let winCon = args[3].toLowerCase();
@@ -17,6 +18,7 @@ module.exports.run = async (bot, message, args) => {
   if(!sefile[taille])
     sefile[taille] = {
       id:idJoueur,
+      u:username,
       n:nomDeck,
       p:provenance,
       c:concept,
