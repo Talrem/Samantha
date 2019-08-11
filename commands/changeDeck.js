@@ -5,7 +5,7 @@ const sefile = require("../decks.json");
 module.exports.run = async (bot, message, args) => {
   let idJoueur = message.author.id;
   if(args.length != 6) return message.reply("La liste des arguments est invalide, attente de 6 arguments : <ID> <Nom>, <Provenance>, <Concept>, <WinCon> et <Tier>.");
-  if(args[5] != "Ban" && args[5] != "VeryHigh" && args[5] != "High" && args[5] != "Mid" && args[5] != "Low" && args[5] != "VeryLow"){
+  if(args[4].toLowerCase() != "ban" && args[4].toLowerCase() != "veryhigh" && args[4].toLowerCase() != "high" && args[4].toLowerCase() != "mid" && args[4].toLowerCase() != "low" && args[4].toLowerCase() != "verylow"){
     return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, et `VeryLow`.");
   }
   let taille = sefile[-1].number;
@@ -15,7 +15,27 @@ module.exports.run = async (bot, message, args) => {
   let provenance = args[2].toLowerCase();
   let concept = args[3].toLowerCase();
   let winCon = args[4].toLowerCase();
-  let tier = args[5];
+  let tier = "Ban";
+  switch(args[5].toLowerCase()){
+    case "ban":
+      tier = "Ban";
+      break;
+    case "veryhigh":
+      tier = "VeryHigh";
+      break;
+    case "high":
+      tier = "High";
+      break;
+    case "mid":
+      tier = "Mid";
+      break;
+    case "low":
+      tier = "Low";
+      break;
+    case "verylow":
+      tier = "VeryLow";
+      break;
+  }
   if(sefile[args[0]])
     if(sefile[args[0]].id != idJoueur) return message.reply("Le deck spécifié ne vous appartient pas.")
     sefile[args[0]] = {
