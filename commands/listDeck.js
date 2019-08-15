@@ -83,6 +83,8 @@ module.exports.run = async (bot, message, args) => {
             decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "`";
             jVL++;
             break
+          case "Untiered":
+            break
           default: return message.reply("Une erreur est survenue... arrêt de la commande.");
         }
       }

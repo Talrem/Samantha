@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const sefile = require("../decks.json");
+const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
   let idJoueur = message.author.id;
@@ -10,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
   }
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
-  if(sefile[args[0]].t == "Ban") return message.reply("Un deck ban ne peut être modifié par cette commande.")
+  if(sefile[args[0]].t == "Ban" && message.author.id != idfile.id) return message.reply("Un deck ban ne peut être modifié par cette commande.")
   let nomDeck = sefile[args[0]].n;
   let username = message.author.username;
   let provenance = sefile[args[0]].p;
@@ -41,7 +42,7 @@ module.exports.run = async (bot, message, args) => {
       break;
   }
   if(sefile[args[0]])
-    if(sefile[args[0]].id != idJoueur) return message.reply("Le deck spécifié ne vous appartient pas.")
+    if(sefile[args[0]].id != idJoueur && message.author.id != idfile.id) return message.reply("Le deck spécifié ne vous appartient pas.")
     sefile[args[0]] = {
       id:idJoueur,
       u:username,
