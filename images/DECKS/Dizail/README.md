@@ -1,2 +1,2 @@
 
-Ici se trouvent les images du deck de Gaiall
+Ici se trouvent les images du deck de Dizail
