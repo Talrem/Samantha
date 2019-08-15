@@ -5,7 +5,7 @@ const sefile = require("../decks.json");
 module.exports.run = async (bot, message, args) => {
   let idJoueur = message.author.id;
   if(args.length != 5) return message.reply("La liste des arguments est invalide, attente de 5 arguments : <Nom>, <Provenance>, <Concept>, <WinCon> et <Tier>.");
-  if(args[4].toLowerCase() != "ban" && args[4].toLowerCase() != "veryhigh" && args[4].toLowerCase() != "high" && args[4].toLowerCase() != "mid" && args[4].toLowerCase() != "low" && args[4].toLowerCase() != "verylow"){
+  if(args[4].toLowerCase() != "ban" && args[4].toLowerCase() != "veryhigh" && args[4].toLowerCase() != "high" && args[4].toLowerCase() != "mid" && args[4].toLowerCase() != "low" && args[4].toLowerCase() != "verylow" && args[4].toLowerCase() != "untiered"){
     return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, et `VeryLow`.");
   }
   let nomDeck = args[0]
@@ -33,6 +33,9 @@ module.exports.run = async (bot, message, args) => {
     case "verylow":
       tier = "VeryLow";
       break;
+    case "untiered":
+      tier = "Untiered";
+      break;
   }
   let taille = sefile[-1].number;
   if(!sefile[taille])
@@ -56,5 +59,5 @@ module.exports.help = {
   name: "addDeck",
   type: "YuGiOh", //social fun Private ou admin
   usage: "addDeck <Nom> <Provenance> <Concept> <WinCon> <Tier>",
-  desc: "j'ajoute le deck à la liste des decks. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low` et `VeryLow`."
+  desc: "j'ajoute le deck à la liste des decks. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`."
 }

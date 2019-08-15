@@ -52,6 +52,8 @@ module.exports.run = async (bot, message, args) => {
           decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
           jVL++;
           break
+        case "Untiered":
+          break
         default: return message.reply("Une erreur est survenue... arrêt de la commande.");
       }
     }else{
@@ -176,5 +178,5 @@ module.exports.help = {
   name: "listDeck",
   type: "YuGiOh", //social fun Private ou admin
   usage: "listDeck <utilisateur>",
-  desc: "j'envoit la decks des decks de l'utilisateur voulu. Si aucun utilisateur n'est précisé, vous serez la cible de la commande."
+  desc: "j'envoit la decks des decks de l'utilisateur voulu. Si aucun utilisateur n'est précisé, vous serez la cible de la commande. Les decks dont le tier n'a pas encore été déterminé ne sont pas pris en compte par cette commande."
 }

@@ -4,8 +4,8 @@ const sefile = require("../decks.json");
 
 module.exports.run = async (bot, message, args) => {
   if(args.length != 4 && args.length != 0) return message.reply("La liste des arguments est invalide, vous devez préciser <Provenance> <Concept> <WinCon> <Tier>, ou remplacer par un `-` ceux qui n'importent pas.");
-  if(args.length && args[3] != '-' && args[3] != 'Ban' && args[3] != 'VeryHigh' && args[3] != 'High' && args[3] != 'Mid' && args[3] != 'Low' && args[3] != 'VeryLow'){
-    return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `-`, `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, et `VeryLow`.");
+  if(args.length && args[3] != '-' && args[3] != 'Ban' && args[3] != 'VeryHigh' && args[3] != 'High' && args[3] != 'Mid' && args[3] != 'Low' && args[3] != 'VeryLow' && args[3] != 'Untiered'){
+    return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `-`, `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`.");
   }
   let taille = sefile[-1].number;
   let idJoueur = message.author.id;
@@ -40,12 +40,15 @@ module.exports.run = async (bot, message, args) => {
   .addField("Concept", leDeck.c)
   .addField("Win Condition", leDeck.w)
   .addField("Tier", leDeck.t);
-  return message.channel.send(deckEmbed);
+  message.channel.send(deckEmbed)
+  return message.channel.send('', {
+    file : './images/DECKS/' + leDeck.u + '/' + leDeck.n + '.jpg'
+  });
 }
 
 module.exports.help = {
   name: "whatDeck",
   type: "YuGiOh", //social fun Private ou admin
   usage: "whatDeck <Provenance> <Concept> <WinCon> <Tier>",
-  desc: "je donne le nom d'un deck pris au hasard qui correspond aux arguments donnés. Si la valeur de l'argument n'est pas importante, mettez un `-`. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low` et `VeryLow`."
+  desc: "je donne le nom d'un deck pris au hasard qui correspond aux arguments donnés. Si la valeur de l'argument n'est pas importante, mettez un `-`. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`."
 }

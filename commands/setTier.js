@@ -4,20 +4,20 @@ const sefile = require("../decks.json");
 
 module.exports.run = async (bot, message, args) => {
   let idJoueur = message.author.id;
-  if(args.length != 6) return message.reply("La liste des arguments est invalide, attente de 6 arguments : <ID> <Nom>, <Provenance>, <Concept>, <WinCon> et <Tier>.");
-  if(args[5].toLowerCase() != "ban" && args[5].toLowerCase() != "veryhigh" && args[5].toLowerCase() != "high" && args[5].toLowerCase() != "mid" && args[5].toLowerCase() != "low" && args[5].toLowerCase() != "verylow"){
+  if(args.length != 2) return message.reply("La liste des arguments est invalide, attente de 2 arguments : <ID> et <Tier>.");
+  if(args[1].toLowerCase() != "ban" && args[1].toLowerCase() != "veryhigh" && args[1].toLowerCase() != "high" && args[1].toLowerCase() != "mid" && args[1].toLowerCase() != "low" && args[1].toLowerCase() != "verylow" && args[1].toLowerCase() != "untiered"){
     return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`.");
   }
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
   if(sefile[args[0]].t == "Ban") return message.reply("Un deck ban ne peut être modifié par cette commande.")
-  let nomDeck = args[1]
+  let nomDeck = sefile[args[0]].n;
   let username = message.author.username;
-  let provenance = args[2].toLowerCase();
-  let concept = args[3].toLowerCase();
-  let winCon = args[4].toLowerCase();
+  let provenance = sefile[args[0]].p;
+  let concept = sefile[args[0]].c;
+  let winCon = sefile[args[0]].w;
   let tier = "Ban";
-  switch(args[5].toLowerCase()){
+  switch(args[1].toLowerCase()){
     case "ban":
       tier = "Ban";
       break;
@@ -58,8 +58,8 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.help = {
-  name: "changeDeck",
+  name: "setTier",
   type: "YuGiOh", //social fun Private ou admin
-  usage: "changeDeck <ID> <Nom> <Provenance> <Concept> <WinCon> <Tier>",
+  usage: "setTier <ID> <Tier>",
   desc: "je modifie le deck à la liste des decks. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`."
 }

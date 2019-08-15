@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
     idJoueur2 = message.mentions.users.first().id;
   }
   if(idJoueur1 == idJoueur2) return message.reply("Vous ne pouvez pas vous affronter vous même...")
-  if(args.length == 2 && args[1] != '-' && args[1] != 'Ban' && args[1] != 'VeryHigh' && args[1] != 'High' && args[1] != 'Mid' && args[1] != 'Low' && args[1] != 'VeryLow'){
+  if(args.length == 2 && args[1] != '-' && args[1] != 'Ban' && args[1] != 'VeryHigh' && args[1] != 'High' && args[1] != 'Mid' && args[1] != 'Low' && args[1] != 'VerylLow' && args[1] != 'Untiered'){
     return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, et `VeryLow` ou ne pas renseigner de 3ème argument.");
   }
   let taille = sefile[-1].number;
@@ -59,24 +59,30 @@ module.exports.run = async (bot, message, args) => {
   let leDeck1 = lesDeck1[Math.floor(Math.random() * j1)];
   let leDeck2 = lesDeck2[Math.floor(Math.random() * j2)];
   let deckEmbed1 = new Discord.RichEmbed()
-  .setDescription("Deck à utiliser")
-  .setColor("#15f153")
-  .addField("Nom", leDeck1.n)
-  .addField("Provenance", leDeck1.p)
-  .addField("Concept", leDeck1.c)
-  .addField("Win Condition", leDeck1.w)
-  .addField("Tier", leDeck1.t);
+    .setDescription("Deck à utiliser")
+    .setColor("#15f153")
+    .addField("Nom", leDeck1.n)
+    .addField("Provenance", leDeck1.p)
+    .addField("Concept", leDeck1.c)
+    .addField("Win Condition", leDeck1.w)
+    .addField("Tier", leDeck1.t);
   let deckEmbed2 = new Discord.RichEmbed()
-  .setDescription("Deck à utiliser")
-  .setColor("#15f153")
-  .addField("Nom", leDeck2.n)
-  .addField("Provenance", leDeck2.p)
-  .addField("Concept", leDeck2.c)
-  .addField("Win Condition", leDeck2.w)
-  .addField("Tier", leDeck2.t);
+    .setDescription("Deck à utiliser")
+    .setColor("#15f153")
+    .addField("Nom", leDeck2.n)
+    .addField("Provenance", leDeck2.p)
+    .addField("Concept", leDeck2.c)
+    .addField("Win Condition", leDeck2.w)
+    .addField("Tier", leDeck2.t);
   message.author.send(deckEmbed1);
-  message.mentions.users.first().send(message.author.displayName + "Vous a défié en duel, voici le deck que je vous suggère d'utiliser :")
-  return message.mentions.users.first().send(deckEmbed2);
+  message.author.send('', {
+    file : './images/DECKS/' + leDeck1.u + '/' + leDeck1.n + '.jpg'
+  });
+  message.mentions.users.first().send("Vous avez été défié en duel, voici le deck que je vous suggère d'utiliser :")
+  message.mentions.users.first().send(deckEmbed2);
+  return message.mentions.users.first().send('', {
+    file : './images/DECKS/' + leDeck2.u + '/' + leDeck2.n + '.jpg'
+  });
 }
 
 module.exports.help = {
