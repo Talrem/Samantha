@@ -19,12 +19,14 @@ module.exports.run = async (bot, message, args) => {
   var decksM = new Array();
   var decksL = new Array();
   var decksVL = new Array();
+  var decksU = new Array();
   var jB = 0;
   var jVH = 0;
   var jH = 0;
   var jM = 0;
   var jL = 0;
   var jVL = 0;
+  var jU = 0;
   for(i = 0; i < taille; i++){
     if(args[0] && args[0].toLowerCase() == "all"){
       switch(sefile[i].t){
@@ -53,6 +55,8 @@ module.exports.run = async (bot, message, args) => {
           jVL++;
           break
         case "Untiered":
+          decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
+          jU++;
           break
         default: return message.reply("Une erreur est survenue... arrêt de la commande.");
       }
@@ -84,6 +88,8 @@ module.exports.run = async (bot, message, args) => {
             jVL++;
             break
           case "Untiered":
+            decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "`";
+            jU++;
             break
           default: return message.reply("Une erreur est survenue... arrêt de la commande.");
         }
@@ -99,6 +105,7 @@ module.exports.run = async (bot, message, args) => {
   decksM.sort();
   decksL.sort();
   decksVL.sort();
+  decksU.sort();
   mTSB = "";
   for(i = 0; i < decksB.length;i++){
     mTSB += decksB[i] +"\n";
@@ -123,31 +130,41 @@ module.exports.run = async (bot, message, args) => {
   for(i = 0; i < decksVL.length;i++){
     mTSVL += decksVL[i] +"\n";
   }
+  mTSU = "";
+  for(i = 0; i < decksU.length;i++){
+    mTSU += decksU[i] +"\n";
+  }
+  let nbDecks = decksB.length + decksH.length + decksL.length + decksM.length + decksU.length + decksVH.length + decksVL.length;
+  message.author.send("Nombre total de decks de la cible : " + nbDecks);
   if(idJoueur == message.author.id){
     if(jB == 0)
-      message.author.send("La cible de la commande ne possède aucun deck ban.")
+      message.author.send("Vous ne possédez aucun deck ban.")
     else
       message.author.send("Vous possédez des decks\n------------------\n `Ban` au nombre de " + decksB.length + " qui sont : \n" + mTSB);
     if(jVH == 0)
-      message.author.send("La cible de la commande ne possède aucun deck very high.")
+      message.author.send("Vous ne possédez aucun deck very high.")
     else
       message.author.send("------------------\n `Very High` au nombre de " + decksVH.length + " qui sont : \n" + mTSVH);
     if(jH == 0)
-      message.author.send("La cible de la commande ne possède aucun deck high.")
+      message.author.send("Vous ne possédez aucun deck high.")
     else
       message.author.send("------------------\n `High` au nombre de " + decksH.length + " qui sont : \n" + mTSH);
     if(jM == 0)
-      message.author.send("La cible de la commande ne possède aucun deck mid.")
+      message.author.send("Vous ne possédez aucun deck mid.")
     else
       message.author.send("------------------\n `Mid` au nombre de " + decksM.length + " qui sont : \n" + mTSM);
     if(jL == 0)
-      message.author.send("La cible de la commande ne possède aucun deck low.")
+      message.author.send("Vous ne possédez aucun deck low.")
     else
       message.author.send("------------------\n `Low` au nombre de " + decksL.length + " qui sont : \n" + mTSL);
     if(jVL == 0)
-      message.author.send("La cible de la commande ne possède aucun deck very low.")
+      message.author.send("Vous ne possédez aucun deck very low.")
     else
       message.author.send("------------------\n `Very Low` au nombre de " + decksVL.length + " qui sont : \n" + mTSVL);
+    if(jU == 0)
+      message.author.send("Vous ne possédez aucun deck untiered.")
+    else
+      message.author.send("------------------\n `Untiered` au nombre de " + decksU.length + " qui sont : \n" + mTSU);
   }else{
     if(jB == 0)
       message.author.send("La cible de la commande ne possède aucun deck ban.")
@@ -173,6 +190,10 @@ module.exports.run = async (bot, message, args) => {
       message.author.send("La cible de la commande ne possède aucun deck very low.")
     else
       message.author.send("------------------\n `Very Low` au nombre de " + decksVL.length + " qui sont : \n" + mTSVL);
+    if(jU == 0)
+      message.author.send("La cible de la commande ne possède aucun deck untiered.")
+    else
+      message.author.send("------------------\n `Untiered` au nombre de " + decksU.length + " qui sont : \n" + mTSU);
   }
 }
 
@@ -180,5 +201,5 @@ module.exports.help = {
   name: "listDeck",
   type: "YuGiOh", //social fun Private ou admin
   usage: "listDeck <utilisateur>",
-  desc: "j'envoit la decks des decks de l'utilisateur voulu. Si aucun utilisateur n'est précisé, vous serez la cible de la commande. Les decks dont le tier n'a pas encore été déterminé ne sont pas pris en compte par cette commande."
+  desc: "j'envoit la decks des decks de l'utilisateur voulu. Si aucun utilisateur n'est précisé, vous serez la cible de la commande."
 }
