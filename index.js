@@ -25,8 +25,8 @@ function playing(connection, message){
   });
 }
 
-function alea(){
-  return Math.floor(Math.random() * 5);
+function alea(n){
+  return Math.floor(Math.random() * n);
 }
 //lecture des commandes du bot et log
 fs.readdir(cheminfile.commands,(err, files) => {
@@ -77,6 +77,12 @@ bot.on("message", async message =>{
     res = Math.floor((Math.random() * replies.length));
     return message.channel.send(replies[res]);
   }
+  res = Math.floor(Math.random() * 1000) + 1;
+  if(res == 1 || res == 12 || res == 42 || res == 69 || res == 420 || res == 666 || res == 1000){
+    member.createDM().then(function(channel){
+  		channel.send("J'ai perdu...");
+  	}).catch(console.error)
+  }
   let mes = message.content.toUpperCase();
 	let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
 	if(!prefixes[message.guild.id]){
@@ -97,7 +103,7 @@ bot.on("message", async message =>{
 
   if(mes.startsWith('DEJA VU') || mes.startsWith('DÉJÀ VU') || mes.startsWith('DEJÀ VU') || mes.startsWith('DÉJA VU')) {
     message.channel.send("I've just been to this place before")
-    if(!can.can || message.guild.voiceConnection) return;
+    /*if(!can.can || message.guild.voiceConnection) return;
     if(message.member.voiceChannel){
       if(!servers[message.guild.id]){
         servers[message.guild.id] = {queue:[]}
@@ -114,10 +120,10 @@ bot.on("message", async message =>{
       }else{
         return message.reply("Je ne suis pas en vocal...").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
       }
-    }
+    }*/
   };
 
-  if(mes.includes('THIS IS SO SAD') &&  mes.includes('PLAY DESPACITO')){
+  /*if(mes.includes('THIS IS SO SAD') &&  mes.includes('PLAY DESPACITO')){
     if(!can.can) return message.reply("Je n'ai pas actuellement le droit de venir en vocal...")
     if(message.guild.voiceConnection) return;
     if(message.member.voiceChannel){
@@ -139,7 +145,7 @@ bot.on("message", async message =>{
     }else{
       return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
     }
-  };
+  };*/
 
   //systeme d'économie
   if(!coins[message.author.id]){
