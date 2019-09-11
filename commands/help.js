@@ -19,42 +19,52 @@ module.exports.run = async (bot, message, args) => {
       var nameAdmlist = "";
       var namePrivlist = "";
       var nameYugilist = "";
+      let nbFun = 0;
+      let nbSoc = 0;
+      let nbYugi = 0;
+      let nbAdm = 0;
+      let nbPriv = 0;
       jsfile.forEach((f, i) => {
         let props = require(cheminfile.commands + `${f}`);
         if(props.help.type == "fun"){
           nameFunlist += "`" + props.help.name + "` ";
+          nbFun += 1;
         }
         if(props.help.type == "social"){
           nameSoclist += "`" + props.help.name + "` ";
+          nbSoc += 1;
         }
         if(props.help.type == "admin"){
           nameAdmlist += "`" + props.help.name + "` ";
+          nbAdm += 1;
         }
         if(message.author.id == idfile.id && props.help.type == "Private"){
           namePrivlist += "`" + props.help.name + "` ";
+          nbPriv += 1;
         }
         if(props.help.type == "YuGiOh"){
           nameYugilist += "`" + props.help.name + "` ";
+          nbYugi += 1;
         }
       });
       if(message.author.id != idfile.id){
         let helpEmbed = new Discord.RichEmbed()
         .setTitle("Mes Commandes")
         .setColor("#00ff00")
-        .addField("Commandes Funs", nameFunlist)
-        .addField("Commandes Sociales", nameSoclist)
-        .addField("Commandes d'Administration", nameAdmlist)
-        .addField("Commandes liées à YuGiOh", nameYugilist);
+        .addField(`Commandes Funs (${nbFun})`, nameFunlist)
+        .addField(`Commandes Sociales (${nbSoc})`, nameSoclist)
+        .addField(`Commandes d'Administration (${nbAdm})`, nameAdmlist)
+        .addField(`Commandes liées à YuGiOh (${nbYugi})`, nameYugilist);
         message.author.send(helpEmbed);
       }else{
         let helpEmbedMe = new Discord.RichEmbed()
         .setTitle("Mes Commandes")
         .setColor("#00ff00")
-        .addField("Commandes Funs", nameFunlist)
-        .addField("Commandes Sociales", nameSoclist)
-        .addField("Commandes d'Administration", nameAdmlist)
-        .addField("Commandes de Talrem uniquement", namePrivlist)
-        .addField("Commandes liées à YuGiOh", nameYugilist);
+        .addField(`Commandes Funs (${nbFun})`, nameFunlist)
+        .addField(`Commandes Sociales (${nbSoc})`, nameSoclist)
+        .addField(`Commandes d'Administration (${nbAdm})`, nameAdmlist)
+        .addField(`Commandes liées à YuGiOh (${nbYugi})`, nameYugilist)
+        .addField(`Commandes de Talrem uniquement (${nbPriv})`, namePrivlist);
         message.author.send(helpEmbedMe);
       }
     });
