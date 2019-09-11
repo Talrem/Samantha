@@ -3,6 +3,7 @@ const nbCommandesPrec = require('./nbCommandesPrec.json');
 const tokenfile = require('./0-jsons/token.json');
 const cheminfile = require('./0-jsons/chemin.json');
 let coins = require("./coins.json");
+let russianLeader = require("./russianLeader.json");
 const Discord = require('discord.js');
 const can = require("./canPlay.json");
 const bot = new Discord.Client()
@@ -79,9 +80,10 @@ bot.on("message", async message =>{
   }
   res = Math.floor(Math.random() * 1000) + 1;
   if(res == 1 || res == 12 || res == 42 || res == 69 || res == 420 || res == 666 || res == 1000){
-    member.createDM().then(function(channel){
+    message.author.createDM().then(function(channel){
   		channel.send("J'ai perdu...");
   	}).catch(console.error)
+    console.log(Date() + " " + message.author.username + "#" + message.author.discriminator +res);
   }
   let mes = message.content.toUpperCase();
 	let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
@@ -147,6 +149,17 @@ bot.on("message", async message =>{
     }
   };*/
 
+  if(!russianLeader[message.author.id]){
+    russianLeader[message.author.id] = {
+      essais: 0,
+      morts: 0,
+      combo: 0,
+      maxCombo: 0
+    };
+  }
+  fs.writeFile("./russianLeader.json", JSON.stringify(russianLeader), (err) => {
+    if(err) console.log(err)
+  });
   //systeme d'économie
   if(!coins[message.author.id]){
     coins[message.author.id] = {
