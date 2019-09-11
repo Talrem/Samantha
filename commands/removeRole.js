@@ -12,6 +12,7 @@ module.exports.run = async (bot, message, args) => {
     for(i = 2; i < args.length ; i++){
       roleName += " " + args[i];
     }
+    console.log("'" +roleName + "'");
     role = message.member.guild.roles.find('name', roleName);
     member.removeRole(role).catch(console.error);
   };

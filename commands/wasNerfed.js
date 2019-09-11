@@ -7,28 +7,32 @@ module.exports.run = async (bot, message, args) => {
   let compteur = 0;
   let messageToSend = "";
   messageToSend += "Requêtes qui ont été traitées : \n";
-  for(i = 0; i < taille ; i++){
-    if(sefile[i].nerf){
-      messageToSend += "id : " + i + " - " + sefile[i].carte
-      messageToSend += " `de " + sefile[i].joueur + "`";
-      switch (sefile[i].nerf) {
-        case 1:
-          messageToSend += " (nerf de l'effet)";
-          break;
-        case 2:
-          messageToSend += " (suppression de la carte)";
-          break;
-        case 3:
-          messageToSend += " (changement total d'effet)";
-          break;
+  for(j = 0; j < taille ; j+=10){
+    for(i = 0; i < 10 && i+j < taille; i++){
+      if(sefile[i+j].nerf){
+        messageToSend += "id : " + (i+j) + " - " + sefile[i+j].carte
+        messageToSend += " `de " + sefile[i+j].joueur + "`";
+        switch (sefile[i+j].nerf) {
+          case 1:
+            messageToSend += " (nerf de l'effet)";
+            break;
+          case 2:
+            messageToSend += " (suppression de la carte)";
+            break;
+          case 3:
+            messageToSend += " (changement total d'effet)";
+            break;
+        }
+        messageToSend += "\n";
+        compteur++;
       }
-      messageToSend += "\n";
-      compteur++;
     }
+    if(compteur){
+      message.channel.send(messageToSend);
+    }
+    messageToSend = "";
   }
-  if(compteur){
-    return message.channel.send(messageToSend);
-  }
+  if(compteur) return;
   return message.reply("La requête ne contient aucune valeur.");
 }
 

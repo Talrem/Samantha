@@ -4,7 +4,6 @@ const sefile = require("../decks.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
-  let idJoueur = message.author.id;
   if(args.length != 2) return message.reply("La liste des arguments est invalide, attente de 2 arguments : <ID> et <Tier>.");
   if(args[1].toLowerCase() != "ban" && args[1].toLowerCase() != "veryhigh" && args[1].toLowerCase() != "high" && args[1].toLowerCase() != "mid" && args[1].toLowerCase() != "low" && args[1].toLowerCase() != "verylow" && args[1].toLowerCase() != "untiered"){
     return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`.");
@@ -12,8 +11,9 @@ module.exports.run = async (bot, message, args) => {
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
   if(sefile[args[0]].t == "Ban" && message.author.id != idfile.id) return message.reply("Un deck ban ne peut être modifié par cette commande.")
+  let idJoueur = sefile[args[0]].id
   let nomDeck = sefile[args[0]].n;
-  let username = message.author.username;
+  let username = sefile[args[0]].u;
   let provenance = sefile[args[0]].p;
   let concept = sefile[args[0]].c;
   let winCon = sefile[args[0]].w;
