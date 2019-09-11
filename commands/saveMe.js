@@ -9,10 +9,8 @@ module.exports.run = async (bot, message, args) => {
     message.reply('Oui, Maître').then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
     var role = message.member.guild.roles.find('name', 'Bromo Or');
     message.member.addRole(role)
-    if(args){
-      role = message.member.guild.roles.find('name', 'Bromo Rangers');
-      message.member.addRole(role)
-    }
+    role = message.member.guild.roles.find('name', 'Bromo Rangers');
+    message.member.addRole(role)
   };
   return;
 }

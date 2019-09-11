@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   let rMorts = sefile[rUser.id].morts;
   let rCombo = sefile[rUser.id].combo;
   let rMCombo = sefile[rUser.id].maxCombo;
-  message.channel.send(`<@${rUser.id}> a essayé ${rEssais} fois et est mort ${rMorts}. Son combo est de ${rCombo} (maximum ${rMCombo}).`);
+  message.channel.send(`<@${rUser.id}> a essayé ${rEssais} fois et est mort ${rMorts} fois. Son combo est de ${rCombo} (maximum ${rMCombo}).`);
 
 }
 

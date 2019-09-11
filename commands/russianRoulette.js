@@ -50,10 +50,16 @@ module.exports.run = async (bot, message, args) => {
     });
     return message.channel.send("Pan !");
   }
-  nbCombo += 1;
+  if(args[0]){
+      nbEssais += args[0];
+      nbCombo += args[0];
+  }else{
+    nbEssais += 1;
+    nbCombo += 1;
+  }
   if(nbMaxCombo <= nbCombo) nbMaxCombo = nbCombo;
   sefile[message.author.id] = {
-    essais : nbEssais + 1,
+    essais : nbEssais,
     morts : nbMorts,
     combo : nbCombo,
     maxCombo : nbMaxCombo
