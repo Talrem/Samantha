@@ -83,7 +83,7 @@ bot.on("message", async message =>{
     message.author.createDM().then(function(channel){
   		channel.send("J'ai perdu...");
   	}).catch(console.error)
-    console.log(Date() + " " + message.author.username + "#" + message.author.discriminator +res);
+    console.log("\n"+Date() + " " + message.author.username + "#" + message.author.discriminator + "    " + res+"\n");
   }
   let mes = message.content.toUpperCase();
 	let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
