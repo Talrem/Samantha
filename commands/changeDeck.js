@@ -4,44 +4,17 @@ const sefile = require("../decks.json");
 
 module.exports.run = async (bot, message, args) => {
   let idJoueur = message.author.id;
-  if(args.length != 6) return message.reply("La liste des arguments est invalide, attente de 6 arguments : <ID> <Nom>, <Provenance>, <Concept>, <WinCon> et <Tier>.");
-  if(args[5].toLowerCase() != "ban" && args[5].toLowerCase() != "veryhigh" && args[5].toLowerCase() != "high" && args[5].toLowerCase() != "mid" && args[5].toLowerCase() != "low" && args[5].toLowerCase() != "verylow"){
-    return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`.");
-  }
+  if(args.length != 5) return message.reply("La liste des arguments est invalide, attente de 5 arguments : <ID> <Nom>, <Provenance>, <Concept> et <WinCon>.");
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
-  if(sefile[args[0]].t == "Ban") return message.reply("Un deck ban ne peut être modifié par cette commande.")
   let nomDeck = args[1]
   let username = message.author.username;
   let provenance = args[2].toLowerCase();
   let concept = args[3].toLowerCase();
   let winCon = args[4].toLowerCase();
-  let tier = "Ban";
-  switch(args[5].toLowerCase()){
-    case "ban":
-      tier = "Ban";
-      break;
-    case "veryhigh":
-      tier = "VeryHigh";
-      break;
-    case "high":
-      tier = "High";
-      break;
-    case "mid":
-      tier = "Mid";
-      break;
-    case "low":
-      tier = "Low";
-      break;
-    case "verylow":
-      tier = "VeryLow";
-      break;
-    case "untiered":
-      tier = "Untiered";
-      break;
-  }
+  let tier = sefile[args[0]].t;
   if(sefile[args[0]])
-    if(sefile[args[0]].id != idJoueur) return message.reply("Le deck spécifié ne vous appartient pas.")
+    if(sefile[args[0]].id != idJoueur && message.author.id != 212556854147022849) return message.reply("Le deck spécifié ne vous appartient pas.")
     sefile[args[0]] = {
       id:idJoueur,
       u:username,

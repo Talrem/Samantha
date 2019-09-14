@@ -138,60 +138,60 @@ module.exports.run = async (bot, message, args) => {
   message.author.send("Nombre total de decks de la cible : " + nbDecks);
   if(idJoueur == message.author.id){
     if(jB == 0)
-      message.author.send("Vous ne possédez aucun deck ban.")
+      message.author.send("------------------\nVous ne possédez aucun deck ban.")
     else
-      message.author.send("Vous possédez des decks\n------------------\n `Ban` au nombre de " + decksB.length + " qui sont : \n" + mTSB);
+      message.author.send("------------------\n `Ban` au nombre de " + decksB.length + " qui sont : \n" + mTSB);
     if(jVH == 0)
-      message.author.send("Vous ne possédez aucun deck very high.")
+      message.author.send("------------------\nVous ne possédez aucun deck very high.")
     else
       message.author.send("------------------\n `Very High` au nombre de " + decksVH.length + " qui sont : \n" + mTSVH);
     if(jH == 0)
-      message.author.send("Vous ne possédez aucun deck high.")
+      message.author.send("------------------\nVous ne possédez aucun deck high.")
     else
       message.author.send("------------------\n `High` au nombre de " + decksH.length + " qui sont : \n" + mTSH);
     if(jM == 0)
-      message.author.send("Vous ne possédez aucun deck mid.")
+      message.author.send("------------------\nVous ne possédez aucun deck mid.")
     else
       message.author.send("------------------\n `Mid` au nombre de " + decksM.length + " qui sont : \n" + mTSM);
     if(jL == 0)
-      message.author.send("Vous ne possédez aucun deck low.")
+      message.author.send("------------------\nVous ne possédez aucun deck low.")
     else
       message.author.send("------------------\n `Low` au nombre de " + decksL.length + " qui sont : \n" + mTSL);
     if(jVL == 0)
-      message.author.send("Vous ne possédez aucun deck very low.")
+      message.author.send("------------------\nVous ne possédez aucun deck very low.")
     else
       message.author.send("------------------\n `Very Low` au nombre de " + decksVL.length + " qui sont : \n" + mTSVL);
     if(jU == 0)
-      message.author.send("Vous ne possédez aucun deck untiered.")
+      message.author.send("------------------\nVous ne possédez aucun deck untiered.")
     else
       message.author.send("------------------\n `Untiered` au nombre de " + decksU.length + " qui sont : \n" + mTSU);
   }else{
     if(jB == 0)
-      message.author.send("La cible de la commande ne possède aucun deck ban.")
+      message.author.send("------------------\n La cible de la commande ne possède aucun deck ban.")
     else
-      message.author.send("La cible possède des decks\n------------------\n `Ban` au nombre de " + decksB.length + " qui sont :\n" + mTSB);
+      message.author.send("------------------\n `Ban` au nombre de " + decksB.length + " qui sont :\n" + mTSB);
     if(jVH == 0)
-      message.author.send("La cible de la commande ne possède aucun deck very high.")
+      message.author.send("------------------\n La cible de la commande ne possède aucun deck very high.")
     else
       message.author.send("------------------\n `Very High` au nombre de " + decksVH.length + " qui sont : \n" + mTSVH);
     if(jH == 0)
-      message.author.send("La cible de la commande ne possède aucun deck high.")
+      message.author.send("------------------\n La cible de la commande ne possède aucun deck high.")
     else
       message.author.send("------------------\n `High` au nombre de " + decksH.length + " qui sont : \n" + mTSH);
     if(jM == 0)
-      message.author.send("La cible de la commande ne possède aucun deck mid.")
+      message.author.send("------------------\n La cible de la commande ne possède aucun deck mid.")
     else
       message.author.send("------------------\n `Mid` au nombre de " + decksM.length + " qui sont : \n" + mTSM);
     if(jL == 0)
-      message.author.send("La cible de la commande ne possède aucun deck low.")
+      message.author.send("------------------\n La cible de la commande ne possède aucun deck low.")
     else
       message.author.send("------------------\n `Low` au nombre de " + decksL.length + " qui sont : \n" + mTSL);
     if(jVL == 0)
-      message.author.send("La cible de la commande ne possède aucun deck very low.")
+      message.author.send("------------------\n La cible de la commande ne possède aucun deck very low.")
     else
       message.author.send("------------------\n `Very Low` au nombre de " + decksVL.length + " qui sont : \n" + mTSVL);
     if(jU == 0)
-      message.author.send("La cible de la commande ne possède aucun deck untiered.")
+      message.author.send("------------------\n La cible de la commande ne possède aucun deck untiered.")
     else
       message.author.send("------------------\n `Untiered` au nombre de " + decksU.length + " qui sont : \n" + mTSU);
   }
