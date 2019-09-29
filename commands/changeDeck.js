@@ -3,12 +3,12 @@ const fs = require("fs");
 const sefile = require("../decks.json");
 
 module.exports.run = async (bot, message, args) => {
-  let idJoueur = message.author.id;
   if(args.length != 5) return message.reply("La liste des arguments est invalide, attente de 5 arguments : <ID> <Nom>, <Provenance>, <Concept> et <WinCon>.");
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
-  let nomDeck = args[1]
-  let username = message.author.username;
+  let idJoueur = sefile[args[0]].id;
+  let username = sefile[args[0]].u;
+  let nomDeck = args[1];
   let provenance = args[2].toLowerCase();
   let concept = args[3].toLowerCase();
   let winCon = args[4].toLowerCase();

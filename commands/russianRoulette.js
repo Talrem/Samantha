@@ -51,8 +51,8 @@ module.exports.run = async (bot, message, args) => {
     return message.channel.send("Pan !");
   }
   if(args[0]){
-      nbEssais += args[0];
-      nbCombo += args[0];
+      nbEssais += parseInt(args[0]);
+      nbCombo += parseInt(args[0]);
   }else{
     nbEssais += 1;
     nbCombo += 1;
