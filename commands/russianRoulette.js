@@ -1,10 +1,8 @@
 const Discord = require("discord.js")
 const fs = require("fs");
-const sefile = require("../russianLeader.json");
 
 module.exports.run = async (bot, message, args) => {
   let res = 0;
-  let kUser = message.guild.member(message.author);
   if(args[0]){
     if(args[0] < 1 || args[0] > 5){
       return message.reply("Vous ne pouvez pas tirer avec 0 balles ou 6 balles, au moins 1, au max 5.");
@@ -26,47 +24,12 @@ module.exports.run = async (bot, message, args) => {
   if(args[0]){
     if(res <= args[0]){
       message.guild.member(kUser).kick("Pan !");
-      sefile[message.author.id] = {
-        essais : nbEssais + 1,
-        morts : nbMorts + 1,
-        combo : 0,
-        maxCombo : nbMaxCombo
-      }
-      fs.writeFile("./sefile.json", JSON.stringify(sefile), (err) => {
-        if(err) console.log(err)
-      });
       return message.channel.send("Pan !");
     }
   }else if(res <= 1){
     message.guild.member(kUser).kick("Pan !");
-    sefile[message.author.id] = {
-      essais : nbEssais + 1,
-      morts : nbMorts + 1,
-      combo : 0,
-      maxCombo : nbMaxCombo
-    }
-    fs.writeFile("./sefile.json", JSON.stringify(sefile), (err) => {
-      if(err) console.log(err)
-    });
     return message.channel.send("Pan !");
   }
-  if(args[0]){
-      nbEssais += parseInt(args[0]);
-      nbCombo += parseInt(args[0]);
-  }else{
-    nbEssais += 1;
-    nbCombo += 1;
-  }
-  if(nbMaxCombo <= nbCombo) nbMaxCombo = nbCombo;
-  sefile[message.author.id] = {
-    essais : nbEssais,
-    morts : nbMorts,
-    combo : nbCombo,
-    maxCombo : nbMaxCombo
-  }
-  fs.writeFile("./russianLeader.json", JSON.stringify(sefile), (err) =>{
-    if(err) console.log(err);
-  })
   return message.channel.send("Clic.")
 }
 

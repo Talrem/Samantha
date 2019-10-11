@@ -22,6 +22,9 @@ module.exports.run = async (bot, message, args) => {
             case 3:
               messageToSend += " (changement total d'effet)";
               break;
+            case 4:
+              messageToSend += " (ignoré)";
+              break;
           }
           messageToSend += "\n";
           compteur++;
@@ -36,7 +39,7 @@ module.exports.run = async (bot, message, args) => {
     messageToSend += "Requêtes qui ont été traitées : \n";
     for(j = 0; j < taille ; j+=10){
       for(i = 0; i < 10 && i+j < taille; i++){
-        if(sefile[i+j].nerf && sefile[i+j].joueur == args[0]){
+        if(sefile[i+j].nerf){
           messageToSend += "id : " + (i+j) + " - " + sefile[i+j].carte
           messageToSend += " `de " + sefile[i+j].joueur + "`";
           switch (sefile[i+j].nerf) {
@@ -48,6 +51,9 @@ module.exports.run = async (bot, message, args) => {
               break;
             case 3:
               messageToSend += " (changement total d'effet)";
+              break;
+            case 4:
+              messageToSend += " (ignoré)";
               break;
           }
           messageToSend += "\n";
