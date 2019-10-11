@@ -3,7 +3,6 @@ const nbCommandesPrec = require('./nbCommandesPrec.json');
 const tokenfile = require('./0-jsons/token.json');
 const cheminfile = require('./0-jsons/chemin.json');
 let coins = require("./coins.json");
-let russianLeader = require("./russianLeader.json");
 const Discord = require('discord.js');
 const can = require("./canPlay.json");
 const bot = new Discord.Client()
@@ -94,6 +93,15 @@ bot.on("message", async message =>{
 	}
   let prefix = prefixes[message.guild.id].prefixes;
   //pour les messages qui commencent sans le préfixe
+  /*Vérification que les messages qui sont des citations sont du bon type*/
+  if(message.channel.id==627587389346283526){
+    var citation = new RegExp(/"[\w|\W]+" - [\w|\W]+, \d+/);
+    if(!citation.test(message.content)) {
+      message.author.send("Votre message est : " + message.content);
+      message.delete();
+      return message.author.send('Il est incorrect, vous devez suivre la syntaxe `"message" - Auteur, Année`');
+    }
+  }
   //time to duel serveur duels
   if(message.content.startsWith('@everyone')) {
     if(message.channel.guild.id!=508380503473258516) return;
@@ -148,18 +156,6 @@ bot.on("message", async message =>{
       return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
     }
   };*/
-
-  if(!russianLeader[message.author.id]){
-    russianLeader[message.author.id] = {
-      essais: 0,
-      morts: 0,
-      combo: 0,
-      maxCombo: 0
-    };
-  }
-  fs.writeFile("./russianLeader.json", JSON.stringify(russianLeader), (err) => {
-    if(err) console.log(err)
-  });
   //systeme d'économie
   if(!coins[message.author.id]){
     coins[message.author.id] = {
