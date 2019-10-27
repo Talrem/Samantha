@@ -110,7 +110,25 @@ bot.on("message", async message =>{
       file : "./images/duel.gif"
     });
   };
-
+  switch(mes){
+    case "4":
+      message.author.send(Date());
+      message.delete();
+    break;
+    case "8":
+      message.author.send("J'ai perdu");
+      message.delete();
+    break;
+    case "12":
+      message.author.send("Jaune");
+      message.delete();
+    break;
+    case "69":
+      message.author.send(res = Math.floor(Math.random() * 288856) + 1);
+      message.delete();
+    break;
+    default:break;
+  }
   if(mes.startsWith('DEJA VU') || mes.startsWith('DÉJÀ VU') || mes.startsWith('DEJÀ VU') || mes.startsWith('DÉJA VU')) {
     message.channel.send("I've just been to this place before")
     /*if(!can.can || message.guild.voiceConnection) return;
@@ -184,7 +202,7 @@ bot.on("message", async message =>{
   };
 
   //suppression des mots bannis
-  let banlist = [
+  /*let banlist = [
   "CHOCOLATINE",
   "BITE",
   "SUCEUR",
@@ -206,10 +224,10 @@ bot.on("message", async message =>{
     message.reply("On ne parle pas de ça ici ! è_é")
     .then(message => message.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
     return;
-  }
+  }*/
 
   //réaction aux insultes
-  let insulteList = [
+  /*let insulteList = [
   "MOCHE",
   "CON",
   "SUCEUR",
@@ -232,14 +250,14 @@ bot.on("message", async message =>{
   if (trouverInsulte && !mes.startsWith(prefix)){
     console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + " a dit " + message)
     return message.reply("No U")
-  }
+  }*/
 
   //popopo
-  if (mes.startsWith('POPOPO')) {
+  /*if (mes.startsWith('POPOPO')) {
     message.channel.send('', {
       file : './images/POPOPO.gif'
     });
-  }
+  }*/
 
   //test des préfixes
 	if(!message.content.startsWith(prefix)) return;
