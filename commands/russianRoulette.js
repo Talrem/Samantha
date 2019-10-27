@@ -17,17 +17,13 @@ module.exports.run = async (bot, message, args) => {
     res = 6;
   }*/
   /*Pas du tout la fin de la triche*/
-  let nbEssais = sefile[message.author.id].essais;
-  let nbMorts = sefile[message.author.id].morts;
-  let nbCombo = sefile[message.author.id].combo;
-  let nbMaxCombo = sefile[message.author.id].maxCombo;
   if(args[0]){
     if(res <= args[0]){
-      message.guild.member(kUser).kick("Pan !");
+      message.guild.member(message.author).kick("Pan !");
       return message.channel.send("Pan !");
     }
   }else if(res <= 1){
-    message.guild.member(kUser).kick("Pan !");
+    message.guild.member(message.author).kick("Pan !");
     return message.channel.send("Pan !");
   }
   return message.channel.send("Clic.")
