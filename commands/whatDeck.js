@@ -81,6 +81,7 @@ module.exports.run = async (bot, message, args) => {
               case "w":
                 if(args[0].toLowerCase() != sefile[i].w.toLowerCase()) wOk = 0;
                 break;
+              default:break;
             }
             switch (argument1) {
               case "t":
@@ -95,6 +96,7 @@ module.exports.run = async (bot, message, args) => {
               case "w":
                 if(args[1].toLowerCase() != sefile[i].w.toLowerCase()) wOk = 0;
                 break;
+              default:break;
             }
             switch (argument2) {
               case "t":
@@ -109,6 +111,7 @@ module.exports.run = async (bot, message, args) => {
               case "w":
                 if(args[2].toLowerCase() != sefile[i].w.toLowerCase()) wOk = 0;
                 break;
+              default:break;
             }
             switch (argument3) {
               case "t":
@@ -123,6 +126,7 @@ module.exports.run = async (bot, message, args) => {
               case "w":
                 if(args[3].toLowerCase() != sefile[i].w.toLowerCase()) wOk = 0;
                 break;
+              default:break;
             }
             if(tOk && pOk && cOk && wOk){
               lesDeck[j] = sefile[i];
@@ -133,7 +137,7 @@ module.exports.run = async (bot, message, args) => {
       }
     }
   }
-  if(j == 0) return message.reply("Vous ne possédez aucun deck... Ou alors aucun d'entre eux ne correspond aux arguments fournis...");
+  if(j == 0) return message.reply("Vous ne possédez aucun deck... Ou alors aucun d'entre eux ne correspond aux arguments fournis... Ou alors ils sont bans, je sais pas...");
   let leDeck = lesDeck[Math.floor(Math.random() * j)];
   let deckEmbed = new Discord.RichEmbed()
   .setDescription("Deck à utiliser")

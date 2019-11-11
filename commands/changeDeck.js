@@ -33,6 +33,6 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
   name: "changeDeck",
   type: "YuGiOh", //social fun Private ou admin
-  usage: "changeDeck <ID> <Nom> <Provenance> <Concept> <WinCon> <Tier>",
-  desc: "je modifie le deck à la liste des decks. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`."
+  usage: "changeDeck <ID> <Nom> <Provenance> <Concept> <WinCon>",
+  desc: "je modifie le deck à la liste des decks. Veuillez vérifier que vous n'avez pas créé de conflit dans la base de données avec `+>debugVarDecks all`"
 }

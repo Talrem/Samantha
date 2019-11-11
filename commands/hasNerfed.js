@@ -4,13 +4,12 @@ const sefile = require("../ticketsReportsCartes.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
-  if(message.author.id != idfile.id){
-    return message.reply('Seul mon créateur a le droit à cette commande').then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  }
   let taille = sefile[-1].number;
   if(!args[0]) return message.reply("Veuillez préciser un id de requête.");
   let id = args[0];
   if(id > taille || id < 0) return message.reply("L'id que vous avez précisé est invalide.")
+  let nomPlaintif = message.author.username
+  nomPlaintif = nomPlaintif.toLowerCase();
   let type = ["notNerfed","nerf","suppr","changement"];
   let requete;
   if(!args[1]){
@@ -22,6 +21,10 @@ module.exports.run = async (bot, message, args) => {
     if(type[j] == requete) validRequest = j;
   }
   if(!validRequest) return message.reply("Votre requête est invalide, elle doit faire partie de `notNerfed`, `nerf`, `suppr` et `changement`.")
+  if(message.author.id != idfile.id && nomPlaintif != sefile[id].plaintif){
+    return message.reply('Seul mon créateur  ou l\'autheur de la requête ont le droit à cette commande').then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  }
+  if(sefile[id].nerf && message.author.id != idfile.id) return message.reply("Cette requête a déjà été traitée.")
   sefile[id].nerf = validRequest;
   fs.writeFile("./ticketsReportsCartes.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);

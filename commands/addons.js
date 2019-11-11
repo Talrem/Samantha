@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
   let i,j;
   let msg;
   let compteur = 0;
-  if(args){
+  if(args.length){
     for(i = 0; i < types.length; i++){
       if(args[0].toLowerCase()==types[i]) trouve = 1;
     }

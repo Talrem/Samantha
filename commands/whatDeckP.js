@@ -133,7 +133,7 @@ module.exports.run = async (bot, message, args) => {
       }
     }
   }
-  if(j == 0) return message.reply("Vous ne possédez aucun deck... Ou alors aucun d'entre eux ne correspond aux arguments fournis...");
+  if(j == 0) return message.reply("Vous ne possédez aucun deck... Ou alors aucun d'entre eux ne correspond aux arguments fournis... Ou alors ils sont bans, je sais pas...");
   let leDeck = lesDeck[Math.floor(Math.random() * j)];
   let deckEmbed = new Discord.RichEmbed()
   .setDescription("Deck à utiliser")
