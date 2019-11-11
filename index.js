@@ -127,6 +127,9 @@ bot.on("message", async message =>{
       message.author.send(res = Math.floor(Math.random() * 288856) + 1);
       message.delete();
     break;
+    case "FUCKGOBACK":
+      message.channel.bulkDelete(2);
+    break;
     default:break;
   }
   if(mes.startsWith('DEJA VU') || mes.startsWith('DÉJÀ VU') || mes.startsWith('DEJÀ VU') || mes.startsWith('DÉJA VU')) {
