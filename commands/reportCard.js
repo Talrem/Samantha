@@ -5,15 +5,14 @@ const sefile = require("../ticketsReportsCartes.json");
 module.exports.run = async (bot, message, args) => {
   let nomCarte = "";
   if(args.length < 1) return message.reply("Veuillez préciser un joueur dont vous vous plaignez.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  let nomJoueur = args[0].toLowerCase();
+  let joueur = message.guild.member(message.mentions.users.first() || message.guild.members.gets(args[0]));
+  let nomJoueur = joueur.user.username;
   if(args.length < 2) return message.reply("Veuillez préciser une carte dont vous vous plaignez.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   nomCarte+= args[1];
-  let nomPlaintif = message.author.username
-  nomPlaintif = nomPlaintif.toLowerCase();
+  let nomPlaintif = message.author.username;
   for(i=2; i < args.length;i++){
     nomCarte+= " " + args[i];
   }
-  console.log(nomCarte);
   let taille = sefile[-1].number;
 
   if(!sefile[taille])
@@ -33,6 +32,6 @@ module.exports.run = async (bot, message, args) => {
 module.exports.help = {
   name: "reportCard",
   type: "YuGiOh", //social fun Private ou admin
-  usage: "reportCard <nom du joueur dont on se plaint> <nom de la carte dont on se plaint>",
-  desc: "j'ajoute une plainte aux plaintes ."
+  usage: "reportCard <mention du joueur dont on se plaint> <nom de la carte dont on se plaint>",
+  desc: "j'ajoute une carte à la liste de celles qu'il faudrait nerf."
 }

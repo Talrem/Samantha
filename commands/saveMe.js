@@ -46,6 +46,8 @@ module.exports.run = async (bot, message, args) => {
       message.member.addRole(role)
       role = message.member.guild.roles.find('name', 'Nearly Almost Everyone But Not Quite Yet');
       message.member.addRole(role)
+      role = message.member.guild.roles.find('name', 'Robin Ranger');
+      message.member.addRole(role)
     break;
     default:
       return message.reply("Seuls quelques élus possèdent un tel pouvoir...");

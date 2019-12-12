@@ -9,8 +9,8 @@ module.exports.run = async (bot, message, args) => {
     idJoueur2 = message.mentions.users.first().id;
   }
   if(idJoueur1 == idJoueur2) return message.reply("Vous ne pouvez pas vous affronter vous même...")
-  if(args.length == 2 && args[1] != '-' && args[1] != 'Ban' && args[1] != 'VeryHigh' && args[1] != 'High' && args[1] != 'Mid' && args[1] != 'Low' && args[1] != 'VerylLow' && args[1] != 'Untiered'){
-    return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, et `VeryLow` ou ne pas renseigner de 3ème argument.");
+  if(args.length == 2 && args[1].toLowerCase() != 'ban' && args[1].toLowerCase() != 'veryhigh' && args[1].toLowerCase() != 'high' && args[1].toLowerCase() != 'mid' && args[1].toLowerCase() != 'low' && args[1].toLowerCase() != 'veryllow' && args[1].toLowerCase() != 'untiered'){
+    return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, et `VeryLow` ou ne pas renseigner cet argument.");
   }
   let taille = sefile[-1].number;
   var i = 0;
@@ -22,14 +22,14 @@ module.exports.run = async (bot, message, args) => {
     switch (sefile[i].id) {
       case idJoueur1:
         if(args.length == 2){
-          if(sefile[i].t == args[1]){
-            if(!(sefile[i].t == "Ban" && args[1] != "Ban")){
+          if(sefile[i].t.toLowerCase() == args[1].toLowerCase()){
+            if(!(sefile[i].t == "Ban" && args[1].toLowerCase() != "ban")){
               lesDeck1[j1] = sefile[i];
               j1++;
             }
           }
         }else{
-          if(!(sefile[i].t == "Ban" && args[1] != "Ban")){
+          if(!(sefile[i].t == "Ban")){
             lesDeck1[j1] = sefile[i];
             j1++;
           }
@@ -37,14 +37,14 @@ module.exports.run = async (bot, message, args) => {
         break;
       case idJoueur2:
         if(args.length == 2){
-          if(sefile[i].t == args[1]){
-            if(!(sefile[i].t == "Ban" && args[1] != "Ban")){
+          if(sefile[i].t.toLowerCase() == args[1].toLowerCase()){
+            if(!(sefile[i].t == "Ban" && args[1].toLowerCase() != "ban")){
               lesDeck2[j2] = sefile[i];
               j2++;
             }
           }
         }else{
-          if(!(sefile[i].t == "Ban" && args[1] != "Ban")){
+          if(!(sefile[i].t == "Ban")){
             lesDeck2[j2] = sefile[i];
             j2++;
           }

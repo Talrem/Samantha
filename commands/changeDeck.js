@@ -15,6 +15,7 @@ module.exports.run = async (bot, message, args) => {
   let tier = sefile[args[0]].t;
   if(sefile[args[0]])
     if(sefile[args[0]].id != idJoueur && message.author.id != 212556854147022849) return message.reply("Le deck spécifié ne vous appartient pas.")
+    let previousName = sefile[args[0]].n;
     sefile[args[0]] = {
       id:idJoueur,
       u:username,
@@ -27,6 +28,7 @@ module.exports.run = async (bot, message, args) => {
   fs.writeFile("./decks.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
+  if(previousName != sefile[args[0]].n) message.channel.send("Veuillez préciser le changement de nom du deck à Talrem pour la base d'images.");
   return message.channel.send("Le deck a été enregistré avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 }
 

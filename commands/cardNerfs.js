@@ -17,7 +17,7 @@ module.exports.run = async (bot, message, args) => {
     if(!args[1]){
       return message.reply("Veuillez préciser un nom.")
     }else{
-      nom = args[1].toLowerCase();
+      nom = args[1];
     }
   }
   let validRequest = 0;

@@ -52,7 +52,7 @@ module.exports.run = async (bot, message, args) => {
   fs.writeFile("./decks.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
-  return message.channel.send("Le deck a été enregistré avec succès. son id est : " + (sefile[-1].number - 1)).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  return message.channel.send("Le deck a été enregistré avec succès.\nN'oubliez pas d'envoyer une image représentant votre deck à Talrem.\nL'id de votre deck est : " + (sefile[-1].number - 1)).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 }
 
 module.exports.help = {

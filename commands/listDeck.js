@@ -2,15 +2,46 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const sefile = require("../decks.json");
 
+function isIn(tab, argument) {
+  var i;
+  for(i = 0 ; i < tab.length;i++){
+    if(argument.toLowerCase() == tab[i].toLowerCase()) return 1;
+  }
+  return 0;
+}
+
 module.exports.run = async (bot, message, args) => {
   let taille = sefile[-1].number;
+  var playerNames = new Array();
+  var playerIDs = new Array();
+  var nbPlayers = 0;
+  for(i = 0; i < taille; i++){
+    if(!isIn(playerIDs,sefile[i].id)){
+      playerIDs[nbPlayers] = sefile[i].id;
+      playerNames[nbPlayers] = sefile[i].u;
+      nbPlayers += 1;
+    }
+  }
+  var trouve = 0;
   let idJoueur = 0;
   if(args.length){
-    if(args[0].toLowerCase() != "all"){
-      idJoueur = message.mentions.users.first().id;
+    if(args[0].toLowerCase() != "all" && !isIn( playerNames, args[0].toLowerCase() ) ){
+      if(args[0].includes("<") && args[0].includes(">") && args[0].includes("@")){
+        idJoueur = message.mentions.users.first().id;
+      }
+    }else{
+      for(j = 0; j < nbPlayers; j++){
+        if(args[0].toLowerCase() == playerNames[j].toLowerCase()){
+          idJoueur = playerIDs[j];
+          trouve = 1;
+        }
+      }
+      if(!trouve){
+          idJoueur = message.author.id;
+      }
     }
   }else{
-    idJoueur = message.author.id;
+      idJoueur = message.author.id;
   }
   var i = 0;
   var decksB = new Array();

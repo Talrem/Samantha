@@ -9,11 +9,10 @@ module.exports.run = async (bot, message, args) => {
   let id = args[0];
   if(id > taille || id < 0) return message.reply("L'id que vous avez précisé est invalide.")
   let nomPlaintif = message.author.username
-  nomPlaintif = nomPlaintif.toLowerCase();
   let type = ["notNerfed","nerf","suppr","changement"];
   let requete;
   if(!args[1]){
-    return message.reply("Veuillez préciser un nom.")
+    return message.reply("Veuillez préciser un type de nerf valide.")
   }
   requete = args[1].toLowerCase();
   let validRequest = 0;

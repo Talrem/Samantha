@@ -10,10 +10,8 @@ module.exports.run = async (bot, message, args) => {
   .setDescription("Derniers ajouts au bot.")
   .setColor("#15f153")
   .setThumbnail(bicon)
-  .addField("modification", "+>addSE : correction de la commande, maintenant elle marche.")
-  .addField("ajout", "+>addAddon : me fait ajouter un addon à la liste.")
-  .addField("ajout", "+>addons : me fait envoyer les liens des addons d'un type donné ou tout les addons si aucun type n'est précisé.")
-  .addField("ajout", "+>shittyMusic : Me fait jouer de la shitty flute au pif dans ma liste.");
+  .addField("ajout", "+>gameRole : permet de s'ajouter ou retirer des rôles de jeu vidéo.")
+  .addField("ajout", "Plein de trucs en rapport avec YuGiOh.");
   return message.channel.send(botEmbed);
   return;
 }
