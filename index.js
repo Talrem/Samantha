@@ -127,6 +127,11 @@ bot.on("message", async message =>{
       message.author.send(res = Math.floor(Math.random() * 288856) + 1);
       message.delete();
     break;
+    case "69E":
+      res = Math.floor(Math.random() * 288856) + 1;
+      message.author.send("https://nhentai.net/g/" + res + "/");
+      message.delete();
+    break;
     case "FUCKGOBACK":
       message.channel.bulkDelete(2);
     break;
