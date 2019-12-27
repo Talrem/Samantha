@@ -1,5 +1,4 @@
 const botconfig = require('./botconfig.json');
-const nbCommandesPrec = require('./nbCommandesPrec.json');
 const tokenfile = require('./0-jsons/token.json');
 const cheminfile = require('./0-jsons/chemin.json');
 let coins = require("./coins.json");
@@ -54,7 +53,7 @@ fs.readdir(cheminfile.commands,(err, files) => {
 bot.on('ready', async () => {
 	console.log(`${bot.user.username} est en ligne!\n`)
   console.log(`${bot.user.username} est connectée sur ${bot.guilds.size} serveurs!\n`);
-	bot.user.setActivity("+>help", {type: "WATCHING"})
+  bot.user.setActivity("+>help", {type: "WATCHING"})
 	.then(() => console.log('Activité mise en place avec succès\n'))
 	.catch(console.error)
 });
@@ -77,7 +76,7 @@ bot.on("message", async message =>{
     res = Math.floor((Math.random() * replies.length));
     return message.channel.send(replies[res]);
   }
-  res = Math.floor(Math.random() * 1000) + 1;
+  res = Math.floor(Math.random() * 10000) + 1;
   if(res == 1 || res == 12 || res == 42 || res == 69 || res == 420 || res == 666 || res == 1000){
     message.author.createDM().then(function(channel){
   		channel.send("J'ai perdu...");
