@@ -3,6 +3,7 @@ const Discord = require("discord.js")
 module.exports.run = async (bot, message, args) => {
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   let question = ""
+  if(args.length == 0) return message.reply("Un sondage c'est mieux quand ça demande quelque chose.");
   for(i = 0; i < args.length;i++){
     question += args[i] + " "
   }

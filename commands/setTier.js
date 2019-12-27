@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args) => {
   }
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
-  if(sefile[args[0]].t == "Ban" && message.author.id != idfile.id) return message.reply("Un deck ban ne peut être modifié par cette commande.")
+  if(sefile[args[0]].t == "Ban" && message.author.id != idfile.id || sefile[args[0]].s == "1" && message.author.id != idfile.id) return message.reply("Un deck ban ou suspect ne peut être modifié par cette commande.")
   let idJoueur = sefile[args[0]].id
   let nomDeck = sefile[args[0]].n;
   let username = sefile[args[0]].u;
@@ -50,7 +50,8 @@ module.exports.run = async (bot, message, args) => {
       p:provenance,
       c:concept,
       w:winCon,
-      t:tier
+      t:tier,
+      s:"0"
     };
   fs.writeFile("./decks.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
@@ -62,5 +63,5 @@ module.exports.help = {
   name: "setTier",
   type: "YuGiOh", //social fun Private ou admin
   usage: "setTier <ID> <Tier>",
-  desc: "je modifie le deck à la liste des decks. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`."
+  desc: "je modifie le deck à la liste des decks. Les tiers valables sont `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`. Un deck en suspect test sera sorti de cet état par l'utilisation de cette commande, considérant qu'il a été replacé."
 }

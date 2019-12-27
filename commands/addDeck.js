@@ -3,6 +3,7 @@ const fs = require("fs");
 const sefile = require("../decks.json");
 
 module.exports.run = async (bot, message, args) => {
+  if(!message.member.roles.some(role => role.name === "Dueliste")) return message.reply("Vous n'êtes apparement pas un dueliste, je ne peux pas vous laisser accéder à la base de donnée...");
   let idJoueur = message.author.id;
   if(args.length != 5) return message.reply("La liste des arguments est invalide, attente de 5 arguments : <Nom>, <Provenance>, <Concept>, <WinCon> et <Tier>.");
   if(args[4].toLowerCase() != "ban" && args[4].toLowerCase() != "veryhigh" && args[4].toLowerCase() != "high" && args[4].toLowerCase() != "mid" && args[4].toLowerCase() != "low" && args[4].toLowerCase() != "verylow" && args[4].toLowerCase() != "untiered"){
@@ -46,7 +47,8 @@ module.exports.run = async (bot, message, args) => {
       p:provenance,
       c:concept,
       w:winCon,
-      t:tier
+      t:tier,
+      s:"0"
     };
     sefile[-1].number++;
   fs.writeFile("./decks.json", JSON.stringify(sefile), (err) =>{

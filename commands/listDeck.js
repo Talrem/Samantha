@@ -63,26 +63,38 @@ module.exports.run = async (bot, message, args) => {
       switch(sefile[i].t){
         case "Ban":
           decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
+          if(sefile[i].s == "1")
+          decksB[jB] += " - Suspect";
           jB++;
           break;
         case "VeryHigh":
           decksVH[jVH] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
+          if(sefile[i].s == "1")
+          decksVH[jVH] += " - Suspect";
           jVH++;
           break;
         case "High":
           decksH[jH] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
+          if(sefile[i].s == "1")
+          decksH[jH] += " - Suspect";
           jH++;
           break
         case "Mid":
           decksM[jM] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
+          if(sefile[i].s == "1")
+          decksM[jM] += " - Suspect";
           jM++;
           break
         case "Low":
           decksL[jL] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
+          if(sefile[i].s == "1")
+          decksL[jL] += " - Suspect";
           jL++;
           break
         case "VeryLow":
           decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
+          if(sefile[i].s == "1")
+          decksVL[jVL] += " - Suspect";
           jVL++;
           break
         case "Untiered":
@@ -96,26 +108,38 @@ module.exports.run = async (bot, message, args) => {
         switch(sefile[i].t){
           case "Ban":
             decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "`";
+            if(sefile[i].s == "1")
+            decksB[jB] += " - Suspect";
             jB++;
             break;
           case "VeryHigh":
             decksVH[jVH] = "ID : " + i + " - `" + sefile[i].n + "`";
+            if(sefile[i].s == "1")
+            decksVH[jVH] += " - Suspect";
             jVH++;
             break;
           case "High":
             decksH[jH] = "ID : " + i + " - `" + sefile[i].n + "`";
+            if(sefile[i].s == "1")
+            decksH[jH] += " - Suspect";
             jH++;
             break
           case "Mid":
             decksM[jM] = "ID : " + i + " - `" + sefile[i].n + "`";
+            if(sefile[i].s == "1")
+            decksM[jM] += " - Suspect";
             jM++;
             break
           case "Low":
             decksL[jL] = "ID : " + i + " - `" + sefile[i].n + "`";
+            if(sefile[i].s == "1")
+            decksL[jL] += " - Suspect";
             jL++;
             break
           case "VeryLow":
             decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "`";
+            if(sefile[i].s == "1")
+            decksVL[jVL] += " - Suspect";
             jVL++;
             break
           case "Untiered":
@@ -232,5 +256,5 @@ module.exports.help = {
   name: "listDeck",
   type: "YuGiOh", //social fun Private ou admin
   usage: "listDeck <utilisateur>",
-  desc: "j'envoit la decks des decks de l'utilisateur voulu. Si aucun utilisateur n'est précisé, vous serez la cible de la commande."
+  desc: "j'envoit la liste des decks de l'utilisateur voulu. Si aucun utilisateur n'est précisé, vous serez la cible de la commande."
 }
