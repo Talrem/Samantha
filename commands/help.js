@@ -48,6 +48,17 @@ module.exports.run = async (bot, message, args) => {
         }
       });
       if(message.author.id != idfile.id){
+        let roleName = "Dueliste";
+        role = message.member.guild.roles.find('name', roleName);
+        if (!(message.member.roles.some(role => role.name === roleName))) {
+          let helpEmbedNonDuelist = new Discord.RichEmbed()
+          .setTitle("Mes Commandes")
+          .setColor("#00ff00")
+          .addField(`Commandes Funs (${nbFun})`, nameFunlist)
+          .addField(`Commandes Sociales (${nbSoc})`, nameSoclist)
+          .addField(`Commandes d'Administration (${nbAdm})`, nameAdmlist);
+          return message.author.send(helpEmbedNonDuelist);
+        }
         let helpEmbed = new Discord.RichEmbed()
         .setTitle("Mes Commandes")
         .setColor("#00ff00")
@@ -55,7 +66,7 @@ module.exports.run = async (bot, message, args) => {
         .addField(`Commandes Sociales (${nbSoc})`, nameSoclist)
         .addField(`Commandes d'Administration (${nbAdm})`, nameAdmlist)
         .addField(`Commandes liées à YuGiOh (${nbYugi})`, nameYugilist);
-        message.author.send(helpEmbed);
+        return message.author.send(helpEmbed);
       }else{
         let helpEmbedMe = new Discord.RichEmbed()
         .setTitle("Mes Commandes")
@@ -65,7 +76,7 @@ module.exports.run = async (bot, message, args) => {
         .addField(`Commandes d'Administration (${nbAdm})`, nameAdmlist)
         .addField(`Commandes liées à YuGiOh (${nbYugi})`, nameYugilist)
         .addField(`Commandes de Talrem uniquement (${nbPriv})`, namePrivlist);
-        message.author.send(helpEmbedMe);
+        return message.author.send(helpEmbedMe);
       }
     });
   }else{
