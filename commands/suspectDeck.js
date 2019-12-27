@@ -4,6 +4,11 @@ const sefile = require("../decks.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
+  let roleName = "Dueliste";
+  role = message.member.guild.roles.find('name', roleName);
+  if (!(message.member.roles.some(role => role.name === roleName))) {
+    return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
+  }
   if(args.length != 1) return message.reply("La liste des arguments est invalide, on ne souhaite avoir que l'<ID> du deck.");
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");

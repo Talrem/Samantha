@@ -3,6 +3,11 @@ const fs = require("fs");
 const sefile = require("../decks.json");
 
 module.exports.run = async (bot, message, args) => {
+  let roleName = "Dueliste";
+  role = message.member.guild.roles.find('name', roleName);
+  if (!(message.member.roles.some(role => role.name === roleName))) {
+    return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
+  }
   if(args.length != 1 && args.length != 2) return message.reply("La liste des arguments est invalide, vous devez préciser un adversaire et si vous le souhaitez, un tier.");
   if(args.length){
     idJoueur1 = message.author.id;

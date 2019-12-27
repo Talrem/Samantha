@@ -3,6 +3,11 @@ const fs = require("fs");
 const sefile = require("../decks.json");
 
 module.exports.run = async (bot, message, args) => {
+  let roleName = "Dueliste";
+  role = message.member.guild.roles.find('name', roleName);
+  if (!(message.member.roles.some(role => role.name === roleName))) {
+    return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
+  }
   if(!args.length) return message.reply("Veuillez préciser un ID.");
   let taille = sefile[-1].number;
   if(args[0] >= taille) return message.channel.send("Le deck n'existe pas.");
