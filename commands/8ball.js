@@ -18,6 +18,8 @@ module.exports.run = async (bot, message, args) => {
     reply = repliesOK[res]
     break;
   }
+  if(message.content.toLowerCase().includes("  ")) reply = repliesOK[0];
+  if(message.content.toLowerCase().includes("   ")) reply = repliesOK[1];
   if(message.content.toLowerCase().includes("objectivement")) reply = "Je pense qu'on ne peut que difficilement être objectif, chacun a un point de vue sur les choses et je ne fais pas exception, c'est une tâche trop difficile que d'essayer d'obtenir la vérité objective, car nous sommes tous cantonnés à notre propre version de la réalité, et en conséquence je ne peux répondre à cette question, j'en suis désolée."
   let ballEmbed = new Discord.RichEmbed()
   .setAuthor(message.author.tag)

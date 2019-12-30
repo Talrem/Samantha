@@ -12,9 +12,18 @@ module.exports.run = async (bot, message, args) => {
   var i = 0;
   var decksU = new Array();
   var jU = 0;
+  let dir = "";
   for(i = 0; i < taille; i++){
-    if(sefile[i].s == "1"){
-      decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "` de l'utilisateur `" + sefile[i].u + "` ("+sefile[i].t+"'\n";
+    if(sefile[i].s != "0"){
+      switch(sefile[i].s){
+        case "1":
+        dir = "`+`";
+        break;
+        case "-1":
+        dir = "`-`";
+        break;
+      }
+      decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "` de l'utilisateur `" + sefile[i].u + "` ("+sefile[i].t + dir +")\n";
       jU++;
     }
   }

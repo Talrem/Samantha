@@ -39,8 +39,8 @@ module.exports.run = async (bot, message, args) => {
     switch (sefile[i].id) {
       case idJoueur1:
         switch (sefile[i].t) {
-          case "VeryHigh": canVH1 = 1;
-          break;
+          //case "VeryHigh": canVH1 = 1;
+          //break;
           case "High": canH1 = 2;
           break;
           case "Mid": canM1 = 3;
@@ -54,8 +54,8 @@ module.exports.run = async (bot, message, args) => {
       break;
       case idJoueur2:
         switch (sefile[i].t) {
-          case "VeryHigh": canVH2 = 1;
-          break;
+          //case "VeryHigh": canVH2 = 1;
+          //break;
           case "High": canH2 = 2;
           break;
           case "Mid": canM2 = 3;
