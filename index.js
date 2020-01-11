@@ -267,7 +267,7 @@ bot.on("message", async message =>{
   }*/
 
   //test des préfixes
-	if(!message.content.startsWith(prefix) && !message.content.toLowerCase().startsWith("samantha ")) return;
+	if(!message.content.startsWith(prefix) && !message.content.toLowerCase().startsWith("samantha. ")) return;
   console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a utilisé la commande "' + message + '"\n');
 	if(cooldown.has(message.author.id)){
 		message.delete();
@@ -280,7 +280,7 @@ bot.on("message", async message =>{
   let cmd;
 	let args;
   let commandfile;
-  if(message.content.toLowerCase().startsWith("samantha ")){
+  if(message.content.toLowerCase().startsWith("samantha. ")){
     cmd = messageArray[1];
     args = messageArray.slice(2);
     commandfile = bot.commands.get(cmd);
