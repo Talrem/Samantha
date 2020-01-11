@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
 		if(args.length < 3){
-			return message.reply("Veuillez donner 3 arguments : <Auteur> <Année> <Message>");
+			return message.reply("Veuillez donner 3 arguments : +>citation <Auteur> <Année> <Message>");
 		}
 		let messageToSend = "", messageTS;
 		let i;

@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   if (!(message.member.roles.some(role => role.name === roleName))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
-  if(args.length != 2) return message.reply("La liste des arguments est invalide, attente de 2 arguments : <ID> et <Tier>.");
+  if(args.length != 2) return message.reply("La liste des arguments est invalide, attente de 2 arguments : +>setTier <ID> <Tier>.");
   if(args[1].toLowerCase() != "ban" && args[1].toLowerCase() != "veryhigh" && args[1].toLowerCase() != "high" && args[1].toLowerCase() != "mid" && args[1].toLowerCase() != "low" && args[1].toLowerCase() != "verylow" && args[1].toLowerCase() != "untiered"){
     return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, `VeryLow` et `Untiered`.");
   }

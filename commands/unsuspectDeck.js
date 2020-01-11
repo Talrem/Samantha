@@ -4,7 +4,7 @@ const sefile = require("../decks.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
-  if(args.length != 1) return message.reply("La liste des arguments est invalide, on ne souhaite avoir que l'<ID> du deck.");
+  if(args.length != 1) return message.reply("La liste des arguments est invalide, on ne souhaite avoir que l'<ID> du deck. : +>unsuspectDeck <ID>");
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
   if(message.author.id != idfile.id) return message.reply("Je ne peux pas vous laisser faire ça...")

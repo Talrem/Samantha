@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
   if (!(message.member.roles.some(role => role.name === roleName))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
-  if(args.length < 2) return message.reply("Veuillez préciser au moins 2 arguments, <self/all> <attributs>");
+  if(args.length < 2) return message.reply("Veuillez préciser au moins 2 arguments, +>listDecksVar <all/self> <attribut> ... <attribut>");
   let taille = sefile[-1].number;
   var i = 0;
   var j = 0;

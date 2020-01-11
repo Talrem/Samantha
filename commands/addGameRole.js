@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
   if(message.author.id != idfile.id){
     return message.channel.send("Vous n'avez pas le droit d'ajouter de nouveaux addons.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   }
-  if(args.length < 2) return message.reply("La liste des arguments est invalide, attente d'au moins 2 arguments : <Abbréviation> <Nom Du Jeu>.");
+  if(args.length < 2) return message.reply("La liste des arguments est invalide, attente d'au moins 2 arguments : +>addGameRole <Abbréviation> <Nom Du Jeu>.");
   let abr = args[0];
   let provenance = args[1].toLowerCase();
   let taille = sefile[-1].number;

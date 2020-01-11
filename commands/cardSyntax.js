@@ -6,7 +6,7 @@ module.exports.run = async (bot, message, args) => {
   if (!(message.member.roles.some(role => role.name === roleName))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
-  if(args.length != 2) return message.reply("La liste des arguments est invalide, attente de 2 arguments : <langue> et <type>.");
+  if(args.length != 2) return message.reply("La liste des arguments est invalide, attente de 2 arguments : +>cardSyntax <langue> <type>.");
   let i;
   let typeValide = 0;
   let langueValide = 0;
