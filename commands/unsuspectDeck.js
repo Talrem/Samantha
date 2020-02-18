@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../decks.json");
+const sefile = require("../json/decks.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
       t:tier,
       s:"0"
     };
-  fs.writeFile("./decks.json", JSON.stringify(sefile), (err) =>{
+  fs.writeFile("./json/decks.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
   return message.channel.send("Le deck a été enregistré avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));

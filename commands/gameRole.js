@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const idfile = require('../0-jsons/monID.json');
-const sefile = require("../roleNames.json");
+const sefile = require("../json/roleNames.json");
 
 function isIn(tab, argument) {
   var i;

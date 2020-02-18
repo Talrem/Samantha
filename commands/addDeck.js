@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../decks.json");
+const deckFile = require("../json/decks.json");
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
@@ -42,9 +42,9 @@ module.exports.run = async (bot, message, args) => {
       tier = "Untiered";
       break;
   }
-  let taille = sefile[-1].number;
-  if(!sefile[taille])
-    sefile[taille] = {
+  let taille = deckFile[-1].number;
+  if(!deckFile[taille])
+    deckFile[taille] = {
       id:idJoueur,
       u:username,
       n:nomDeck,
@@ -54,11 +54,11 @@ module.exports.run = async (bot, message, args) => {
       t:tier,
       s:"0"
     };
-    sefile[-1].number++;
-  fs.writeFile("./decks.json", JSON.stringify(sefile), (err) =>{
+    deckFile[-1].number++;
+  fs.writeFile("./json/decks.json", JSON.stringify(deckFile), (err) =>{
     if(err) console.log(err);
   })
-  return message.channel.send("Le deck a été enregistré avec succès.\nN'oubliez pas d'envoyer une image représentant votre deck à Talrem.\nL'id de votre deck est : " + (sefile[-1].number - 1)).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  return message.channel.send("Le deck a été enregistré avec succès.\nN'oubliez pas d'envoyer une image représentant votre deck à Talrem.\nL'id de votre deck est : " + (deckFile[-1].number - 1)).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 }
 
 module.exports.help = {

@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-let sefile = JSON.parse(fs.readFileSync("./addons.json", "utf8"));
+let addonFile = JSON.parse(fs.readFileSync("./json/addons.json", "utf8"));
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
@@ -11,15 +11,15 @@ module.exports.run = async (bot, message, args) => {
   if(args[1] != "skin" && args[1] != "mode" && args[1] != "arme" && args[1] != "armeSpe" && args[1] != "effet" && args[1] != "texture"){
     return message.reply("Le type précisé est invalide. Veuillez utiliser un type parmis `skin`, `arme`, `armeSpe`, `effet`, `mode` et `texture`.");
   }
-  let taille = sefile[-1].number;
-  if(!sefile[taille])
-    sefile[taille] = {
+  let taille = addonFile[-1].number;
+  if(!addonFile[taille])
+    addonFile[taille] = {
       type:args[1],
       name:args[0],
       url:args[2]
     };
-    sefile[-1].number++;
-  fs.writeFile("./addons.json", JSON.stringify(sefile), (err) =>{
+    addonFile[-1].number++;
+  fs.writeFile("./json/addons.json", JSON.stringify(addonFile), (err) =>{
     if(err) console.log(err);
   })
   return message.channel.send("Addon ajouté avec succès.`");

@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../decks.json");
+const sefile = require("../json/decks.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
@@ -9,10 +9,11 @@ module.exports.run = async (bot, message, args) => {
   if (!(message.member.roles.some(role => role.name === roleName))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
-  if(args.length < 1 || args.length > 2) return message.reply("La liste des arguments est invalide, arguments attendus <ID> <+/-> pour savoir quel deck et vers où il est suspecté.");
+  if(args.length < 1 || args.length > 2) return message.reply("La liste des arguments est invalide, arguments attendus +>suspectDeck <ID> <+/-> pour savoir quel deck et vers où il est suspecté.");
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
   if(sefile[args[0]].t == "Untiered" || (sefile[args[0]].t == "Ban" && message.author.id != idfile.id) || sefile[args[0]].s == "1") return message.reply("Un deck ban, untiered ou suspect ne peut être modifié par cette commande.")
+  if(sefile[args[0]].t == "VeryLow" && args[1] == "-") return message.reply("On ne peut pas faire baisser un deck Very Low.");
   let idJoueur = sefile[args[0]].id
   let nomDeck = sefile[args[0]].n;
   let username = sefile[args[0]].u;
@@ -43,7 +44,7 @@ module.exports.run = async (bot, message, args) => {
       t:tier,
       s:sus
     };
-  fs.writeFile("./decks.json", JSON.stringify(sefile), (err) =>{
+  fs.writeFile("./json/decks.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
   return message.channel.send("Le deck a été enregistré avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));

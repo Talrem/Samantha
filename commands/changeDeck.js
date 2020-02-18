@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../decks.json");
+const sefile = require("../json/decks.json");
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
   if (!(message.member.roles.some(role => role.name === roleName))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
-  if(args.length != 5) return message.reply("La liste des arguments est invalide, attente de 5 arguments : <ID> <Nom>, <Provenance>, <Concept> et <WinCon>.");
+  if(args.length != 5) return message.reply("La liste des arguments est invalide, attente de 5 arguments : +>changeDeck <ID> <Nom> <Provenance> <Concept> <WinCon>.");
   let taille = sefile[-1].number;
   if(args[0] > taille) return message.reply("Le deck avec l'ID précisé n'existe pas.");
   let idJoueur = sefile[args[0]].id;
@@ -30,7 +30,7 @@ module.exports.run = async (bot, message, args) => {
       w:winCon,
       t:tier
     };
-  fs.writeFile("./decks.json", JSON.stringify(sefile), (err) =>{
+  fs.writeFile("./json/decks.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
   if(previousName != sefile[args[0]].n) message.channel.send("Veuillez préciser le changement de nom du deck à Talrem pour la base d'images.");

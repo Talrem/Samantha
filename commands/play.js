@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
-const can = require("../canPlay.json");
+const can = require("../json/canPlay.json");
 
 function playing(connection, message){
   var server = servers[message.guild.id]

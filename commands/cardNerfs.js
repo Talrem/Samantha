@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../ticketsReportsCartes.json");
+const sefile = require("../json/ticketsReportsCartes.json");
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";

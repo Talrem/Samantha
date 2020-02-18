@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const sefile = require("../roleNames.json");
+const sefile = require("../json/roleNames.json");
 
 module.exports.run = async (bot, message, args) => {
   var lesRoles = new Array();

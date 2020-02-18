@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../ticketsReportsCartes.json");
+const sefile = require("../json/ticketsReportsCartes.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
   }
   if(sefile[id].nerf && message.author.id != idfile.id) return message.reply("Cette requête a déjà été traitée.")
   sefile[id].nerf = validRequest;
-  fs.writeFile("./ticketsReportsCartes.json", JSON.stringify(sefile), (err) =>{
+  fs.writeFile("./json/ticketsReportsCartes.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
   return message.channel.send("La modification a été faite avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));

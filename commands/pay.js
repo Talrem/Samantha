@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-let coins = require("../coins.json");
+let coins = require("../json/coins.json");
 
 module.exports.run = async (bot, message, args) => {
   if(!coins[message.author.id]){
@@ -29,7 +29,7 @@ module.exports.run = async (bot, message, args) => {
 
   message.channel.send(`${message.author} a payé ${pUser} ${args[1]} pièces.`).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 
-  fs.writeFile("./coins.json", JSON.stringify(coins), (err) =>{
+  fs.writeFile("./json/coins.json", JSON.stringify(coins), (err) =>{
     if(err) console.log(err);
   })
 

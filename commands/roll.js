@@ -8,9 +8,11 @@ module.exports.run = async (bot, message, args) => {
   let res = 0;
   let nbUn = 0;
   let nbDesLances = 0;
+  let posNum = 1;
   let argsArray = message.content.split(" ");
+  if(message.content.toLowerCase().includes("samantha")) posNum = 2;
   if(message.content.includes("d")){
-    let dices = argsArray[1];
+    let dices = argsArray[posNum];
     let diceArray = dices.split("d");
     let nbDes = parseInt(diceArray[0]);
     let nbFaces = diceArray[1];

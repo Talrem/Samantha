@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../roleNames.json");
+const sefile = require("../json/roleNames.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
@@ -22,7 +22,7 @@ module.exports.run = async (bot, message, args) => {
       nom:nomJeu
     };
     sefile[-1].number++;
-  fs.writeFile("./roleNames.json", JSON.stringify(sefile), (err) =>{
+  fs.writeFile("./json/roleNames.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
   let guild = message.guild;

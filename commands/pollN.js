@@ -45,4 +45,3 @@ module.exports.help = {
   usage: "pollN <nombre N> <choix 1> ... <choix N>",
   desc: "je permet aux utilisateurs de choisir entre vos N choix (maximum 6) avec des réactions."
 }
-//:one::two::three::four::five::six::seven::eight::nine:

@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../decks.json");
+const sefile = require("../json/decks.json");
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
@@ -14,14 +14,13 @@ module.exports.run = async (bot, message, args) => {
   var jU = 0;
   for(i = 0; i < taille; i++){
     if(sefile[i].t == "Untiered"){
-      decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "` de l'utilisateur `" + sefile[i].u + "`\n";
+      decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "` de `" + sefile[i].u + "`\n";
       jU++;
     }
   }
   if(!jU){
     return message.reply("Il n'y a aucun deck `Untiered`");
   }
-  decksU.sort();
   mU = "";
   for(i = 0; i < decksU.length;i++){
     mU += decksU[i] +"\n";

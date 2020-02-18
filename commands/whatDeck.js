@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../decks.json");
+const sefile = require("../json/decks.json");
 
 function isIn(tab, argument) {
   var i;
@@ -24,7 +24,7 @@ module.exports.run = async (bot, message, args) => {
   if (!(message.member.roles.some(role => role.name === roleName))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
-  if(args.length >= 4 && args.length <= 0) return message.reply("La liste des arguments est invalide, vous devez préciser <Provenance>, <Concept>, <WinCon> ou <Tier>.");
+  if(args.length >= 4 && args.length <= 0) return message.reply("La liste des arguments est invalide, vous devez préciser si vous souhaitez <Provenance> <Concept> <WinCon> <Tier> dans l'ordre que vous voulez.");
   let taille = sefile[-1].number;
   let idJoueur = message.author.id;
   var i = 0;
@@ -156,7 +156,7 @@ module.exports.run = async (bot, message, args) => {
   message.channel.send(deckEmbed)
   return message.channel.send('', {
     file : './images/DECKS/' + leDeck.u + '/' + leDeck.n + '.jpg'
-  });
+  }).catch(error =>  message.channel.send("Aucune image disponible pour ce deck, veuillez en fournir une."));
 }
 
 module.exports.help = {

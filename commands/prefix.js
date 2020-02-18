@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 const fs = require("fs");
-let prefixes = require("../prefixes.json");
+let prefixes = require("../json/prefixes.json");
 
 module.exports.run = async (bot, message, args, prefix) => {
   if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Vos permissions sont trop basses pour utiliser cette commande.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
@@ -10,7 +10,7 @@ module.exports.run = async (bot, message, args, prefix) => {
     prefixes: args[0]
   };
 
-  fs.writeFile("./prefixes.json", JSON.stringify(prefixes), (err) =>{
+  fs.writeFile("./json/prefixes.json", JSON.stringify(prefixes), (err) =>{
     if(err) console.log(err);
   })
 

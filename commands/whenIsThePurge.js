@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-let purge = require("../purge.json");
+let purge = require("../json/purge.json");
 
 module.exports.run = async (bot, message, args) => {
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));

@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../ticketsReportsCartes.json");
+const sefile = require("../json/ticketsReportsCartes.json");
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
@@ -28,7 +28,7 @@ module.exports.run = async (bot, message, args) => {
       plaintif:nomPlaintif
     };
     sefile[-1].number++;
-  fs.writeFile("./ticketsReportsCartes.json", JSON.stringify(sefile), (err) =>{
+  fs.writeFile("./json/ticketsReportsCartes.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
   return message.channel.send("La plainte a été déposée avec succès. son id est : " + (sefile[-1].number - 1)).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));

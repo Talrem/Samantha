@@ -1,6 +1,6 @@
 const Discord = require("discord.js")
 const fs = require("fs");
-let sefile = JSON.parse(fs.readFileSync("./addons.json", "utf8"));
+let sefile = JSON.parse(fs.readFileSync("./json/addons.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
   let baselink = "https://steamcommunity.com/sharedfiles/filedetails/?id=";

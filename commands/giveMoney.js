@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-let coins = require("../coins.json");
+let coins = require("../json/coins.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {

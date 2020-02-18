@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../decks.json");
+const sefile = require("../json/decks.json");
 
 function cleanArray(array) {
   var i, j, len = array.length, out = [], obj = {};

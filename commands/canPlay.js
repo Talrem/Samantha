@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const can = require("../canPlay.json");
+const can = require("../json/canPlay.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {

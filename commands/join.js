@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const can = require("../canPlay.json");
+const can = require("../json/canPlay.json");
 
 module.exports.run = async (bot, message, args) => {
   if(!can.can) return message.reply("Je n'ai pas actuellement le droit de venir en vocal...")

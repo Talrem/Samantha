@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../decks.json");
+const sefile = require("../json/decks.json");
 
 function isIn(tab, argument) {
   var i;
@@ -48,142 +48,260 @@ module.exports.run = async (bot, message, args) => {
   }else{
     idJoueur = message.author.id;
   }
+
   var i = 0;
-  var decksB = new Array();
-  var decksVH = new Array();
-  var decksH = new Array();
-  var decksM = new Array();
-  var decksL = new Array();
-  var decksVL = new Array();
-  var decksU = new Array();
+
   var jB = 0;
+
   var jVH = 0;
+  var jVHp = 0;
+  var jVHm = 0;
+
   var jH = 0;
+  var jHp = 0;
+  var jHm = 0;
+
   var jM = 0;
+  var jMp = 0;
+  var jMm = 0;
+
   var jL = 0;
+  var jLp = 0;
+  var jLm = 0;
+
   var jVL = 0;
+  var jVLp = 0;
+
   var jU = 0;
-  let dir = "";
+
+  var decksB = new Array();
+
+  var decksVH = new Array();
+  var decksVHp = new Array();
+  var decksVHm = new Array();
+
+  var decksH = new Array();
+  var decksHp = new Array();
+  var decksHm = new Array();
+
+  var decksM = new Array();
+  var decksMp = new Array();
+  var decksMm = new Array();
+
+  var decksL = new Array();
+  var decksLp = new Array();
+  var decksLm = new Array();
+
+  var decksVL = new Array();
+  var decksVLp = new Array();
+
+  var decksU = new Array();
+
   for(i = 0; i < taille; i++){
-    if(sefile[i].s =="1"){
-      dir = " +`";
-    }else{
-      dir = " -`";
-    }
     if(args[0] && args[0].toLowerCase() == "all"){
       switch(sefile[i].t){
         case "Ban":
-          decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
-          if(sefile[i].s != "0"){
-            decksB[jB] += " - `Suspect" + dir;
-          }
-          jB++;
-          break;
+        decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
+        jB++;
+        break;
         case "VeryHigh":
+        switch(sefile[i].s){
+          case "0":
           decksVH[jVH] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
-          if(sefile[i].s != "0"){
-            decksVH[jVH] += " - `Suspect" + dir;
-          }
           jVH++;
           break;
+          case "1":
+          decksVHp[jVHp] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u + " - `Suspect +`";
+          jVHp++;
+          break;
+          case "-1":
+          decksVHm[jVHm] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u + " - `Suspect -`";
+          jVHm++;
+          break;
+        }
+        break;
         case "High":
+        switch(sefile[i].s){
+          case "0":
           decksH[jH] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
-          if(sefile[i].s != "0"){
-            decksH[jH] += " - `Suspect" + dir;
-          }
           jH++;
           break;
+          case "1":
+          decksHp[jHp] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u + " - `Suspect +`";
+          jHp++;
+          break;
+          case "-1":
+          decksHm[jHm] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u + " - `Suspect -`";
+          jHm++;
+          break;
+        }
+        break;
         case "Mid":
+        switch(sefile[i].s){
+          case "0":
           decksM[jM] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
-          if(sefile[i].s != "0"){
-            decksM[jM] += " - `Suspect" + dir;
-          }
           jM++;
           break;
+          case "1":
+          decksMp[jMp] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u + " - `Suspect +`";
+          jMp++;
+          break;
+          case "-1":
+          decksMm[jMm] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u + " - `Suspect -`";
+          jMm++;
+          break;
+        }
+        break;
         case "Low":
+        switch(sefile[i].s){
+          case "0":
           decksL[jL] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
-          if(sefile[i].s != "0"){
-            decksL[jL] += " - `Suspect" + dir;
-          }
           jL++;
           break;
+          case "1":
+          decksLp[jLp] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u + " - `Suspect +`";
+          jLp++;
+          break;
+          case "-1":
+          decksLm[jLm] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u + " - `Suspect -`";
+          jLm++;
+          break;
+        }
+        break;
         case "VeryLow":
+        switch(sefile[i].s){
+          case "0":
           decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
-          if(sefile[i].s != "0"){
-            decksVL[jVL] += " - `Suspect" + dir;
-          }
           jVL++;
           break;
-        case "Untiered":
-          decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
-          jU++;
+          case "1":
+          decksVLp[jVLp] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u + " - `Suspect +`";
+          jVLp++;
           break;
+        }
+        break;
+        case "Untiered":
+        decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
+        jU++;
+        break;
         default: return message.reply("Une erreur est survenue... arrêt de la commande.");
       }
     }else{
       if(sefile[i].id == idJoueur){
         switch(sefile[i].t){
           case "Ban":
-            decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "`";
-            if(sefile[i].s != "0"){
-              decksB[jB] += " - `Suspect" + dir;
-            }
-            jB++;
-            break;
+          decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "`";
+          jB++;
+          break;
           case "VeryHigh":
+          switch(sefile[i].s){
+            case "0":
             decksVH[jVH] = "ID : " + i + " - `" + sefile[i].n + "`";
-            if(sefile[i].s != "0"){
-              decksVH[jVH] += " - `Suspect" + dir;
-            }
             jVH++;
             break;
+            case "1":
+            decksVHp[jVHp] = "ID : " + i + " - `" + sefile[i].n + "` - `Suspect +`";
+            jVHp++;
+            break;
+            case "-1":
+            decksVHm[jVHm] = "ID : " + i + " - `" + sefile[i].n + "` - `Suspect -`";
+            jVHm++;
+            break;
+          }
+          break;
           case "High":
+          switch(sefile[i].s){
+            case "0":
             decksH[jH] = "ID : " + i + " - `" + sefile[i].n + "`";
-            if(sefile[i].s != "0"){
-              decksH[jH] += " - `Suspect" + dir;
-            }
             jH++;
             break;
+            case "1":
+            decksHp[jHp] = "ID : " + i + " - `" + sefile[i].n + "` - `Suspect +`";
+            jHp++;
+            break;
+            case "-1":
+            decksHm[jHm] = "ID : " + i + " - `" + sefile[i].n + "` - `Suspect -`";
+            jHm++;
+            break;
+          }
+          break;
           case "Mid":
+          switch(sefile[i].s){
+            case "0":
             decksM[jM] = "ID : " + i + " - `" + sefile[i].n + "`";
-            if(sefile[i].s != "0"){
-              decksM[jM] += " - `Suspect" + dir;
-            }
             jM++;
             break;
+            case "1":
+            decksMp[jMp] = "ID : " + i + " - `" + sefile[i].n + "` - `Suspect +`";
+            jMp++;
+            break;
+            case "-1":
+            decksMm[jMm] = "ID : " + i + " - `" + sefile[i].n + "` - `Suspect -`";
+            jMm++;
+            break;
+          }
+          break;
           case "Low":
+          switch(sefile[i].s){
+            case "0":
             decksL[jL] = "ID : " + i + " - `" + sefile[i].n + "`";
-            if(sefile[i].s != "0"){
-              decksL[jL] += " - `Suspect" + dir;
-            }
             jL++;
             break;
+            case "1":
+            decksLp[jLp] = "ID : " + i + " - `" + sefile[i].n + "` - `Suspect +`";
+            jLp++;
+            break;
+            case "-1":
+            decksLm[jLm] = "ID : " + i + " - `" + sefile[i].n + "` - `Suspect -`";
+            jLm++;
+            break;
+          }
+          break;
           case "VeryLow":
+          switch(sefile[i].s){
+            case "0":
             decksVL[jVL] = "ID : " + i + " - `" + sefile[i].n + "`";
-            if(sefile[i].s != "0"){
-              decksVL[jVL] += " - `Suspect" + dir;
-            }
             jVL++;
             break;
-          case "Untiered":
-            decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "`";
-            jU++;
+            case "1":
+            decksVLp[jVLp] = "ID : " + i + " - `" + sefile[i].n + "` - `Suspect +`";
+            jVLp++;
             break;
+          }
+          break;
+          case "Untiered":
+          decksU[jU] = "ID : " + i + " - `" + sefile[i].n + "`";
+          jU++;
+          break;
           default: return message.reply("Une erreur est survenue... arrêt de la commande.");
         }
       }
     }
   }
+  /*La on fusionne les trucs des decks.*/
+  decksVH = decksVHp.concat(decksVH);
+  decksVH = decksVH.concat(decksVHm);
+  jVH = decksVH.length;
+
+  decksH = decksHp.concat(decksH);
+  decksH = decksH.concat(decksHm);
+  jH = decksH.length;
+
+  decksM = decksMp.concat(decksM);
+  decksM = decksM.concat(decksMm);
+  jM = decksM.length;
+
+  decksL = decksLp.concat(decksL);
+  decksL = decksL.concat(decksLm);
+  jL = decksL.length;
+
+  decksVL = decksVLp.concat(decksVL);
+  jVL = decksVL.length;
+
   if(!jB && !jVH && !jH && !jM && !jL && !jVL){
     return message.reply("La cible ne possède aucun deck.");
   }
-  decksB.sort();
-  decksVH.sort();
-  decksH.sort();
-  decksM.sort();
-  decksL.sort();
-  decksVL.sort();
-  decksU.sort();
+  /*Là on fait la fusion des messages*/
   mTSB = "";
   for(i = 0; i < decksB.length;i++){
     mTSB += decksB[i] +"\n";
@@ -214,65 +332,13 @@ module.exports.run = async (bot, message, args) => {
   }
   let nbDecks = decksB.length + decksH.length + decksL.length + decksM.length + decksU.length + decksVH.length + decksVL.length;
   message.author.send("Nombre total de decks de la cible : " + nbDecks);
-  if(idJoueur == message.author.id){
-    if(jB == 0)
-    message.author.send("------------------\nVous ne possédez aucun deck ban.")
-    else
-    message.author.send("------------------\n `Ban` au nombre de " + decksB.length + " qui sont : \n" + mTSB);
-    if(jVH == 0)
-    message.author.send("------------------\nVous ne possédez aucun deck very high.")
-    else
-    message.author.send("------------------\n `Very High` au nombre de " + decksVH.length + " qui sont : \n" + mTSVH);
-    if(jH == 0)
-    message.author.send("------------------\nVous ne possédez aucun deck high.")
-    else
-    message.author.send("------------------\n `High` au nombre de " + decksH.length + " qui sont : \n" + mTSH);
-    if(jM == 0)
-    message.author.send("------------------\nVous ne possédez aucun deck mid.")
-    else
-    message.author.send("------------------\n `Mid` au nombre de " + decksM.length + " qui sont : \n" + mTSM);
-    if(jL == 0)
-    message.author.send("------------------\nVous ne possédez aucun deck low.")
-    else
-    message.author.send("------------------\n `Low` au nombre de " + decksL.length + " qui sont : \n" + mTSL);
-    if(jVL == 0)
-    message.author.send("------------------\nVous ne possédez aucun deck very low.")
-    else
-    message.author.send("------------------\n `Very Low` au nombre de " + decksVL.length + " qui sont : \n" + mTSVL);
-    if(jU == 0)
-    message.author.send("------------------\nVous ne possédez aucun deck untiered.")
-    else
-    message.author.send("------------------\n `Untiered` au nombre de " + decksU.length + " qui sont : \n" + mTSU);
-  }else{
-    if(jB == 0)
-    message.author.send("------------------\n La cible de la commande ne possède aucun deck ban.")
-    else
-    message.author.send("------------------\n `Ban` au nombre de " + decksB.length + " qui sont :\n" + mTSB);
-    if(jVH == 0)
-    message.author.send("------------------\n La cible de la commande ne possède aucun deck very high.")
-    else
-    message.author.send("------------------\n `Very High` au nombre de " + decksVH.length + " qui sont : \n" + mTSVH);
-    if(jH == 0)
-    message.author.send("------------------\n La cible de la commande ne possède aucun deck high.")
-    else
-    message.author.send("------------------\n `High` au nombre de " + decksH.length + " qui sont : \n" + mTSH);
-    if(jM == 0)
-    message.author.send("------------------\n La cible de la commande ne possède aucun deck mid.")
-    else
-    message.author.send("------------------\n `Mid` au nombre de " + decksM.length + " qui sont : \n" + mTSM);
-    if(jL == 0)
-    message.author.send("------------------\n La cible de la commande ne possède aucun deck low.")
-    else
-    message.author.send("------------------\n `Low` au nombre de " + decksL.length + " qui sont : \n" + mTSL);
-    if(jVL == 0)
-    message.author.send("------------------\n La cible de la commande ne possède aucun deck very low.")
-    else
-    message.author.send("------------------\n `Very Low` au nombre de " + decksVL.length + " qui sont : \n" + mTSVL);
-    if(jU == 0)
-    message.author.send("------------------\n La cible de la commande ne possède aucun deck untiered.")
-    else
-    message.author.send("------------------\n `Untiered` au nombre de " + decksU.length + " qui sont : \n" + mTSU);
-  }
+  if(jB != 0) message.author.send("------------------\n `Ban` au nombre de " + decksB.length + " qui sont : \n" + mTSB);
+  if(jVH != 0) message.author.send("------------------\n `Very High` au nombre de " + decksVH.length + " qui sont : \n" + mTSVH);
+  if(jH != 0) message.author.send("------------------\n `High` au nombre de " + decksH.length + " qui sont : \n" + mTSH);
+  if(jM != 0) message.author.send("------------------\n `Mid` au nombre de " + decksM.length + " qui sont : \n" + mTSM);
+  if(jL != 0) message.author.send("------------------\n `Low` au nombre de " + decksL.length + " qui sont : \n" + mTSL);
+  if(jVL != 0) message.author.send("------------------\n `Very Low` au nombre de " + decksVL.length + " qui sont : \n" + mTSVL);
+  if(jU != 0) message.author.send("------------------\n `Untiered` au nombre de " + decksU.length + " qui sont : \n" + mTSU);
 }
 
 module.exports.help = {

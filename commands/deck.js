@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../decks.json");
+const sefile = require("../json/decks.json");
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
@@ -11,7 +11,10 @@ module.exports.run = async (bot, message, args) => {
   if(!args.length) return message.reply("Veuillez préciser un ID.");
   let taille = sefile[-1].number;
   if(args[0] >= taille || args[0] < 0) return message.channel.send("Le deck n'existe pas.");
-  return message.channel.send(args[0] + " " + sefile[args[0]].n + " " + sefile[args[0]].p + " " + sefile[args[0]].c + " " + sefile[args[0]].w + "\n" + sefile[args[0]].t);
+  message.channel.send(args[0] + " " + sefile[args[0]].n + " " + sefile[args[0]].p + " " + sefile[args[0]].c + " " + sefile[args[0]].w + "\n" + sefile[args[0]].t);
+  message.channel.send('', {
+    file : './images/DECKS/' + sefile[args[0]].u + '/' + sefile[args[0]].n + '.jpg'
+  }).catch(error =>  message.channel.send("Aucune image disponible pour ce deck, veuillez en fournir une."));
 }
 
 module.exports.help = {

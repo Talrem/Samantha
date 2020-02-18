@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
-const sefile = require("../soundEffect.json");
-const can = require("../canPlay.json");
+const sefile = require("../json/soundEffect.json");
+const can = require("../json/canPlay.json");
 
 function playing(connection, message){
   var server = servers[message.guild.id]

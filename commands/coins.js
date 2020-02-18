@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-let coins = require("../coins.json");
+let coins = require("../json/coins.json");
 
 module.exports.run = async (bot, message, args) => {
   let cUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
