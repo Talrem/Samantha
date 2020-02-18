@@ -2,7 +2,7 @@
   <head>
   </head>
   <body>
-    <h3>Samantha</h3>
+    <h1>Samantha</h1>
     <center>
       <img src="avatar.ico" alt="Samantha icon" />
     </center>

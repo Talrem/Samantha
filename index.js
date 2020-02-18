@@ -1,9 +1,9 @@
-const botconfig = require('./botconfig.json');
+const botconfig = require('./json/botconfig.json');
 const tokenfile = require('./0-jsons/token.json');
 const cheminfile = require('./0-jsons/chemin.json');
-let coins = require("./coins.json");
+let coins = require("./json/coins.json");
 const Discord = require('discord.js');
-const can = require("./canPlay.json");
+const can = require("./json/canPlay.json");
 const bot = new Discord.Client()
 const fs = require("fs");
 bot.commands = new Discord.Collection();
@@ -53,7 +53,7 @@ fs.readdir(cheminfile.commands,(err, files) => {
 bot.on('ready', async () => {
 	console.log(`${bot.user.username} est en ligne!\n`)
   console.log(`${bot.user.username} est connectée sur ${bot.guilds.size} serveurs!\n`);
-  bot.user.setActivity("+>help", {type: "WATCHING"})
+  bot.user.setActivity("Samantha. help", {type: "WATCHING"})
 	.then(() => console.log('Activité mise en place avec succès\n'))
 	.catch(console.error)
 });
@@ -84,7 +84,7 @@ bot.on("message", async message =>{
     console.log("\n"+Date() + " " + message.author.username + "#" + message.author.discriminator + "    " + res+"\n");
   }
   let mes = message.content.toUpperCase();
-	let prefixes = JSON.parse(fs.readFileSync("./prefixes.json", "utf8"));
+	let prefixes = JSON.parse(fs.readFileSync("./json/prefixes.json", "utf8"));
 	if(!prefixes[message.guild.id]){
 		prefixes[message.guild.id] = {
 			prefixes: botconfig.prefix
@@ -193,7 +193,7 @@ bot.on("message", async message =>{
     coins[message.author.id] = {
       coins: coins[message.author.id].coins + coinAmt
     };
-    fs.writeFile("./coins.json", JSON.stringify(coins), (err) => {
+    fs.writeFile("./json/coins.json", JSON.stringify(coins), (err) => {
       if(err) console.log(err)
     });
   }
