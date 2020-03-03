@@ -3,6 +3,7 @@ const fs = require("fs");
 const rolefile = require("../json/roles.json");
 
 module.exports.run = async (bot, message, args) => {
+  if(!message.guild.id=="311112661108785153") return message.reply("Cette commande n'est pas disponible sur ce serveur, veuillez m'excuser pour ce désagrément.");
   let member = message.member;
   var roles = member.roles.array();
   var roleIDs = new Array();
