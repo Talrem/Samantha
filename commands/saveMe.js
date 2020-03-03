@@ -2,6 +2,7 @@ const Discord = require("discord.js")
 const rolefile = require("../json/roles.json");
 
 module.exports.run = async (bot, message, args) => {
+  if(!message.guild.id=="311112661108785153") return message.reply("Cette commande n'est pas disponible sur ce serveur, veuillez m'excuser pour ce désagrément.");
   if(rolefile[message.author.id]){
     var roles = new Array();
     roles = rolefile[message.author.id].roles;
