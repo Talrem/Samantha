@@ -1,14 +1,14 @@
 const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
-  /*if(message.guild.id!="311112661108785153") return message.reply("Cette commande n'est pas disponible sur ce serveur");
+if(message.guild.id!="311112661108785153") return message.reply("Cette commande n'est pas disponible sur ce serveur");
   let kReason = "La puuuuuuurge !";
   if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
   let i;
   // Get the Guild and store it under the variable "list"
-  const list = client.guilds.get("311112661108785153");
+  const list = bot.guilds.get("311112661108785153");
   // Iterate through the collection of GuildMembers from the Guild getting the username property of each member
-  list.members.forEach(member =>
+  list.members.forEach(member => {
     if(member.roles.has("512016395089870884")){
       let kickEmbed = new Discord.RichEmbed()
       .setDescription("Purge")
@@ -17,11 +17,10 @@ module.exports.run = async (bot, message, args) => {
       .addField("A", message.createdAt);
       let kickchannel = message.guild.channels.find(`name`, "rapports");
       if(!kickchannel) return message.channel.send("le salon des rapports n'a pas été trouvé.");
-      message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
       kickchannel.send(kickEmbed);
       message.guild.member(member).kick(kReason)
     }
-  );*/
+  });
   return message.reply("L'ordre a été exécuté.");
 }
 
