@@ -9,7 +9,7 @@ if(message.guild.id!="311112661108785153") return message.reply("Cette commande 
   const list = bot.guilds.get("311112661108785153");
   // Iterate through the collection of GuildMembers from the Guild getting the username property of each member
   list.members.forEach(member => {
-    if(member.roles.has("512016395089870884")){
+    if(member.roles.has("512016395089870884") && !member.hasPermission("ADMINISTRATOR")){
       let kickEmbed = new Discord.RichEmbed()
       .setDescription("Purge")
       .setColor("#ff0000")
