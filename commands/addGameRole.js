@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const fs = require("fs");
-const sefile = require("../json/roleNames.json");
+const rolefile = require("../json/roleNames.json");
 const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
@@ -10,19 +10,19 @@ module.exports.run = async (bot, message, args) => {
   if(args.length < 2) return message.reply("La liste des arguments est invalide, attente d'au moins 2 arguments : +>addGameRole <Abbréviation> <Nom Du Jeu>.");
   let abr = args[0];
   let provenance = args[1].toLowerCase();
-  let taille = sefile[-1].number;
+  let taille = rolefile[-1].number;
   let nomJeu = "";
   for(let i = 1; i < args.length; i++){
     nomJeu += args[i];
     if(i+1 != args.length) nomJeu += " ";
   }
-  if(!sefile[taille])
-    sefile[taille] = {
+  if(!rolefile[taille])
+    rolefile[taille] = {
       abrev:abr,
       nom:nomJeu
     };
-    sefile[-1].number++;
-  fs.writeFile("./json/roleNames.json", JSON.stringify(sefile), (err) =>{
+    rolefile[-1].number++;
+  fs.writeFile("./json/roleNames.json", JSON.stringify(rolefile), (err) =>{
     if(err) console.log(err);
   })
   let guild = message.guild;

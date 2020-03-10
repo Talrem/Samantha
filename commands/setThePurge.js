@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
-let purge = require("../json/purge.json");
+const fs = require("fs");
+let purgeFile = require("../json/purge.json");
 
 module.exports.run = async (bot, message, args) => {
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
@@ -7,7 +8,10 @@ module.exports.run = async (bot, message, args) => {
   if(!args[0]) return message.reply("Veuillez préciser une date en <annee-mois-jour> <heure:minutes:secondes>").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   if(!args[1]) args[1] = "00:00:00";
   var dateVoulue = new Date(args[0] + " " + args[1]);
-  purge.date = dateVoulue;
+  purgeFile.date = dateVoulue;
+  fs.writeFile("./json/purge.json", JSON.stringify(purgeFile), (err) =>{
+    if(err) console.log(err);
+  });
   return message.reply("La purge a été programmée avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 }
 
