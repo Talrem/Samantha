@@ -1,16 +1,19 @@
 const Discord = require("discord.js")
 const fs = require("fs");
+const idfile = require('../0-jsons/monID.json');
 const rolefile = require("../json/roles.json");
 
 module.exports.run = async (bot, message, args) => {
-  if(message.author.id==="281484394290741250") return message.reply("Mais voyons, vous savez que ça ne sert à rien :)").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(message.author.id != idfile.id){
+    return message.reply('Seul mon créateur a le droit à cette commande').then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  }
+  if(!args.length) return message.reply("Veuillez préciser une cible").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   message.channel.send("Êtes-vous sûr(e) de vouloir sauvegarder tout les rôles que vous avez `ACTUELLEMENT` dans le fichier de sauvegarde ? Veuillez réagir à ce message avec 👍 si c'est ce que vous voulez.")
   .then(msg=>{
     msg.react("👍");
     bot.on('messageReactionAdd', (reaction, user) => {
       if(!user.bot){
-        let member = message.member;
-        if(user.id == member.id){
+        let member = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
           var roles = member.roles.array();
           var roleIDs = new Array();
           for(var i =0; i < roles.length; i++){
@@ -25,17 +28,14 @@ module.exports.run = async (bot, message, args) => {
             if(err) console.log(err);
           })
           return message.reply("C'est fait !");
-        }else{
-          message.channel.send("Ce n'est pas à vous que je demande.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-        }
       }
     });
   });
 }
 
 module.exports.help = {
-  name: "saveRoles",
-  type: "social",
-  usage: "saveRoles",
+  name: "saveTheirRoles",
+  type: "Private",
+  usage: "saveTheirRoles <utilisateur>",
   desc: "je stock les rôles de l'utilisateur pour pouvoir les lui réappliquer avec la commande `saveMe`."
 }

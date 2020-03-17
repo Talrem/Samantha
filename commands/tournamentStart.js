@@ -3,7 +3,7 @@ const Discord = require("discord.js")
 module.exports.run = async (bot, message, args) => {
   message.delete();
   if(message.channel.name!="tournois") return message.reply("Cette commande ne peut être utilisée que dans le channel des tournois.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  if(!message.member.hasPermission("ADMINISTRATOR")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
+  if(!message.member.hasPermission("ADMINISTRATOR") && !message.member.roles.some(role => role.name === "Gérant de tournois")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
   let j = 0;
   let lesJoueurs = new Array();
   const list = bot.guilds.get(message.guild.id);
@@ -33,7 +33,8 @@ module.exports.run = async (bot, message, args) => {
     lesJoueurs[k] = "0";
     turn++;
   }
-  message.channel.send("Le tournois a été lancé ! Si vous perdez, réagissez avec 😖 pour que je vous retire de la liste des participants.\nVoici les affrontements qui auront lieu lors de ce round. :\n" + messageToSend)
+  const role = message.guild.roles.find(role => role.name === "Participant");
+  message.channel.send(role+" Le tournois a été lancé ! Si vous perdez, réagissez avec 😖 pour que je vous retire de la liste des participants.\nVoici les affrontements qui auront lieu lors de ce round. :\n" + messageToSend)
   .then(msg=>{
     msg.react("😖");
     bot.on('messageReactionAdd', (reaction, user) => {

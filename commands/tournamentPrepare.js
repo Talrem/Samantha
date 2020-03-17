@@ -4,13 +4,14 @@ module.exports.run = async (bot, message, args) => {
   message.delete();
   if(message.channel.name!="tournois") return message.reply("Cette commande ne peut être utilisée que dans le channel des tournois.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   if(args.length < 1) return message.reply("Vous devez préciser de quoi sera le tournois...").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Vous ne pouvez pas créer de tournois.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-    let participeRole = message.guild.roles.find(`name`, "Participant");
+  if(!message.member.hasPermission("ADMINISTRATOR") && !message.member.roles.some(role => role.name === "Gérant de tournois")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
+    const participeRole = message.guild.roles.find(role => role.name === "Participant");
     if(!participeRole){
       try{
         participeRole = await message.guild.createRole({
           name: "Participant",
-          color: "#123456",
+          color: "#10a010",
+          "mentionable": true,
           permissions:[]
         })
       }catch(e){
@@ -20,9 +21,9 @@ module.exports.run = async (bot, message, args) => {
     var jeu = "";
     for(i = 0 ; i < args.length ; i++){
       jeu += args[i];
-      if(i != args.length)  jeu += " ";
+      if(i+1 != args.length)  jeu += " ";
     }
-    message.channel.send(message.author +" a créé un tournois de "+ args[0] + ". Afin d'y participer veuillez réagir à ce message avec 👍.")
+    message.channel.send(message.author +" a créé un tournois de `"+ jeu + "`. Afin d'y participer veuillez réagir à ce message avec 👍.")
     .then(msg=>{
       msg.react("👍");
       bot.on('messageReactionAdd', (reaction, user) => {
