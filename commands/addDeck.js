@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
   let idJoueur = message.author.id;
-  if(args.length != 5) return message.reply("La liste des arguments est invalide, attente de 5 arguments : <Nom>, <Provenance>, <Concept>, <WinCon> et <Tier>.");
+  if(args.length != 5) return message.reply("La liste des arguments est invalide, attente de 5 arguments : addDeck <Nom> <Provenance> <Concept> <WinCon> <Tier>.");
   if(args[4].toLowerCase() != "ban" && args[4].toLowerCase() != "veryhigh" && args[4].toLowerCase() != "high" && args[4].toLowerCase() != "mid" && args[4].toLowerCase() != "low" && args[4].toLowerCase() != "verylow" && args[4].toLowerCase() != "untiered"){
     return message.reply("Le tier précisé est invalide. Veuillez utiliser un tier parmis `Ban`, `VeryHigh`, `High`, `Mid`, `Low`, et `VeryLow`.");
   }
