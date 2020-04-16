@@ -134,7 +134,6 @@ module.exports.run = async (bot, message, args) => {
         }
     }
     if(j == 0) return message.reply("Aucun deck ne correspond aux arguments fournis...");
-    console.log(lesDeck)
     let messageToSend = "";
     for(let k = 0; k < lesDeck.length; k++){
         messageToSend+= "`"+lesDeck[k].n + "` (`"+lesDeck[k].t+"`) de `" + lesDeck[k].u+"`\n";
@@ -142,6 +141,9 @@ module.exports.run = async (bot, message, args) => {
             message.channel.send(messageToSend);
             messageToSend = "";
         }
+    }
+    if(messageToSend!=""){
+        message.channel.send(messageToSend);
     }
 }
 

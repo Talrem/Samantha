@@ -60,7 +60,7 @@ bot.on('ready', async () => {
 
 //acceuil
 bot.on('guildMemberAdd', function(member){
-	var role = member.guild.roles.find('name', 'Connecté');
+	var role = member.bot ? member.guild.roles.find('name', 'Bots') :member.guild.roles.find('name', 'Connecté');
   if(role) member.addRole(role)
 	member.createDM().then(function(channel){
 		return channel.send('Bienvenue sur le serveur ' + member.displayName + ".\nJe suis le bot créé par Talrem, n'hésites à poser lui des questions ^^\nPour avoir accès à la liste des commandes, envois +>help")
@@ -133,6 +133,9 @@ bot.on("message", async message =>{
     break;
     case "FUCKGOBACK":
       message.channel.bulkDelete(2);
+    break;
+    case "LOL SOPALIN":
+      message.channel.send("BOTTOM TEXT");
     break;
     default:break;
   }
