@@ -106,7 +106,7 @@ module.exports.run = async (bot, message, args) => {
   }
   if(warns[wUser.id].warns == 8){
     message.reply(`${wUser.displayName} a été banni pour avertissements multiples.`)
-    message.guild.member(wUser).ban(reason);
+    message.guild.member(wUser).ban({days:0,reason:bReason});
   }
 
 }

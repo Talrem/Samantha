@@ -21,7 +21,7 @@ module.exports.run = async (bot, message, args) => {
   if(!banchannel) return message.channel.send("le salon des rapports n'a pas été trouvé.");
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   banchannel.send(banEmbed);
-  message.guild.member(bUser).ban(bReason);
+  message.guild.member(bUser).ban({days:0,reason:bReason});
   return;
 }
 
