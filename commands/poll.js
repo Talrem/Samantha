@@ -8,10 +8,12 @@ module.exports.run = async (bot, message, args) => {
     question += args[i] + " "
   }
   message.channel.send("Répondez au sondage de " + message.author + ":\n\n`" + question + "`\n\nen réagissant sous ce message !")
-      .then(function (message) {
-        message.react("👍")
-        message.react("👎")
-        message.react("🤷")
+      .then( async message => {
+          try{
+              await message.react("👍")
+              await message.react("🤷")
+              await message.react("👎")
+          } catch (error) {console.log(error)}
       })
   return;
 }

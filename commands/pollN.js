@@ -9,32 +9,34 @@ module.exports.run = async (bot, message, args) => {
     question += args[i] + " "
   }
   message.channel.send("Répondez au sondage :\n\n`" + question + "`\n\nde " + message.author + "\nen réagissant sous ce message !")
-      .then(function (message) {
-        message.react("🤷")
-        if(args[0] >= 1){
-          let emoji = message.guild.emojis.find('name', "un");
-          message.react(emoji)
-        }
-        if(args[0] >= 2){
-          let emoji = message.guild.emojis.find('name', "deux");
-          message.react(emoji)
-        }
-        if(args[0] >= 3){
-          let emoji = message.guild.emojis.find('name', "trois");
-          message.react(emoji)
-        }
-        if(args[0] >= 4){
-          let emoji = message.guild.emojis.find('name', "quatre");
-          message.react(emoji)
-        }
-        if(args[0] >= 5){
-          let emoji = message.guild.emojis.find('name', "cinq");
-          message.react(emoji)
-        }
-        if(args[0] >= 6){
-          let emoji = message.guild.emojis.find('name', "six");
-          message.react(emoji)
-        }
+      .then( async message => {
+          try{
+              message.react("🤷")
+              if(args[0] >= 1){
+                let emoji = message.guild.emojis.find('name', "un");
+                await message.react(emoji)
+              }
+              if(args[0] >= 2){
+                let emoji = message.guild.emojis.find('name', "deux");
+                await message.react(emoji)
+              }
+              if(args[0] >= 3){
+                let emoji = message.guild.emojis.find('name', "trois");
+                await message.react(emoji)
+              }
+              if(args[0] >= 4){
+                let emoji = message.guild.emojis.find('name', "quatre");
+                await message.react(emoji)
+              }
+              if(args[0] >= 5){
+                let emoji = message.guild.emojis.find('name', "cinq");
+                await message.react(emoji)
+              }
+              if(args[0] >= 6){
+                let emoji = message.guild.emojis.find('name', "six");
+                await message.react(emoji)
+              }
+          }catch (error) {console.log(error)}
       })
   return;
 }
