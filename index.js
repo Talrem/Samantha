@@ -1,7 +1,6 @@
 const botconfig = require('./json/botconfig.json');
 const tokenfile = require('./0-jsons/token.json');
 const cheminfile = require('./0-jsons/chemin.json');
-let coins = require("./json/coins.json");
 const Discord = require('discord.js');
 const can = require("./json/canPlay.json");
 const bot = new Discord.Client()
@@ -135,23 +134,6 @@ bot.on("message", async message =>{
     if(mes.startsWith('DEJA VU') || mes.startsWith('DÉJÀ VU') || mes.startsWith('DEJÀ VU') || mes.startsWith('DÉJA VU')) {
         message.channel.send("I've just been to this place before")
     };
-
-    //systeme d'économie
-    if(!coins[message.author.id]){
-        coins[message.author.id] = {
-            coins: 0
-        };
-    }
-    let coinAmt = Math.floor(Math.random() * 15) + 1;
-    let baseAmt = Math.floor(Math.random() * 15) + 1;
-    if(coinAmt === baseAmt){
-        coins[message.author.id] = {
-            coins: coins[message.author.id].coins + coinAmt
-        };
-        fs.writeFile("./json/coins.json", JSON.stringify(coins), (err) => {
-            if(err) console.log(err)
-        });
-    }
 
     //John Steewart
     if (mes.startsWith('AND') && message.channel.guild.id==311112661108785153) {
