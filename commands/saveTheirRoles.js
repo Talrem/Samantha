@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
             roleIDs[i] = roles[i].id;
           }
 
-          rolefile[message.author.id] = {
+          rolefile[member.id] = {
             roles:roleIDs
           };
 
