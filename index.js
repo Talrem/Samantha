@@ -67,6 +67,52 @@ bot.on('guildMemberAdd', function(member){
     }).catch(console.error)
 });
 
+bot.on("messageUpdate", function(oldMessage, newMessage){
+    /*let mes = newMessage.content.toUpperCase();
+    if(mes.includes("U") && newMessage.author.id ==233191261417373696){
+        newMessage.author.createDM().then(function(channel){
+            channel.send(message.content.split("u").join("`u`").split("U").join("`U`"));
+        }).catch(console.error)
+        newMessage.channel.send("Ah ah, t'es n`u`l Alexis");
+        newMessage.delete();
+    }*/
+    if(newMessage.channel.id==627587389346283526){
+        newMessage.author.createDM().then(function(channel){
+            channel.send("Hé dis donc, tu crois que je t'ai pas vu changer la citation : \""+oldMessage+"\"\n en \""+newMessage+"\"\n");
+        }).catch(console.error)
+        newMessage.delete();
+    }
+});
+
+/*PTDR LE ROI DU SILENCE*/
+bot.on("voiceStateUpdate", function(oldMember, newMember){
+    if(newMember.selfMute){
+        if(newMember.roles.some(role => role.name === 'Roi Du Silence')){
+            newMember.user.createDM().then(function(channel){
+                channel.send(`Dis donc c'est pas un peu de la triche d'être mute pendant un Roi du Silence ? You're Out ! (petite merde).`);
+                console.log(member.user.username + " a perdu au roi du silence !");
+            }).catch(console.error)
+        }
+        let myRole = newMember.guild.roles.find(role => role.name === 'Roi Du Silence');
+        newMember.removeRole(myRole);
+    }
+});
+bot.on("guildMemberSpeaking", function(member, speaking){
+    if(speaking){
+        if(member.roles.some(role => role.name === 'Roi Du Silence')){
+            member.user.createDM().then(function(channel){
+                channel.send(`Tu as perdu au roi du silence... You're Out ! (petite merde).`);
+                console.log(member.user.username + " a perdu au roi du silence !");
+            }).catch(console.error)
+            let myRole = member.guild.roles.find(role => role.name === 'Roi Du Silence');
+            member.removeRole(myRole);
+        }
+    }
+
+});
+/*FIN DU ROI DU SILENCE*/
+
+
 //pour les messages qui commencent par le préfixe
 bot.on("message", async message =>{
     if(message.author.bot) return;
@@ -119,7 +165,7 @@ bot.on("message", async message =>{
         message.delete();
         break;
         case "69E":
-        res = Math.floor(Math.random() * 288856) + 1;
+        res = Math.floor(Math.random() * 335535) + 1;
         message.author.send("https://nhentai.net/g/" + res + "/");
         message.delete();
         break;
@@ -129,8 +175,34 @@ bot.on("message", async message =>{
         case "LOL SOPALIN":
         message.channel.send("BOTTOM TEXT");
         break;
+        case "NO W":
+        let bUser = message.author;
+        let banEmbed = new Discord.RichEmbed()
+        .setDescription("Bannissement")
+        .setColor("#000000")
+        .addField("Utilisateur banni", `${bUser} avec l'ID : ${bUser.id}`)
+        .addField("Banni par", `${message.author} avec l'ID : ${message.author.id}`)
+        .addField("Dans le channel", message.channel)
+        .addField("A", message.createdAt)
+        .addField("Pour", "A utilisé trop de puissance par rapport à ce qu'il pouvait...");
+        let banchannel = message.guild.channels.find(`name`, "rapports");
+        if(!banchannel) return message.channel.send("le salon des rapports n'a pas été trouvé.");
+        message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+        banchannel.send(banEmbed);
+        message.guild.member(bUser).ban({days:0,reason:"Tu as utilisé trop de puissance par rapport à ce que tu pouvais..."});
+        message.channel.send(message.author + "était trop puissant, il a fallu que je m'en débarasse...");
+        break;
         default:break;
     }
+
+    /*if(mes.includes("U") && message.author.id ==233191261417373696){
+        message.author.createDM().then(function(channel){
+            channel.send(message.content.split("u").join("`u`").split("U").join("`U`"));
+        }).catch(console.error)
+        message.channel.send("Ah ah, t'es n`u`l Alexis");
+        message.delete();
+    }*/
+
     if(mes.startsWith('DEJA VU') || mes.startsWith('DÉJÀ VU') || mes.startsWith('DEJÀ VU') || mes.startsWith('DÉJA VU')) {
         message.channel.send("I've just been to this place before")
     };
