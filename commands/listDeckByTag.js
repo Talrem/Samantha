@@ -218,7 +218,11 @@ module.exports.run = async (bot, message, args) => {
     if(j == 0) return message.reply("Aucun deck ne correspond aux arguments fournis...");
     let messageToSend = "";
     for(let k = 0; k < lesDeck.length; k++){
-        messageToSend+= lesDeckID[k]+" `"+lesDeck[k].n + "` (`"+lesDeck[k].t+"`) de `" + lesDeck[k].u+"`\n";
+        if(args.length){
+            messageToSend+= lesDeckID[k]+" `"+lesDeck[k].n + "` (`"+lesDeck[k].t+"`) de `" + lesDeck[k].u+"`\n";
+        }else{
+            messageToSend+= k+" `"+lesDeck[k].n + "` (`"+lesDeck[k].t+"`) de `" + lesDeck[k].u+"`\n";
+        }
         if(k%15==0 && k != 0){
             message.channel.send(messageToSend);
             messageToSend = "";
