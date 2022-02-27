@@ -216,7 +216,7 @@ bot.on("message", async message =>{
             file : "./images/JohnS.jpg"
         });
     };
-
+    
     //test des préfixes
     if(!message.content.startsWith(prefix) && !message.content.toLowerCase().startsWith("samantha. ")) return;
     console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a utilisé la commande "' + message + '"\n');
