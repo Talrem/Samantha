@@ -140,6 +140,13 @@ bot.on("message", async message =>{
     //pour les messages qui commencent sans le préfixe
     /*Vérification que les messages qui sont des citations sont du bon type*/
     if(message.channel.id==627587389346283526){
+        let roleName = "PuniDeCitation";
+        role = message.member.guild.roles.find('name', roleName);
+        if ((message.member.roles.some(role => role.name === roleName))) {
+            message.author.send(`Tu as été puni de citations.`);
+            message.delete();
+            return console.log("puni de citation.");
+        }
         var citation = new RegExp(/"[\w|\W]+" - [\w|\W]+, \d+/);
         if(!citation.test(message.content)) {
             message.author.send("Votre message est : " + message.content);
@@ -216,7 +223,7 @@ bot.on("message", async message =>{
             file : "./images/JohnS.jpg"
         });
     };
-    
+
     //test des préfixes
     if(!message.content.startsWith(prefix) && !message.content.toLowerCase().startsWith("samantha. ")) return;
     console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a utilisé la commande "' + message + '"\n');

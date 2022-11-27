@@ -20,6 +20,7 @@ module.exports.run = async (bot, message, args) => {
     var playerNames = new Array();
     var playerIDs = new Array();
     var nbPlayers = 0;
+    let nbDecks = 0;
     for(i = 0; i < taille; i++){
         if(!isIn(playerIDs,sefile[i].id)){
             playerIDs[nbPlayers] = sefile[i].id;
@@ -99,6 +100,7 @@ module.exports.run = async (bot, message, args) => {
 
     for(i = 0; i < taille; i++){
         if(args[0] && args[0].toLowerCase() == "all"){
+            nbDecks++;
             switch(sefile[i].t){
                 case "Ban":
                 decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "` de " + sefile[i].u;
@@ -188,6 +190,7 @@ module.exports.run = async (bot, message, args) => {
             }
         }else{
             if(sefile[i].id == idJoueur){
+                nbDecks++;
                 switch(sefile[i].t){
                     case "Ban":
                     decksB[jB] = "ID : " + i + " - `" + sefile[i].n + "`";
@@ -301,7 +304,6 @@ module.exports.run = async (bot, message, args) => {
     if(!jB && !jVH && !jH && !jM && !jL && !jVL){
         return message.reply("La cible ne possède aucun deck.");
     }
-    let nbDecks = decksB.length + decksH.length + decksL.length + decksM.length + decksU.length + decksVH.length + decksVL.length;
         message.author.send("Nombre total de decks de la cible : " + nbDecks);
         /*Là on fait la fusion des messages*/
     if(jB != 0){
