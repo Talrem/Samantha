@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
   let textToSend = "";
   for(i = 0; i<taille; i++){
       if (sefile[i].n.toLowerCase().includes( nameToSearch.toLowerCase() )){
-          deckWithName.push(sefile[i].n);
+          deckWithName.push(i + " : " + sefile[i].n);
           deckWithNameUsers.push(sefile[i].u);
       }
   }
