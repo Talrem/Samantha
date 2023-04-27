@@ -4,8 +4,8 @@ const sefile = require("../json/decks.json");
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
-  role = message.member.guild.roles.find('name', roleName);
-  if (!(message.member.roles.some(role => role.name === roleName))) {
+  role = message.member.guild.roles.cache.find(role => role.name === roleName);
+  if (!(message.member.roles.cache.has(role.id))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
   if(args.length != 1 && args.length != 2) return message.reply("La liste des arguments est invalide, vous devez préciser un adversaire.");
@@ -112,14 +112,14 @@ module.exports.run = async (bot, message, args) => {
     .addField("Concept", leDeck2.c)
     .addField("Win Condition", leDeck2.w)
     .addField("Tier", leDeck2.t);
-  message.author.send(deckEmbed1);
-  message.author.send('', {
-    file : './images/DECKS/' + leDeck1.u + '/' + leDeck1.n + '.jpg'
+  message.author.send({embeds:[deckEmbed1]});
+  message.author.send({
+    files : ['./images/DECKS/' + leDeck1.u + '/' + leDeck1.n + '.jpg']
   });
   message.mentions.users.first().send("Vous avez été défié en duel, voici le deck que je vous suggère d'utiliser :")
-  message.mentions.users.first().send(deckEmbed2);
-  return message.mentions.users.first().send('', {
-    file : './images/DECKS/' + leDeck2.u + '/' + leDeck2.n + '.jpg'
+  message.mentions.users.first().send({embeds:[deckEmbed2]});
+  return message.mentions.users.first().send({
+    files : ['./images/DECKS/' + leDeck2.u + '/' + leDeck2.n + '.jpg']
   });
 }
 

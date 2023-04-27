@@ -11,7 +11,7 @@ module.exports.run = async (bot, message, args) => {
   .setTitle("Doggo :dog:")
   .setImage(body.url);
 
-  message.channel.send(dogembed)
+  message.channel.send({embeds:[dogembed]})
   return;
 }
 

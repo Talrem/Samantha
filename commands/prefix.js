@@ -3,8 +3,14 @@ const fs = require("fs");
 let prefixes = require("../json/prefixes.json");
 
 module.exports.run = async (bot, message, args, prefix) => {
-  if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Vos permissions sont trop basses pour utiliser cette commande.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  if(!args[0]) return message.reply(`Vous devez donner un nouveau préfixe à utiliser.`).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(!message.member.permissions.has("ADMINISTRATOR")) return message.reply("Vos permissions sont trop basses pour utiliser cette commande.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
+  if(!args[0]) return message.reply(`Vous devez donner un nouveau préfixe à utiliser.`).then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
 
   prefixes[message.guild.id] = {
     prefixes: args[0]
@@ -19,7 +25,10 @@ module.exports.run = async (bot, message, args, prefix) => {
   .setTitle("Préfixe défini!")
   .setDescription(`Défini sur ${args[0]}`);
 
-  message.channel.send(sEmbed).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  message.channel.send({embeds:[sEmbed]}).then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
 }
 
 module.exports.help = {

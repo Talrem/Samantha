@@ -11,9 +11,9 @@ module.exports.run = async (bot, message, args) => {
   .setColor("#15f153")
   .setThumbnail(bicon)
   .addField("ajout", "+>gameRole : permet de s'ajouter ou retirer des rôles de jeu vidéo.")
-  .addField("ajout", "Plein de trucs en rapport avec YuGiOh.");
-  return message.channel.send(botEmbed);
-  return;
+  .addField("ajout", "Plein de trucs en rapport avec YuGiOh.")
+  .addField("ajout", "Mise à jour à Discord V13.");
+  return message.channel.send({embeds:[botEmbed]});
 }
 
 module.exports.help = {

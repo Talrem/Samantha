@@ -12,8 +12,8 @@ function isIn(tab, argument) {
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
-  role = message.member.guild.roles.find('name', roleName);
-  if (!(message.member.roles.some(role => role.name === roleName))) {
+  role = message.member.guild.roles.cache.find(role => role.name === roleName);
+  if (!(message.member.roles.cache.has(role.id))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
   if(args.length < 2) return message.reply("Veuillez préciser au moins 2 arguments, +>listDecksVar <all/self> <attribut> ... <attribut>");

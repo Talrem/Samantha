@@ -5,8 +5,8 @@ const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
-  role = message.member.guild.roles.find('name', roleName);
-  if (!(message.member.roles.some(role => role.name === roleName))) {
+  role = message.member.guild.roles.cache.find(role => role.name === roleName);
+  if (!(message.member.roles.cache.has(role.id))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
   if(args.length < 1 || args.length > 2) return message.reply("La liste des arguments est invalide, arguments attendus +>suspectDeck <ID> <+/-> pour savoir quel deck et vers où il est suspecté.");
@@ -47,7 +47,10 @@ module.exports.run = async (bot, message, args) => {
   fs.writeFile("./json/decks.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
-  return message.channel.send("Le deck a été enregistré avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  return message.channel.send("Le deck a été enregistré avec succès.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
 }
 
 module.exports.help = {

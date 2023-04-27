@@ -21,7 +21,7 @@ function playing(connection, message){
 
 module.exports.run = async (bot, message, args) => {
   if(!can.can) return message.reply("Je n'ai pas actuellement le droit de venir en vocal...")
-  if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("Seul un administrateur a le droit à une telle puissance...")
+  if(!message.member.permissions.has("ADMINISTRATOR")) return message.reply("Seul un administrateur a le droit à une telle puissance...")
   let shittyMusic = [
     /*take on me*/ "https://youtu.be/nF7lv1gfP1Q",
     /*URSS*/ "https://youtu.be/I5fenjzeh7g",
@@ -54,7 +54,10 @@ module.exports.run = async (bot, message, args) => {
       playing(connection, message);
     })
   }else{
-    return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   }
 }
 

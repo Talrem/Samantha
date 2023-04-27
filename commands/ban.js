@@ -5,22 +5,24 @@ module.exports.run = async (bot, message, args) => {
   if(!bUser) return message.channel.send("L'utilisateur n'a pas été trouvé.");
   let bReason = args.join(" ").slice(22);
   if(!args[1]) return message.channel.send("Précisez un motif");
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
+  if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
   let toSave = message.guild.roles.find(`name`, "dontTouch");
   if(bUser.hasPermission("MANAGE_MESSAGES")|| bUser.roles.has(toSave.id)) return message.channel.send("Cet utilisateur ne peut être banni");
   let banEmbed = new Discord.RichEmbed()
   .setDescription("Bannissement")
   .setColor("#000000")
-  .addField("Utilisateur banni", `${bUser} avec l'ID : ${bUser.id}`)
-  .addField("Banni par", `${message.author} avec l'ID : ${message.author.id}`)
-  .addField("Dans le channel", message.channel)
-  .addField("A", message.createdAt)
-  .addField("Pour", bReason);
+  .addFields(
+    {name:"Utilisateur banni", value: `${bUser} avec l'ID : ${bUser.id}`},
+    {name:"Banni par",value:`${message.author} avec l'ID : ${message.author.id}`},
+    {name:"Dans le channel",value:message.channel},
+    {name:"A",value:message.createdAt},
+    {name:"Pour",value:bReason}
+  );
 
   let banchannel = message.guild.channels.find(`name`, "rapports");
   if(!banchannel) return message.channel.send("le salon des rapports n'a pas été trouvé.");
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  banchannel.send(banEmbed);
+  banchannel.send({embeds:[banEmbed]});
   message.guild.member(bUser).ban({days:0,reason:bReason});
   return;
 }

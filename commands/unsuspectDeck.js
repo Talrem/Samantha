@@ -29,7 +29,10 @@ module.exports.run = async (bot, message, args) => {
   fs.writeFile("./json/decks.json", JSON.stringify(sefile), (err) =>{
     if(err) console.log(err);
   })
-  return message.channel.send("Le deck a été enregistré avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  return message.channel.send("Le deck a été enregistré avec succès.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
 }
 
 module.exports.help = {

@@ -15,7 +15,7 @@ module.exports.run = async (bot, message, args) => {
   let reportschannel = message.guild.channels.find(`name`, "rapports");
   if(!reportschannel) return message.channel.send("le salon des rapports n'a pas été trouvé.");
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  reportschannel.send(reportEmbed1);
+  reportschannel.send({embeds:[reportEmbed1]});
 }
 
 module.exports.help = {

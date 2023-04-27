@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-  if(!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas placer les gens sur la ligne rouge.");
+  if(!message.member.permissions.has("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas placer les gens sur la ligne rouge.");
   if(!args[0])return message.channel.send("Veuillez préciser un utilisateur.")
   let toSave = message.guild.member(message.mentions.users.first() || message.guild.members.gets(args[0]));
   if(!toSave) return message.channel.send("L'utilisateur n'a pas été trouvé.");

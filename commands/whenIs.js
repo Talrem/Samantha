@@ -3,7 +3,10 @@ let purge = require("../json/purge.json");
 
 module.exports.run = async (bot, message, args) => {
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  if(!args[0]) return message.reply("Veuillez préciser une date en <annee-mois-jour> <heure:minutes:secondes>").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(!args[0]) return message.reply("Veuillez préciser une date en <annee-mois-jour> <heure:minutes:secondes>").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   if(!args[1]) args[1] = "00:00:00";
   var dateVoulue = new Date(args[0] + " " + args[1]);
   var dateActu = new Date();
@@ -34,7 +37,10 @@ module.exports.run = async (bot, message, args) => {
   messageToSend += "avant la date spécifiée."//calcul du temps et préparation de l'affichage
   if(messageToSend === "Il reste avant la date spécifiée.") return message.reply("Veuillez préciser une date postérieure à la date actuelle.");
   return message.reply(messageToSend).then(msg => msg.delete(10000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  return message.channel.send("Une erreur est survenue...").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  return message.channel.send("Une erreur est survenue...").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
 }
 
 module.exports.help = {

@@ -7,14 +7,16 @@ function alea(){
 module.exports.run = async (bot, message, args) => {
   if(!args[0]){
     let res = alea()
-    message.channel.send('My Body Is Ready !', {
-      file : './images/img_sugoi_'+ res +'.gif'
+    message.channel.send({
+      content:'My Body Is Ready !',
+      files : ['./images/img_sugoi_'+ res +'.gif']
     });
     return;
   }else{
     res = args[0];
-    message.channel.send('My Body Is Ready !', {
-      file : './images/img_sugoi_'+ res +'.gif'
+    message.channel.send({
+      content:'My Body Is Ready !',
+      files : ['./images/img_sugoi_'+ res +'.gif']
     });
     return;
   }

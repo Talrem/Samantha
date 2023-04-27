@@ -4,8 +4,8 @@ const sefile = require("../json/decks.json");
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
-  role = message.member.guild.roles.find('name', roleName);
-  if (!(message.member.roles.some(role => role.name === roleName))) {
+  role = message.member.guild.roles.cache.find(role => role.name === roleName);
+  if (!(message.member.roles.cache.has(role.id))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
   if(args.length != 5) return message.reply("La liste des arguments est invalide, attente de 5 arguments : +>changeDeck <ID> <Nom> <Provenance> <Concept> <WinCon>.");
@@ -34,7 +34,10 @@ module.exports.run = async (bot, message, args) => {
     if(err) console.log(err);
   })
   if(previousName != sefile[args[0]].n) message.channel.send("Veuillez préciser le changement de nom du deck à Talrem pour la base d'images.");
-  return message.channel.send("Le deck a été enregistré avec succès.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  return message.channel.send("Le deck a été enregistré avec succès.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
 }
 
 module.exports.help = {

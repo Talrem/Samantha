@@ -8,23 +8,33 @@ function alea(){
 module.exports.run = async (bot, message, args) => {
   res = alea()
   if(res === 1){
-    message.channel.send("ROAD ROLLER DA !", {file : './images/img_jojo_'+ res +'.jpg'
+    message.channel.send({
+      content:"ROAD ROLLER DA !",
+      files : ['./images/img_jojo_'+ res +'.jpg']
     });
   };
   if(res === 2){
-    message.channel.send("KONO DIO DA !", {file : './images/img_jojo_'+ res +'.jpg'
+    message.channel.send({
+      content:"KONO DIO DA !",
+      files : ['./images/img_jojo_'+ res +'.jpg']
     });
   };
   if(res === 3){
-    message.channel.send("SONO CHI NO SADAME ! JOOOOOOOOOOOOOOJO !", {file : './images/img_jojo_'+ res +'.jpg'
+    message.channel.send({
+      content:"SONO CHI NO SADAME ! JOOOOOOOOOOOOOOJO !",
+      files : ['./images/img_jojo_'+ res +'.jpg']
     });
   };
   if(res === 4){
-    message.channel.send("OH NO !", {file : './images/img_jojo_'+ res +'.jpg'
+    message.channel.send({
+      content:"OH NO !",
+      files : ['./images/img_jojo_'+ res +'.jpg']
     });
   };
   if(res === 5){
-    message.channel.send("AYA YA YA !", {file : './images/img_jojo_'+ res +'.jpg'
+    message.channel.send({
+      content: "AYA YA YA !",
+      files : ['./images/img_jojo_'+ res +'.jpg']
     });
   };
   return;

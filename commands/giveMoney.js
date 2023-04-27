@@ -22,7 +22,10 @@ module.exports.run = async (bot, message, args) => {
     coins: pCoins + parseInt(args[1])
   };
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  message.channel.send(`${pUser} a trouvé ${args[1]} pièces.`).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  message.channel.send(`${pUser} a trouvé ${args[1]} pièces.`).then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
 
   fs.writeFile("./coins.json", JSON.stringify(coins), (err) =>{
     if(err) console.log(err);

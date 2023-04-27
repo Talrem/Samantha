@@ -8,14 +8,16 @@ function alea(){
 module.exports.run = async (bot, message, args) => {
   if(!args[0]){
     let res = alea()
-    message.channel.send('AAAAH !', {
-      file : './images/img_trig_'+ res +'.gif'
+    message.channel.send({
+      content:'AAAAH !',
+      files : ['./images/img_trig_'+ res +'.gif']
     });
     return;
   }else{
     res = args[0];
-    message.channel.send('AAAAH !', {
-      file : './images/img_trig_'+ res +'.gif'
+    message.channel.send({
+      content:'AAAAH !',
+      files : ['./images/img_trig_'+ res +'.gif']
     });
     return;
   }

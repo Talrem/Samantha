@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
-    if(!message.member.hasPermission(["BAN_MEMBERS", "ADMINISTRATOR"])) return message.channel.send("Je ne peux pas vous laisser faire ça.")
+    if(!message.member.permissions.has(["BAN_MEMBERS", "ADMINISTRATOR"])) return message.channel.send("Je ne peux pas vous laisser faire ça.")
     let bannedMember = await bot.fetchUser(args[0])
         if(!bannedMember) return message.channel.send("Veuillez donner un ID pour que je puisse déban la personne.")
     let bReason = args.slice(1).join(" ");

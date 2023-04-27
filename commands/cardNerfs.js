@@ -4,8 +4,8 @@ const sefile = require("../json/ticketsReportsCartes.json");
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
-  role = message.member.guild.roles.find('name', roleName);
-  if (!(message.member.roles.some(role => role.name === roleName))) {
+  role = message.member.guild.roles.cache.find(role => role.name === roleName);
+  if (!(message.member.roles.cache.has(role.id))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
   let taille = sefile[-1].number;

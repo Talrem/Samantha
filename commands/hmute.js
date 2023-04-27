@@ -1,7 +1,7 @@
 const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
+  if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
   if(!args[0])return message.channel.send("Veuillez préciser un utilisateur à rendre muet.");
   let toMute = message.guild.member(message.mentions.users.first() || message.guild.members.gets(args[0]));
   if(!toMute) return message.channel.send("L'utilisateur n'a pas été trouvé.");

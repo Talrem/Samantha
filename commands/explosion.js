@@ -1,8 +1,8 @@
 const Discord = require("discord.js")
 
 module.exports.run = async (bot, message, args) => {
-		message.channel.send('', {
-			file : './images/explosion.gif'
+		message.channel.send({
+			files : ['./images/explosion.gif']
 		});
   return;
 }

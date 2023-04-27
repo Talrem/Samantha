@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Créé le", message.guild.createdAt)
   .addField("Vous être arrivé", message.member.joinedAt)
   .addField("Membres", message.guild.memberCount);
-  return message.channel.send(serverEmbed);
+  return message.channel.send({embeds:[serverEmbed]});
 }
 
 module.exports.help = {

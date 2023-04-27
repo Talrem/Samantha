@@ -5,9 +5,15 @@ const rolefile = require("../json/roles.json");
 
 module.exports.run = async (bot, message, args) => {
   if(message.author.id != idfile.id){
-    return message.reply('Seul mon créateur a le droit à cette commande').then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    return message.reply('Seul mon créateur a le droit à cette commande').then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   }
-  if(!args.length) return message.reply("Veuillez préciser une cible").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(!args.length) return message.reply("Veuillez préciser une cible").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   message.channel.send("Êtes-vous sûr(e) de vouloir sauvegarder tout les rôles que vous avez `ACTUELLEMENT` dans le fichier de sauvegarde ? Veuillez réagir à ce message avec 👍 si c'est ce que vous voulez.")
   .then(msg=>{
     msg.react("👍");

@@ -2,9 +2,15 @@ const Discord = require("discord.js")
 const fs = require("fs");
 
 module.exports.run = async (bot, message, args) => {
-  if(!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas suicider les gens.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(!message.member.permissions.has("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas suicider les gens.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   let cible = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(cible.hasPermission("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas suicider cette personne.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(cible.hasPermission("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas suicider cette personne.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   let res = 0;
   if(args[1]){
     if(args[1] < 1 || args[1] > 5){

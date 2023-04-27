@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
   .addField("Créé le", message.guild.createdAt)
   .addField("Vous être arrivé", message.member.joinedAt)
   .addField("Membres", message.guild.memberCount);
-  return message.channel.send(serverEmbed).then(msg => msg.delete(60000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  return message.channel.send({embeds:[serverEmbed]}).then(msg => msg.delete(60000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 }
 
 module.exports.help = {

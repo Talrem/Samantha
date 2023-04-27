@@ -2,9 +2,15 @@ const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
   message.delete();
-  if(message.channel.name!="tournois") return message.reply("Cette commande ne peut être utilisée que dans le channel des tournois.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  if(args.length < 1) return message.reply("Vous devez préciser de quoi sera le tournois...").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
-  if(!message.member.hasPermission("ADMINISTRATOR") && !message.member.roles.some(role => role.name === "Gérant de tournois")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
+  if(message.channel.name!="tournois") return message.reply("Cette commande ne peut être utilisée que dans le channel des tournois.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
+  if(args.length < 1) return message.reply("Vous devez préciser de quoi sera le tournois...").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
+  if(!message.member.permissions.has("ADMINISTRATOR") && !message.member.roles.some(role => role.name === "Gérant de tournois")) return message.channel.send("Vous n'avez pas le droit de faire ça.");
     const participeRole = message.guild.roles.find(role => role.name === "Participant");
     if(!participeRole){
       try{

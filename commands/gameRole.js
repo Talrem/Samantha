@@ -23,7 +23,7 @@ module.exports.run = async (bot, message, args) => {
   }
   msgRoles +=".";
   if(!isIn(lesRoles,roleName)) return message.reply("Le rôle spécifié n'est pas un role valide. Les rôles valides sont :\n" + msgRoles);
-  role = message.member.guild.roles.find('name', roleName);
+  role = message.member.guild.roles.cache.find(role => role.name === roleName);
   if (message.member.roles.some(role => role.name === roleName)) {
     message.member.removeRole(role).catch(console.error);
   }else{

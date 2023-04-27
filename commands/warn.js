@@ -5,12 +5,21 @@ let warns = JSON.parse(fs.readFileSync("./json/warnings.json", "utf8"));
 
 module.exports.run = async (bot, message, args) => {
   //!warn @daeshan <reason>
-  if(!message.member.hasPermission("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas donner d'avertissement.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(!message.member.permissions.has("KICK_MEMBERS")) return message.reply("Vous ne pouvez pas donner d'avertissement.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   let wUser = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0])
-  if(!wUser) return message.reply("L'utilisateur n'a pas été trouvé.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(!wUser) return message.reply("L'utilisateur n'a pas été trouvé.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   if(!args[1]) return message.channel.send("Précisez un motif");
   let toSave = message.guild.roles.find(`name`, "dontTouch");
-  if(wUser.hasPermission("MANAGE_MESSAGES")|| wUser.roles.has(toSave.id)) return message.reply("Vous ne pouvez pas avertir cet utilisateur.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  if(wUser.hasPermission("MANAGE_MESSAGES")|| wUser.roles.has(toSave.id)) return message.reply("Vous ne pouvez pas avertir cet utilisateur.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
 
   let reason = args.join(" ").slice(22);
 
@@ -36,7 +45,7 @@ module.exports.run = async (bot, message, args) => {
   let warnchannel = message.guild.channels.find(`name`, "rapports");
   if(!warnchannel) return message.channel.send("le salon des rapports n'a pas été trouvé.");
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`))
-  warnchannel.send(warnEmbed);
+  warnchannel.send({embeds:[warnEmbed]});
 
   if(warns[wUser.id].warns == 2){
     //création du role s'il n'existe pas

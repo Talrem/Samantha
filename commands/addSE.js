@@ -5,7 +5,7 @@ const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
   if(message.author.id != idfile.id){
-    return message.channel.send("Vous n'avez pas le droit d'ajouter de nouveaux effets sonores.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    return message.channel.send("Vous n'avez pas le droit d'ajouter de nouveaux effets sonores.");
   }
   if(!sefile[args[0].toUpperCase()]) sefile[args[0].toUpperCase()] = {
     url: 0

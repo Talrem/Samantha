@@ -2,7 +2,7 @@ const Discord = require("discord.js")
 const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
-  if(!message.member.hasPermission("MANAGE_MESSAGES")) return message.reply("Vous n'avez pas le droit de faire ça.");
+  if(!message.member.permissions.has("MANAGE_MESSAGES")) return message.reply("Vous n'avez pas le droit de faire ça.");
   let tocoin = message.guild.member(message.mentions.users.first() || message.guild.members.gets(args[0]));
   if(!args[1]) return message.reply("Précisez un temps de coin (nombre suivi de `s` `m` ou `h`)");
   if(!args[2]) return message.reply(`Précisez une raison de mettre ${tocoin} au coin`);

@@ -6,12 +6,21 @@ module.exports.run = async (bot, message, args) => {
   if(message.member.voiceChannel){
     if(!message.guild.voiceConnection){
       message.member.voiceChannel.join()
-        .then(connection => message.reply("Channel rejoint avec succès.")).then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+        .then(connection => message.reply("Channel rejoint avec succès.")).then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
     }else{
-      return message.reply("Je suis déjà en vocal").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+      return message.reply("Je suis déjà en vocal").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
     }
   }else{
-    return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   }
 }
 

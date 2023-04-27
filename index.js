@@ -2,8 +2,15 @@ const botconfig = require('./json/botconfig.json');
 const tokenfile = require('./0-jsons/token.json');
 const cheminfile = require('./0-jsons/chemin.json');
 const Discord = require('discord.js');
+const { MessageAttachment } = require('discord.js');
+const { Client, GatewayIntentBits, ActivityType } = require('discord.js');
 const can = require("./json/canPlay.json");
-const bot = new Discord.Client()
+const bot = new Client({ intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildMembers,
+	]});
 const fs = require("fs");
 bot.commands = new Discord.Collection();
 let purple = botconfig.purple;
@@ -53,9 +60,10 @@ fs.readdir(cheminfile.commands,(err, files) => {
 bot.on('ready', async () => {
     console.log(`${bot.user.username} est en ligne!\n`)
     console.log(`${bot.user.username} est connectée sur ${bot.guilds.size} serveurs!\n`);
-    bot.user.setActivity("Samantha. help", {type: "WATCHING"})
-    .then(() => console.log('Activité mise en place avec succès\n'))
-    .catch(console.error)
+    bot.user.setPresence({
+        activities: [{ name: `Samantha. help`, type: ActivityType.Watching }],
+        status: 'c',
+    });
 });
 
 //acceuil
@@ -108,13 +116,12 @@ bot.on("guildMemberSpeaking", function(member, speaking){
             member.removeRole(myRole);
         }
     }
-
 });
 /*FIN DU ROI DU SILENCE*/
 
 
 //pour les messages qui commencent par le préfixe
-bot.on("message", async message =>{
+bot.on("messageCreate", (message) => {
     if(message.author.bot) return;
     if(message.guild === null){
         console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a envoyé "' + message + '"' + " en message privé.")
@@ -168,16 +175,21 @@ bot.on("message", async message =>{
         message.delete();
         break;
         case "69":
-        message.author.send(res = Math.floor(Math.random() * 288856) + 1);
+        message.author.send(res = Math.floor(Math.random() * 449516) + 1);
+        console.log(res);
         message.delete();
         break;
         case "69E":
-        res = Math.floor(Math.random() * 335535) + 1;
+        res = Math.floor(Math.random() * 449516) + 1;
+        console.log(res);
         message.author.send("https://nhentai.net/g/" + res + "/");
         message.delete();
         break;
         case "FUCKGOBACK":
         message.channel.bulkDelete(2);
+        break;
+        case "RASEDRO":
+            message.reply(new Date().getTime() - message.createdTimestamp + " ms -- Inspecteur Badget !");
         break;
         case "LOL SOPALIN":
         message.channel.send("BOTTOM TEXT");
@@ -216,24 +228,25 @@ bot.on("message", async message =>{
 
     //John Steewart
     if (mes.startsWith('AND') && message.channel.guild.id==311112661108785153) {
-        let emoji = message.guild.emojis.find('name', "johnsteewart");
-        message.react(emoji);
-        message.channel.send('his name is JOHN STEEWART !!!!!')
-        message.channel.send("", {
-            file : "./images/JohnS.jpg"
+        //let emoji = message.guild.emojis.find('name', "johnsteewart");
+        //message.react(emoji);
+        message.channel.send({
+            content:"'his name is JOHN STEEWART !!!!!'",
+            files: ["./images/JohnS.jpg"] 
         });
     };
 
     //test des préfixes
     if(!message.content.startsWith(prefix) && !message.content.toLowerCase().startsWith("samantha. ")) return;
-    console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a utilisé la commande "' + message + '"\n');
+    console.log(Date() + " " + message.author.username + "#" + message.author.discriminator + ' a utilisé la commande "' + message.content + '"\n');
     if(cooldown.has(message.author.id)){
         message.delete();
-        return message.reply("Veuillez attendre 5 secondes entre les commandes.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+        return message.reply("Veuillez attendre 5 secondes entre les commandes.").then(msg => {
+            msg.delete({ timeout: 10000 })
+          })
+          .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
     }
-    if(!message.member.hasPermission("ADMINISTRATOR")){
-        cooldown.add(message.author.id);
-    }
+
     let messageArray = message.content.split(" ");
     let cmd;
     let args;

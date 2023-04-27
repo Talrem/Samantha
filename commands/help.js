@@ -6,7 +6,10 @@ const cheminfile = require('../0-jsons/chemin.json');
 module.exports.run = async (bot, message, args) => {
   message.delete().catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
   if(!args[0]){ //Si aucune commande n'est précisée.
-    message.reply("La liste de mes commandes est en train de vous être envoyée par message privé. Pour plus d'informations utilisez `help <nomDeCommande>`").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    message.reply("La liste de mes commandes est en train de vous être envoyée par message privé. Pour plus d'informations utilisez `help <nomDeCommande>`").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
     fs.readdir(cheminfile.commands,(err, files) => {
       if(err) console.log(err);
       let jsfile = files.filter(f => f.split(".").pop() === "js")
@@ -49,38 +52,47 @@ module.exports.run = async (bot, message, args) => {
       });
       if(message.author.id != idfile.id){
         let roleName = "Dueliste";
-        role = message.member.guild.roles.find('name', roleName);
-        if (!(message.member.roles.some(role => role.name === roleName))) {
-          let helpEmbedNonDuelist = new Discord.RichEmbed()
-          .setTitle("Mes Commandes")
-          .setColor("#00ff00")
-          .addField(`Commandes Funs (${nbFun})`, nameFunlist)
-          .addField(`Commandes Sociales (${nbSoc})`, nameSoclist)
-          .addField(`Commandes d'Administration (${nbAdm})`, nameAdmlist);
-          return message.author.send(helpEmbedNonDuelist);
+        role = message.member.guild.roles.cache.find(role => role.name === roleName);
+        if (!(message.member.roles.cache.has(role.id))) {
+          let helpEmbedNonDuelist = new EmbedBuilder()
+            .setTitle("Mes Commandes")
+            .setColor("#00ff00")
+            .addFields(
+              {name: `Commandes Funs (${nbFun})`, value: nameFunlist},
+              {name: `Commandes Sociales (${nbSoc})`, value: nameSoclist},
+              {name: `Commandes d'Administration (${nbAdm})`, value: nameAdmlist}
+            )
+          return message.author.send({embeds:[helpEmbedNonDuelist]});
         }
-        let helpEmbed = new Discord.RichEmbed()
+        let helpEmbed = new Discord.EmbedBuilder()
         .setTitle("Mes Commandes")
         .setColor("#00ff00")
-        .addField(`Commandes Funs (${nbFun})`, nameFunlist)
-        .addField(`Commandes Sociales (${nbSoc})`, nameSoclist)
-        .addField(`Commandes d'Administration (${nbAdm})`, nameAdmlist)
-        .addField(`Commandes liées à YuGiOh (${nbYugi})`, nameYugilist);
-        return message.author.send(helpEmbed);
+        .addFields(
+          {name: `Commandes Funs (${nbFun})`, value: nameFunlist},
+          {name: `Commandes Sociales (${nbSoc})`, value: nameSoclist},
+          {name: `Commandes d'Administration (${nbAdm})`, value: nameAdmlist},
+          {name: `Commandes liées à YuGiOh (${nbYugi})`, value: nameYugilist}
+        )
+        return message.author.send({embeds:[helpEmbed]});
       }else{
-        let helpEmbedMe = new Discord.RichEmbed()
+        let helpEmbedMe = new Discord.EmbedBuilder()
         .setTitle("Mes Commandes")
         .setColor("#00ff00")
-        .addField(`Commandes Funs (${nbFun})`, nameFunlist)
-        .addField(`Commandes Sociales (${nbSoc})`, nameSoclist)
-        .addField(`Commandes d'Administration (${nbAdm})`, nameAdmlist)
-        .addField(`Commandes liées à YuGiOh (${nbYugi})`, nameYugilist)
-        .addField(`Commandes de Talrem uniquement (${nbPriv})`, namePrivlist);
-        return message.author.send(helpEmbedMe);
+        .addFields(
+          {name: `Commandes Funs (${nbFun})`, value: nameFunlist},
+          {name: `Commandes Sociales (${nbSoc})`, value: nameSoclist},
+          {name: `Commandes d'Administration (${nbAdm})`, value: nameAdmlist},
+          {name: `Commandes liées à YuGiOh (${nbYugi})`, value: nameYugilist},
+          {name: `Commandes de Talrem uniquement (${nbPriv})`, value: namePrivlist}
+        )
+        return message.author.send({embeds: [helpEmbedMe]});
       }
     });
   }else{
-    message.reply("Les informations sur la commande voulue sont en train de vous être envoyées par message privé. Pour obtenir la liste des commandes disponibles, utilisez `help`").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    message.reply("Les informations sur la commande voulue sont en train de vous être envoyées par message privé. Pour obtenir la liste des commandes disponibles, utilisez `help`").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
     fs.readdir(cheminfile.commands,(err, files) => {
     	if(err) console.log(err);
     	let jsfile = files.filter(f => f.split(".").pop() === "js")

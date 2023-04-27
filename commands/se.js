@@ -36,10 +36,16 @@ module.exports.run = async (bot, message, args) => {
         playing(connection, message);
       })
     }else{
-      return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+      return message.reply("Vous devez être dans un channel vocal pour me faire venir.").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
     }
   }else{
-    return message.reply("Je suis déjà en vocal").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    return message.reply("Je suis déjà en vocal").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   }
 }
 

@@ -20,8 +20,8 @@ function whatTab(lesTiers, lesProvenances, lesConcepts, lesWinCons, argument){
 
 module.exports.run = async (bot, message, args) => {
   let roleName = "Dueliste";
-  role = message.member.guild.roles.find('name', roleName);
-  if (!(message.member.roles.some(role => role.name === roleName))) {
+  role = message.member.guild.roles.cache.find(role => role.name === roleName);
+  if (!(message.member.roles.cache.has(role.id))) {
     return message.reply("Vous n'êtes pas un Dueliste, je ne peux pas vous laisser faire ça.");
   }
   if(args.length >= 4 && args.length <= 0) return message.reply("La liste des arguments est invalide, vous devez préciser si vous souhaitez <Provenance> <Concept> <WinCon> <Tier> dans l'ordre que vous voulez.");
@@ -153,9 +153,9 @@ module.exports.run = async (bot, message, args) => {
   .addField("Concept", leDeck.c)
   .addField("Win Condition", leDeck.w)
   .addField("Tier", leDeck.t);
-  message.channel.send(deckEmbed)
-  return message.channel.send('', {
-    file : './images/DECKS/' + leDeck.u + '/' + leDeck.n + '.jpg'
+  message.channel.send({embeds:[deckEmbed]})
+  return message.channel.send({
+    files : ['./images/DECKS/' + leDeck.u + '/' + leDeck.n + '.jpg']
   }).catch(error =>  message.channel.send("Aucune image disponible pour ce deck, veuillez en fournir une."));
 }
 

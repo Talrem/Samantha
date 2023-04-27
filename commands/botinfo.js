@@ -6,10 +6,12 @@ module.exports.run = async (bot, message, args) => {
   .setDescription("Un bot utilitaire qui a surtout des commandes fun, mais dont certaines peuvent être utiles")
   .setColor("#15f153")
   .setThumbnail(bicon)
-  .addField("Nom", bot.user.username)
-  .addField("Créé le", bot.user.createdAt)
-  .addField("GitHub", "https://github.com/Talrem/Samantha");
-  return message.channel.send(botEmbed).then(msg => msg.delete(60000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+  .addFields(
+    {name:"Nom", value:bot.user.username},
+    {name:"Créé le", value:bot.user.createdAt},
+    {name:"GitHub", value:"https://github.com/Talrem/Samantha"}
+  );
+  return message.channel.send({embeds:[botEmbed]}).then(msg => msg.delete(60000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
 }
 
 module.exports.help = {

@@ -3,7 +3,10 @@ const fs = require("fs");
 const rolefile = require("../json/roles.json");
 
 module.exports.run = async (bot, message, args) => {
-    if(message.author.id==="281484394290741250") return message.reply("Mais voyons, vous savez que ça ne sert à rien :)").then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    if(message.author.id==="281484394290741250") return message.reply("Mais voyons, vous savez que ça ne sert à rien :)").then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
     message.channel.send("Êtes-vous sûr(e) de vouloir sauvegarder tout les rôles que vous avez `ACTUELLEMENT` dans le fichier de sauvegarde ? Veuillez réagir à ce message avec 👍 si c'est ce que vous voulez.")
     .then(msg=>{
         msg.react("👍");

@@ -8,7 +8,7 @@ module.exports.run = async (bot, message, args) => {
   }else{
     res = Math.floor(Math.random() * nb) + 1;
   }
-  message.channel.send("", {file : './images/img_ad_'+ res +'.jpg'})
+  message.channel.send({files : ['./images/img_ad_'+ res +'.jpg']})
   return;
 }
 

@@ -3,7 +3,10 @@ const idfile = require('../0-jsons/monID.json');
 
 module.exports.run = async (bot, message, args) => {
   if(message.author.id != idfile.id){
-    return message.reply('Seul mon créateur a le droit à cette commande').then(msg => msg.delete(5000)).catch(error => console.log(`Impossible de supprimer le messages car ${error}`));
+    return message.reply('Seul mon créateur a le droit à cette commande').then(msg => {
+    msg.delete({ timeout: 10000 })
+  })
+  .catch(/*Your Error handling if the Message isn't returned, sent, etc.*/);
   }
   let member = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
   if(!member) return message.channel.send("L'utilisateur n'a pas été trouvé.");
@@ -13,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
       roleName += " " + args[i];
     }
     console.log("'" +roleName + "'");
-    role = message.member.guild.roles.find('name', roleName);
+    role = message.member.guild.roles.cache.find(role => role.name === roleName);
     member.removeRole(role).catch(console.error);
   };
   return;
